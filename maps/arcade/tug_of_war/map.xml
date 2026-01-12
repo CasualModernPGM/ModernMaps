@@ -1,0 +1,296 @@
+<map proto="1.5.0">
+<name>Tug of War</name>
+<variant id="bridge-gone" world="bridge_gone">Bridge GONE</variant>
+<variant id="honey" world="honey">Honey</variant>
+<variant id="lure" world="lure">Lure</variant>
+<variant id="intense-tugging" world="intense_tugging" min-server-version="1.21">Intense Tugging</variant>
+<variant id="tugmas" world="tugmas">Tugmas</variant>
+<unless variant="default,intense-tugging">
+    <created>2023-07-14</created>
+</unless>
+<if variant="default">
+    <created>2023-04-26</created>
+</if>
+<if variant="intense-tugging">
+    <created>2025-07-18</created>
+</if>
+<version>1.1.0</version>
+<include id="gapple-kill-reward"/>
+<include id="void-death"/>
+<objective>Capture all the points sequentially in the row to win!</objective>
+<authors>
+    <author uuid="d5a64b26-15ea-46c4-8319-f9c83e82a1fa"/> <!-- Eliminate -->
+</authors>
+<contributors>
+    <contributor contribution="Map inspiration">MineMakers Team</contributor>
+    <contributor uuid="6ff4ade9-e968-4acd-80eb-1a6fa89629fb" contribution="XML"/> <!-- _Pear -->
+    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="XML"/> <!-- zzuf -->
+</contributors>
+<teams>
+    <team id="red-team" color="red" max="5">Red</team>
+    <team id="blue-team" color="blue" max="5">Blue</team>
+</teams>
+<kits>
+    <kit id="night-vision">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="default" parent="night-vision">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <unless variant="tugmas">
+            <item slot="1" unbreakable="true" enchantment="efficiency" material="diamond pickaxe"/>
+            <item slot="2" amount="6" material="snowball"/>
+        </unless>
+        <item slot="5" material="golden apple"/>
+        <unless variant="intense-tugging,tugmas">
+            <item slot="3" team-color="true" amount="64" material="stained clay"/>
+            <item slot="4" team-color="true" amount="64" material="stained clay"/>
+        </unless>
+        <if variant="intense-tugging">
+            <item slot="3" material="scaffolding" amount="64"/>
+            <item slot="4" material="scaffolding" amount="64"/>
+        </if>
+        <if variant="honey">
+            <item slot="8" name="`6`lStinger" enchantment="knockback" material="wood sword" damage="57"/>
+        </if>
+        <if variant="lure">
+            <item slot="8" material="fishing rod" damage="60"/>
+        </if>
+        <if variant="tugmas">
+            <item slot="1" name="``fPresent Opener" material="shears" unbreakable="true"/>
+            <item slot="2" name="Snowball" material="snowball" projectile="tugball" amount="4"/>
+            <item slot="3" team-color="true" amount="64" material="wool"/>
+            <item slot="4" team-color="true" amount="64" material="wool"/>
+        </if>
+    </kit>
+</kits>
+<spawns>
+    <default kit="night-vision" region="obs-spawn"/>
+    <spawn kit="default" team="red-team" region="point-a-spawn" yaw="-90" filter="progress-1"/>
+    <spawn kit="default" team="red-team" region="point-b-spawn" yaw="-90" filter="progress-2"/>
+    <spawn kit="default" team="red-team" region="point-c-spawn" yaw="-90" filter="progress-3"/>
+    <spawn kit="default" team="red-team" region="point-d-spawn" yaw="-90" filter="progress-4"/>
+    <spawn kit="default" team="blue-team" region="point-e-spawn" yaw="90" filter="progress-1"/>
+    <spawn kit="default" team="blue-team" region="point-d-spawn" yaw="90" filter="progress-2"/>
+    <spawn kit="default" team="blue-team" region="point-c-spawn" yaw="90" filter="progress-3"/>
+    <spawn kit="default" team="blue-team" region="point-b-spawn" yaw="90" filter="progress-4"/>
+</spawns>
+<variables>
+    <variable id="progress" scope="team" default="4"/>
+</variables>
+<actions>
+    <action id="increment-progress" scope="team">
+        <set var="progress" value="progress+1" scope="team"/>
+    </action>
+    <action id="decrement-progress" scope="team">
+        <set var="progress" value="progress-1" scope="team"/>
+    </action>
+    <trigger action="increment-progress" scope="team" filter="controls-a"/>
+    <trigger action="increment-progress" scope="team" filter="controls-b"/>
+    <trigger action="increment-progress" scope="team" filter="controls-c"/>
+    <trigger action="increment-progress" scope="team" filter="controls-d"/>
+    <trigger action="increment-progress" scope="team" filter="controls-e"/>
+    <trigger action="decrement-progress" scope="team" filter="doesnt-control-e"/>
+    <trigger action="decrement-progress" scope="team" filter="doesnt-control-d"/>
+    <trigger action="decrement-progress" scope="team" filter="doesnt-control-c"/>
+    <trigger action="decrement-progress" scope="team" filter="doesnt-control-b"/>
+    <trigger action="decrement-progress" scope="team" filter="doesnt-control-a"/>
+</actions>
+<filters>
+    <any id="only-blocks">
+        <all>
+            <material>stained clay:0</material>
+            <deny>
+                <participating/>
+            </deny>
+        </all>
+        <material>stained clay:14</material>
+        <material>stained clay:11</material>
+        <if min-server-version="1.21">
+            <material>scaffolding</material>
+        </if>        
+        <if variant="honey,lure">
+            <material>wool:14</material>
+            <material>wool:11</material>
+        </if>
+        <if variant="tugmas">
+            <material>wool:14</material>
+            <material>wool:11</material>
+            <material>wool:4</material>
+            <material>wool:3</material>
+        </if>
+    </any>
+    <any id="tugmas-blocks">
+        <material>wool:14</material>
+        <material>wool:11</material>
+        <material>wool:4</material>
+        <material>wool:3</material>
+    </any>
+    <not id="doesnt-control-a">
+        <captured id="controls-a">controlling-point-a</captured>
+    </not>
+    <not id="doesnt-control-b">
+        <captured id="controls-b">controlling-point-b</captured>
+    </not>
+    <not id="doesnt-control-c">
+        <captured id="controls-c">controlling-point-c</captured>
+    </not>
+    <not id="doesnt-control-d">
+        <captured id="controls-d">controlling-point-d</captured>
+    </not>
+    <not id="doesnt-control-e">
+        <captured id="controls-e">controlling-point-e</captured>
+    </not>
+    <variable id="progress-0" var="progress">0</variable>
+    <variable id="progress-1" var="progress">1</variable>
+    <variable id="progress-2" var="progress">2</variable>
+    <variable id="progress-3" var="progress">3</variable>
+    <variable id="progress-4" var="progress">4</variable>
+</filters>
+<regions>
+    <union id="spawns">
+        <if variant="honey,lure">
+            <cylinder id="obs-spawn" base="0.5,11,-35.5" height="0" radius="1"/>
+        </if>
+        <unless variant="honey,lure">
+            <cylinder id="obs-spawn" base="0.5,13,-41.5" height="0" radius="1"/>
+        </unless>
+        <point id="point-a-spawn">-43.5,13,0.5</point>
+        <point id="point-b-spawn">-21.5,13,0.5</point>
+        <point id="point-c-spawn">0.5,13,0.5</point>
+        <point id="point-d-spawn">22.5,13,0.5</point>
+        <point id="point-e-spawn">44.5,13,0.5</point>
+    </union>
+    <union id="hills">
+        <union id="point-a">
+            <cuboid id="point-a-hill" min="-45,5,2" max="-42,7,-1"/>
+            <cuboid id="point-a-display" min="-45,5,2" max="-42,25,-1"/>
+        </union>
+        <union id="point-b">
+            <cuboid id="point-b-hill" min="-23,5,2" max="-20,7,-1"/>
+            <cuboid id="point-b-display" min="-23,5,2" max="-20,25,-1"/>
+        </union>
+        <union id="point-c">
+            <cuboid id="point-c-hill" min="-1,5,2" max="2,7,-1"/>
+            <cuboid id="point-c-display" min="-1,5,2" max="2,25,-1"/>
+        </union>
+        <union id="point-d">
+            <cuboid id="point-d-hill" min="21,5,2" max="24,7,-1"/>
+            <cuboid id="point-d-display" min="21,5,2" max="24,25,-1"/>
+        </union>
+        <union id="point-e">
+            <cuboid id="point-e-hill" min="43,5,2" max="46,7,-1"/>
+            <cuboid id="point-e-display" min="43,5,2" max="46,25,-1"/>
+        </union>
+    </union>
+    <negative id="not-map">
+        <rectangle id="map" min="-46,-9" max="47,10"/>
+    </negative>
+    <apply region="not-map" block="never" message="You may not build outside the map!"/>
+    <apply region="hills" block="never" message="You may not build here!"/>
+    <apply block="only-blocks"/>
+</regions>
+<control-points required="true" capture-time="0s" points="0">
+    <control-point id="controlling-point-a" name="Point A" capture="point-a-hill" captured="point-a-display" initial-owner="red-team">
+        <player-filter>
+            <all>
+                <filter id="blue-team"/>
+                <captured>controlling-point-b</captured>
+                <captured>controlling-point-c</captured>
+                <captured>controlling-point-d</captured>
+                <captured>controlling-point-e</captured>
+            </all>
+        </player-filter>
+    </control-point>
+    <control-point id="controlling-point-b" name="Point B" capture="point-b-hill" captured="point-b-display">
+        <player-filter>
+            <any>
+                <all>
+                    <captured>controlling-point-c</captured>
+                    <captured>controlling-point-d</captured>
+                    <captured>controlling-point-e</captured>
+                </all>
+                <captured>controlling-point-a</captured>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="controlling-point-c" name="Point C" capture="point-c-hill" captured="point-c-display">
+        <player-filter>
+            <any>
+                <all>
+                    <captured>controlling-point-e</captured>
+                    <captured>controlling-point-d</captured>
+                </all>
+                <all>
+                    <captured>controlling-point-b</captured>
+                    <captured>controlling-point-a</captured>
+                </all>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="controlling-point-d" name="Point D" capture="point-d-hill" captured="point-d-display">
+        <player-filter>
+            <any>
+                <captured>controlling-point-e</captured>
+                <all>
+                    <captured>controlling-point-b</captured>
+                    <captured>controlling-point-c</captured>
+                    <captured>controlling-point-a</captured>
+                </all>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="controlling-point-e" name="Point E" capture="point-e-hill" captured="point-e-display" initial-owner="blue-team">
+        <player-filter>
+            <all>
+                <filter id="red-team"/>
+                <captured>controlling-point-a</captured>
+                <captured>controlling-point-b</captured>
+                <captured>controlling-point-c</captured>
+                <captured>controlling-point-d</captured>
+            </all>
+        </player-filter>
+    </control-point>
+</control-points>
+<projectiles>
+    <if variant="tugmas">
+        <projectile id="tugball" name="Snowball" projectile="Snowball" velocity="1" throwable="true" destroy-filter="tugmas-blocks" cooldown="1.25s"/>
+    </if>
+</projectiles>
+<kill-rewards>
+    <unless variant="tugmas">
+        <kill-reward>
+            <item amount="2" material="snowball"/>
+        </kill-reward>
+    </unless>
+    <if variant="tugmas">
+        <kill-reward>
+            <item name="Snowball" material="snowball" projectile="tugball" amount="2"/>
+        </kill-reward>
+    </if>
+</kill-rewards>
+<itemremove>
+    <item>stone sword</item>
+    <item>diamond pickaxe</item>
+    <item>snowball</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+    <item>wood sword</item>
+    <item>fishing rod</item>
+    <if min-server-version="1.21">
+        <item>scaffolding</item>
+    </if>
+    <item>wool:14</item>
+    <item>wool:11</item>
+    <item>wool:4</item>
+    <item>wool:3</item>
+    <item>shears</item>
+</itemremove>
+<maxbuildheight>10</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<respawn auto="true"/>
+</map>
