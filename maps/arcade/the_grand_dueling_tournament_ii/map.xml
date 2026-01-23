@@ -1,0 +1,3132 @@
+<map proto="1.5.0" game="Wins">
+<!--
+   ________                         .___ ___________                                                      __    ________
+  /  _____/___________    ____    __| _/ \__    ___/___  __ _________  ____ _____    _____   ____   _____/  |_  \_____  \
+/   \  __\_  __ \__  \  /    \  / __ |    |    | /  _ \|  |  \_  __ \/    \\__  \  /     \_/ __ \ /    \   __\  /  ____/
+\    \_\  \  | \// __ \|   |  \/ /_/ |    |    |(  <_> )  |  /|  | \/   |  \/ __ \|  Y Y  \  ___/|   |  \  |   /       \
+ \______  /__|  (____  /___|  /\____ |    |____| \____/|____/ |__|  |___|  (____  /__|_|  /\___  >___|  /__|   \_______ \
+        \/           \/     \/      \/                                   \/     \/      \/     \/     \/               \/
+                                         /\
+                                       /  |
+                         *            /  /________________________________________________
+                        (O)77777777777)  7                                                `~~-___
+                      8OO>>>>>>>>>>>>]   <=======  Ultra Definitive Edition  ========>        ___-
+                        (O)LLLLLLLLLLL)  L________________________________________________.-~~
+                         *            \  \
+                                       \  |
+                                        \/
+-->
+<name>The Grand Dueling Tournament II</name>
+<version>3.1.0</version>
+<objective>Defeat opposing teams in The Grand ${tournament-type} Tournament!</objective>
+<phase>staging</phase>
+<variant id="default" world="duel"/>
+<variant id="modern" world="modern" override="true" min-server-version="1.21.10">The Grand Dueling Tournament III</variant>
+<variant id="spleef" world="spleef" override="true">The Grand Spleefing Tournament II</variant>
+<variant id="cannon" world="cannon" override="true">The Grand Cannoning Tournament II</variant>
+<variant id="cacti" world="cacti" override="true">The Grand Cacti Tournament II</variant>
+<variant id="tug" world="tug" override="true">The Grand Tugging Tournament II</variant>
+<constant id="tournament-type">Dueling</constant>
+<constant id="tournament-action">fight</constant>
+<constant id="host-name">Tirion</constant>                         <!-- string - name for the host -->
+<constant id="host-title">Arena Master</constant>                  <!-- string - prefix for the host, e.g., [Arena Master] Tirion -->
+<constant id="host-console">218,5,31.5</constant>                  <!-- block location - where the host is physically located -->
+<constant id="lobby-origin">190,0,13</constant>                    <!-- cuboid lower bound - bounding cuboid for the lobby -->
+<constant id="lobby-size">36,12,37</constant>                      <!-- cuboid size xyz - how big the bounding cuboid is from the origin location -->
+<constant id="lobby-spawn">205.5,3,31.5</constant>                 <!-- cylinder centre - where players will spawn and be tp'd to-->
+<constant id="lobby-spawn-yaw">-90</constant>                      <!-- direction - yaw players will be looking -->
+<constant id="arena-1-origin">230,0,-32</constant>                 <!-- cuboid lower bound - bounding cuboid for arena 1 - must be y=0 -->
+<constant id="arena-1-size">37,15,61</constant>                    <!-- cuboid size xyz - how big the bounding cuboid is from the origin location -->
+<constant id="arena-1-spawn-1-spawn">248,3,-29</constant>          <!-- block location - where team a will spawn in the arena -->
+<constant id="arena-1-spawn-2-spawn">248,3,25</constant>           <!-- block location - where team b will spawn in the arena -->
+<constant id="arena-1-spectator-origin">225,5,-16</constant>       <!-- cuboid lower bound - bounding cuboid for the spectator area -->
+<constant id="arena-1-spectator-size">5,3,29</constant>            <!-- cuboid size xyz - how big the bounding cuboid is from the origin location -->
+<constant id="arena-1-spectator-spawn">226.5,6,-2.5</constant>     <!-- block location - where spectators will spawn when watching the arena -->
+<constant id="arena-spawn-1-yaw">0</constant>                      <!-- direction - yaw team a will be looking -->
+<constant id="arena-spawn-2-yaw">180</constant>                    <!-- direction - yaw team b will be looking -->
+<constant id="arena-spectator-yaw">-90</constant>                  <!-- direction - yaw team b will be looking -->
+<constant id="arena-2-x-offset">0</constant>                       <!-- number - blocks in x direction between arena-1 origin and arena-2 -->
+<constant id="arena-2-z-offset">66</constant>                      <!-- number - blocks in z direction between arena-1 origin and arena-2 -->
+<constant id="arena-3-x-offset">44</constant>                      <!-- number - blocks in x direction between arena-1 origin and arena-3 -->
+<constant id="arena-3-z-offset">0</constant>                       <!-- number - blocks in z direction between arena-1 origin and arena-3 -->
+<constant id="arena-4-x-offset">44</constant>                      <!-- number - blocks in x direction between arena-1 origin and arena-4 -->
+<constant id="arena-4-z-offset">66</constant>                      <!-- number - blocks in z direction between arena-1 origin and arena-4 -->
+<constant id="arena-variants">1</constant>                         <!-- number - how many arena variants are there (max 13) -->
+<constant id="arena-variant-selection">random</constant>           <!-- random, kit - is the arena variant random or based on the current kit -->
+<constant id="arena-variant-0-origin">223,0,-144</constant>        <!-- cuboid lower bound - bounding cuboid for arena variant 0 -->
+<constant id="arena-variant-0-size">37,15,61</constant>            <!-- cuboid size xyz - how big the bounding cuboid is from the origin location -->
+<constant id="arena-variant-offset">44,0,0</constant>              <!-- xyz - offset between each variant template -->
+<constant id="kit-noun">kit</constant>                             <!-- string - what is the host announcing e.g., your <kit> will be classic! -->
+<constant id="kit-count">1</constant>                              <!-- number - how many kits are there - must define kit-x-name constant and kit-x kit (max 14) -->
+<constant id="kit-0-name">Default</constant>                       <!-- string - name of the kit, can use color codes -->
+<constant id="kit-default-respawns">1</constant>                   <!-- number - how many lives do kits give by default, can be overridden per kit -->
+<constant id="gapple-reward-filter">reward-gapple</constant>       <!-- filter - -->
+<constant id="round-begin-seconds">5</constant>                    <!-- number - match start countdown duration -->
+<constant id="round-begin-countdown-after-seconds">2</constant>    <!-- number - 3 less than round-begin-seconds for countdown include -->
+<constant id="round-begin-rearrange-after-seconds" delete="true"/> <!-- number - seconds after round start countdown to allow kit rearranging (cannot be 0, min 0.1) -->
+<constant id="win-condition">win-exclusive</constant>              <!-- inline filter which determines arena winner -->
+<constant id="enable-night-vision">false</constant>                <!-- boolean - enable night vision for all kits -->
+<constant id="enable-spectator-mode">true</constant>               <!-- boolean - allow eliminated players to go in to spectator mode -->
+<constant id="tnt-fuse">4s</constant>
+<constant id="tnt-power">4</constant>
+<constant id="tnt-disable-self">true</constant>
+<constant id="tnt-disable-ally">true</constant>
+<constant id="tnt-disable-enemy">false</constant>
+<constant id="tnt-instant-ignite">true</constant>
+<if variant="default">
+    <created>2016-01-19</created>
+    <constant id="arena-variants">8</constant>
+    <constant id="kit-count">14</constant>
+    <constant id="kit-0-name">`bIron</constant>
+    <constant id="kit-1-name">`6Gold</constant>
+    <constant id="kit-2-name">`bSlappy Fish</constant>
+    <constant id="kit-3-name">`cArcher</constant>
+    <constant id="kit-4-name">`aLumberjack</constant>
+    <constant id="kit-5-name">`cMCSG</constant>
+    <constant id="kit-6-name">`3Diamond</constant>
+    <constant id="kit-7-name">`5Potions</constant>
+    <constant id="kit-8-name">`6Gapple</constant>
+    <constant id="kit-9-name">`3Gunz</constant>
+    <constant id="kit-10-name">`bConquest</constant>
+    <constant id="kit-11-name">`eBlasternauts</constant>
+    <constant id="kit-12-name">`cUHC</constant>
+    <constant id="kit-13-name">`6Soup</constant>
+    <constant id="tnt-fuse">1.25s</constant>
+    <constant id="tnt-power">3</constant>
+</if>
+<if variant="modern">
+    <created>2026-01-17</created>
+    <constant id="host-console">202.5,9,31.5</constant>
+    <constant id="lobby-origin">160,0,2</constant>
+    <constant id="lobby-size">56,64,56</constant>
+    <constant id="lobby-spawn">189.5,1,31.5</constant>
+    <constant id="arena-variants">8</constant>
+    <constant id="arena-variant-0-size">37,27,61</constant> 
+    <constant id="arena-1-size">37,27,61</constant>
+    <constant id="arena-1-spawn-1-spawn">248,7,-29</constant>
+    <constant id="arena-1-spawn-2-spawn">248,7,25</constant>
+    <constant id="arena-1-spectator-origin">225,9,-16</constant>
+    <constant id="arena-1-spectator-spawn">226.5,10,-2.5</constant>
+    <constant id="kit-count">14</constant>
+    <constant id="kit-0-name">`bIron</constant>
+    <constant id="kit-1-name">`6Copper</constant>
+    <constant id="kit-2-name">`8Mace</constant>
+    <constant id="kit-3-name">`3Crossbow</constant>
+    <constant id="kit-4-name">`aLumberjack</constant>
+    <constant id="kit-5-name">`cMCSG</constant>
+    <constant id="kit-6-name">`8Netherite</constant>
+    <constant id="kit-7-name">`5Potions</constant>
+    <constant id="kit-8-name">`6Gapple</constant>
+    <!-- <constant id="kit-8-name">`6Jousting</constant> -->
+    <constant id="kit-9-name">`3Trident</constant>
+    <constant id="kit-10-name">`bConquest</constant>
+    <constant id="kit-11-name">`eBlasternauts</constant>
+    <!-- <constant id="kit-11-name">`dBlast Bow</constant> -->
+    <constant id="kit-12-name">`cUHC</constant>
+    <constant id="kit-13-name">`6Soup</constant>
+    <constant id="tnt-fuse">1.25s</constant>
+    <constant id="tnt-power">3</constant>
+    <constant id="win-condition">never</constant>
+</if>
+<if variant="spleef">
+    <created>2016-06-29</created>
+    <constant id="tournament-type">Spleefing</constant>
+    <constant id="tournament-action">spleef</constant>
+    <constant id="kit-count">7</constant>
+    <constant id="kit-0-name">`bClassic</constant>
+    <constant id="kit-1-name">`aBuild</constant>
+    <constant id="kit-2-name">`cGrenade</constant>
+    <constant id="kit-3-name">`2Creep Slap</constant>
+    <constant id="kit-4-name">`bClassic (but with `cTNT`b)</constant>
+    <constant id="kit-5-name">`3Bow Spleef</constant>
+    <constant id="kit-6-name">`eBlock Runner</constant>
+    <constant id="tnt-fuse">1.25s</constant>
+    <constant id="tnt-power">3</constant>
+</if>
+<if variant="cannon">
+    <created>2023-11-12</created>
+    <constant id="tournament-type">Cannoning</constant>
+    <constant id="tournament-action">cannon</constant>
+    <constant id="arena-1-size">37,38,61</constant>
+    <constant id="arena-1-spawn-1-spawn">248,33,-24</constant>
+    <constant id="arena-1-spawn-2-spawn">248,33,20</constant>
+    <constant id="arena-1-spectator-origin">226,14,-16</constant>
+    <constant id="arena-1-spectator-size">4,3,29</constant>
+    <constant id="arena-1-spectator-spawn">227.5,14,-2.5</constant>
+    <constant id="arena-variants">12</constant>
+    <constant id="arena-variant-selection">kit</constant>
+    <constant id="arena-variant-0-size">37,23,61</constant>
+    <constant id="kit-noun">platform</constant>
+    <constant id="kit-count">12</constant>
+    <constant id="kit-0-name">`bClassic</constant>
+    <constant id="kit-1-name">`bClassic `7(`aitty-bitty`7)</constant>
+    <constant id="kit-2-name">`bClassic `7(`cwide`7)</constant>
+    <constant id="kit-3-name">`bClassic `7(`6diagonal`7)</constant>
+    <constant id="kit-4-name">`3Cubes</constant>
+    <constant id="kit-5-name">`dShips</constant>
+    <constant id="kit-6-name">`5Levels</constant>
+    <constant id="kit-7-name">`cDescent</constant>
+    <constant id="kit-8-name">`9Submarine</constant>
+    <constant id="kit-9-name">`3Wars</constant>
+    <constant id="kit-10-name">`aFortress</constant>
+    <constant id="kit-11-name">`eBalloon</constant>
+    <constant id="win-condition">any(win-exclusive, win-cannon-overtime)</constant>
+    <constant id="round-begin-seconds">12</constant>
+    <constant id="round-begin-countdown-after-seconds">9</constant>
+    <constant id="round-begin-rearrange-after-seconds">2</constant>
+    <constant id="enable-night-vision">true</constant>
+    <constant id="tnt-disable-self">false</constant>
+    <constant id="tnt-disable-ally">false</constant>
+    <constant id="tnt-instant-ignite">false</constant>
+</if>
+<if variant="cacti">
+    <created>2024-04-01</created>
+    <constant id="tournament-type">Cacti</constant>
+    <constant id="tournament-action">place prickly cacti</constant>
+    <constant id="arena-1-origin">238,0,-18</constant>
+    <constant id="arena-1-size">21,9,33</constant>
+    <constant id="arena-1-spawn-1-spawn">248,4,-14</constant>
+    <constant id="arena-1-spawn-2-spawn">248,4,10</constant>
+    <constant id="arena-1-spectator-origin">234,7,-18</constant>
+    <constant id="arena-1-spectator-size">9,3,33</constant>
+    <constant id="arena-1-spectator-spawn">236.5,7,-2.5</constant>
+    <constant id="arena-variant-0-origin">238,0,-18</constant>
+    <constant id="arena-variant-0-size">21,9,33</constant>
+    <constant id="kit-count">6</constant>
+    <constant id="kit-0-name">`bClassic</constant>
+    <constant id="kit-1-name">`aFast Digging</constant>
+    <constant id="kit-2-name">`cDouble Knockback</constant>
+    <constant id="kit-3-name">`3Ghost Squadron</constant>
+    <constant id="kit-4-name">`dSumo</constant>
+    <constant id="kit-5-name">`2Cacti Toss</constant>
+    <constant id="enable-spectator-mode">false</constant>
+    <constant id="tnt-fuse">2s</constant>
+    <constant id="tnt-power">2</constant>
+</if>
+<if variant="tug">
+    <created>2025-04-17</created>
+    <constant id="tournament-type">Tugging</constant>
+    <constant id="tournament-action">tug</constant>
+    <constant id="host-title">Tugging Master</constant>
+    <constant id="host-console">184.5,6,31.5</constant>
+    <constant id="lobby-origin">175,0,15</constant>
+    <constant id="lobby-size">40,16,33</constant>
+    <constant id="lobby-spawn">195.5,4,31.5</constant>
+    <constant id="lobby-spawn-yaw">90</constant>
+    <constant id="arena-1-origin">237,0,-26</constant>
+    <constant id="arena-1-size">27,27,115</constant>
+    <constant id="arena-1-spawn-1-spawn">250,13,-13</constant>
+    <constant id="arena-1-spawn-2-spawn">250,13,75</constant>
+    <constant id="arena-1-spectator-origin">232,6,-6</constant>
+    <constant id="arena-1-spectator-size">4,5,75</constant>
+    <constant id="arena-1-spectator-spawn">233.5,6,31.5</constant>
+    <constant id="arena-2-x-offset">33</constant>
+    <constant id="arena-2-z-offset">0</constant>
+    <constant id="arena-3-x-offset">66</constant>
+    <constant id="arena-3-z-offset">0</constant>
+    <constant id="arena-4-x-offset">99</constant>
+    <constant id="arena-4-z-offset">0</constant>
+    <constant id="arena-variants">8</constant>
+    <constant id="arena-variant-0-origin">235,0,-147</constant>
+    <constant id="arena-variant-0-size">27,15,115</constant>
+    <constant id="arena-variant-offset">28,0,0</constant>
+    <constant id="kit-noun">arena</constant>
+    <constant id="arena-variants">12</constant>
+    <constant id="arena-variant-selection">kit</constant>
+    <constant id="kit-default-respawns">-1</constant>
+    <constant id="win-condition">any(tuggability=100, win-exclusive-delayed)</constant>
+    <constant id="round-begin-rearrange-after-seconds">1</constant>
+    <constant id="kit-count">8</constant>
+    <constant id="kit-0-name">`bClassic</constant>
+    <constant id="kit-1-name">`cBridge `lGONE</constant>
+    <constant id="kit-2-name">`eHoney</constant>
+    <constant id="kit-3-name">`9Lure</constant>
+    <constant id="kit-4-name">`dDr Ho0gg's Arena</constant>
+    <constant id="kit-5-name">`6zzuf</constant>
+    <constant id="kit-6-name">`bBlocked Off</constant>
+    <constant id="kit-7-name">`7Directrix</constant>
+    <!-- <constant id="kit-8-name">`2Cacti</constant> -->
+</if>
+<include id="countdown"/>
+<include id="void-death"/>
+<include id="gapple-kill-reward"/>
+<authors>
+    <if variant="default, spleef">
+        <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
+    </if>
+    <if variant="spleef">
+        <author uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f"/> <!-- Pugzy -->
+    </if>
+    <if variant="cannon">
+        <author uuid="a9f11454-beac-4cc3-a138-1780802c8794"/> <!-- Crazy_ -->
+    </if>
+    <if variant="cacti">
+        <author uuid="3a3dab52-a356-4eed-a506-a9a7e53a3f68"/> <!-- Pyrolith -->
+    </if>
+    <if variant="tug">
+        <author uuid="d5a64b26-15ea-46c4-8319-f9c83e82a1fa"/> <!-- Eliminate -->
+    </if>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
+    <if variant="modern">
+        <author uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609"/> <!-- Technodono -->
+    </if>
+</authors>
+<contributors>
+    <contributor uuid="e82603df-417d-4a95-bd1f-1720648be0b4" contribution="Grandmaster of PGM, XML, and existence itself"/> <!-- Pablete1234 -->
+    <unless variant="default, spleef">
+        <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="Original dueling tournament game format"/> <!-- Yoyo_ -->
+    </unless>
+    <if variant="cannon">
+        <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="Cubes - CannonQuad design inspiration"/> <!-- Zan -->
+        <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Ships - Database design inspiration"/> <!-- ElectroidFilms -->
+        <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Levels - Kï design inspiration"/> <!-- Tywnis -->
+        <contributor uuid="c33a03bf-0f73-46e2-a93e-ddb7d25232d1" contribution="Descent - Fractal Descent design inspiration"/> <!-- teheggy -->
+        <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Descent - Fractal Descent design inspiration"/> <!-- Reshif -->
+        <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Fortress - Fortress Battles design inspiration"/> <!-- Torn_Ares -->
+        <contributor uuid="98a4a81e-4393-4041-8d43-40a0196b5832" contribution="Fortress - Fortress Battles design inspiration"/> <!-- Thungon -->
+        <contributor uuid="0ae466ff-d3a1-4307-a323-89043643ace5" contribution="Fortress - Fortress Battles design inspiration"/> <!-- GammaRay_89 -->
+        <contributor uuid="177803b2-797c-4089-aae1-5702ca259e2c" contribution="Wars - War Wars design inspiration"/> <!-- Onsole -->
+        <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Submarine, Balloon - Sky Traffic design inspiration"/> <!-- Reshif -->
+    </if>
+</contributors>
+<score>
+    <limit>3</limit>
+</score>
+<teams>
+    <team id="team-1" color="dark red"     max="8" min="1">Red</team>
+    <team id="team-2" color="blue"         max="8" min="1">Blue</team>
+    <team id="team-3" color="dark green"   max="8" min="1">Green</team>
+    <team id="team-4" color="gold"         max="8" min="1">Orange</team>
+    <team id="team-5" color="yellow"       max="8" min="1">Yellow</team>
+    <team id="team-6" color="dark purple"  max="8" min="1">Purple</team>
+    <team id="team-7" color="light purple" max="8" min="1">Pink</team>
+    <team id="team-8" color="dark aqua"    max="8" min="1">Cyan</team>
+</teams>
+<spawns spread="true">
+    <spawn region="lobby-spawn" yaw="${lobby-spawn-yaw}" kit="clear-kit" filter="not(state=${running})"/>
+    <spawn region="lobby-spawn" yaw="${lobby-spawn-yaw}" kit="spectator-kit" filter="all(playing=0, state=${running})"/>
+    <spawn region="lobby-spawn" yaw="${lobby-spawn-yaw}" kit="respawning-kit" filter="all(playing=1, state=${running})"/>
+    <default region="lobby-spawn" yaw="${lobby-spawn-yaw}" kit="obs-kit"/>
+</spawns>
+<respawns auto="true">
+    <respawn delay="0s"/>
+</respawns>
+<kits>
+    <kit id="obs-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="clear-kit" force="true">
+        <clear effects="true"/>
+        <max-health>20</max-health>
+        <foodlevel>20</foodlevel>
+        <game-mode>adventure</game-mode>
+        <double-jump enabled="false"/>
+        <effect amplifier="100" duration="1">instant health</effect>
+        <action>
+            <set var="current_kill_reward" value="0"/>
+            <set var="current_kill_reward_includes_gapple" value="0"/>
+            <set var="current_kit_requires_survival" value="0"/>
+            <set var="current_kit_max_respawns" value="0"/>
+            <set var="current_player_size" value="1"/>
+            <set var="player.exp_progress" value="0"/>
+            <set var="player.level" value="0"/>
+        </action>
+        <action filter="not(state=${starting})">
+            <set var="playing" value="0"/>
+            <set var="respawns" value="0"/>
+        </action>
+        <if constant="enable-night-vision" constant-value="true">
+            <effect>night vision</effect>
+        </if>
+    </kit>
+    <kit id="spectator-kit" parents="clear-kit" force="true">
+        <effect>invisibility</effect>
+        <effect>night vision</effect>
+        <if constant="enable-spectator-mode" constant-value="true">
+            <item slot="0" material="feather" name="`r`bSpectator Mode" consumable="spectator-mode" locked="true"/>
+        </if>
+        <item slot="7" material="ink sack" damage="13" name="`r`dPrevious Arena" consumable="spectate-prev" locked="true"/>
+        <item slot="8" material="ink sack" damage="10" name="`r`aNext Arena" consumable="spectate-next" locked="true"/>
+    </kit>
+    <kit id="respawning-kit" force="true">
+        <effect duration="0">blindness</effect>
+        <effect duration="0">invisibility</effect>
+    </kit>
+    <kit id="survival-kit" force="true">
+        <game-mode>survival</game-mode>
+    </kit>
+    <if min-server-version="1.21.10">
+        <lend filter="current_player_size=0">
+            <kit> <!-- values taken from OvercastCommunity/CommunityMaps/fun_house -->
+                <attribute operation="add" amount="-0.5">scale</attribute>
+                <attribute operation="add" amount="-0.10">jump_strength</attribute>
+                <attribute operation="add" amount="-0.3">step_height</attribute>
+                <attribute operation="add" amount="-1">entity_interaction_range</attribute>
+            </kit>
+        </lend>
+        <lend filter="current_player_size=2">
+            <kit>
+                <attribute operation="add" amount="1">scale</attribute>
+                <attribute operation="add" amount="-0.02">movement_speed</attribute>
+                <attribute operation="add" amount="0.21">jump_strength</attribute>
+                <attribute operation="add" amount="1.6">step_height</attribute>
+                <attribute operation="add" amount="1.5">entity_interaction_range</attribute>
+                <attribute operation="add" amount="0.01">gravity</attribute>
+            </kit>
+        </lend>
+    </if>
+    <if variant="default,modern">
+        <kit id="kit-0"> <!-- iron -->
+            <item slot="0" material="iron sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true"/>
+            <item slot="2" material="arrow" amount="24"/>
+            <helmet material="iron helmet"/>
+            <chestplate material="iron chestplate"/>
+            <leggings material="iron leggings"/>
+            <boots material="iron boots"/>
+            <action>
+                <set var="current_kill_reward" value="1"/>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-1">
+            <if variant="default"> <!-- gold -->
+                <item slot="0" material="stone sword" unbreakable="true"/>
+                <helmet material="gold helmet"/>
+                <chestplate material="gold chestplate"/>
+                <leggings material="gold leggings"/>
+                <boots material="gold boots"/>
+            </if>
+            <if variant="modern"> <!-- copper -->
+                <item slot="0" material="copper sword" unbreakable="true"/>
+                <helmet material="copper helmet"/>
+                <chestplate material="copper chestplate"/>
+                <leggings material="copper leggings"/>
+                <boots material="copper boots"/>
+            </if>
+            <item slot="1" material="bow" unbreakable="true"/>
+            <item slot="2" material="arrow" amount="24"/>
+            <action>
+                <set var="current_kill_reward" value="1"/>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-2">
+            <if variant="default"> <!-- slappy fish -->
+                <item slot="0" material="raw fish">
+                    <enchantment level="1">damage all</enchantment>
+                    <enchantment level="1">knockback</enchantment>
+                </item>
+            </if>
+            <if variant="modern"> <!-- mace -->
+                <item slot="slot.weapon.offhand" material="shield" damage="330"/>
+                <item slot="0" material="mace" unbreakable="true">
+                    <enchantment level="1">wind burst</enchantment>
+                </item>
+                <item slot="1" material="wind charge" amount="16"/>
+                <helmet material="netherite helmet"/>
+                <chestplate material="netherite chestplate"/>
+                <action>
+                    <set var="current_kill_reward_includes_gapple" value="1"/>
+                </action>
+            </if>
+        </kit>
+        <kit id="kit-3">  <!-- archer / crossbow -->
+            <if variant="default">
+                <item slot="0" material="bow" unbreakable="true">
+                    <enchantment level="1">arrow damage</enchantment>
+                    <enchantment level="1">arrow infinite</enchantment>
+                </item>
+            </if>
+            <if variant="modern">
+                <item slot="0" material="crossbow" unbreakable="true">
+                    <enchantment level="1">quick charge</enchantment>
+                    <enchantment level="1">arrow infinite</enchantment>
+                </item>w
+            </if>
+            <helmet material="iron helmet"/>
+            <chestplate material="leather chestplate" team-color="true">
+                <enchantment level="2">protection projectile</enchantment>
+            </chestplate>
+            <leggings material="leather leggings" team-color="true"/>
+            <boots material="iron boots"/>
+            <item slot="27" material="arrow"/>
+            <action>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-4"> <!-- lumberjack -->
+            <item slot="0" material="diamond axe" unbreakable="true">
+                <enchantment level="2">damage all</enchantment>
+            </item>
+            <if variant="modern">
+                <item slot="weapon.offhand" material="shield" damage="330"/>
+            </if>
+            <helmet material="diamond helmet"/>
+            <chestplate material="diamond chestplate"/>
+            <leggings material="diamond leggings"/>
+            <boots material="diamond boots"/>
+            <action>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-5"> <!-- mcsg -->
+            <item slot="0" material="stone sword"/>
+            <item slot="1" material="bow"/>
+            <item slot="2" material="fishing rod"/>
+            <item slot="3" material="golden apple"/>
+            <item slot="8" material="arrow" amount="16"/>
+            <helmet material="chainmail helmet"/>
+            <chestplate material="chainmail chestplate"/>
+            <leggings material="chainmail leggings"/>
+            <boots material="chainmail boots"/>
+        </kit>
+        <kit id="kit-6">
+            <if variant="default"> <!-- diamond -->
+                <item slot="0" material="diamond sword" unbreakable="true"/>
+                <helmet material="diamond helmet"/>
+                <chestplate material="diamond chestplate"/>
+                <leggings material="diamond leggings"/>
+                <boots material="diamond boots"/>
+            </if>
+            <if variant="modern"> <!-- netherite -->
+                <item slot="0" material="netherite sword" unbreakable="true"/>
+                <helmet material="netherite helmet"/>
+                <chestplate material="netherite chestplate"/>
+                <leggings material="netherite leggings"/>
+                <boots material="netherite boots"/>
+            </if>
+            <item slot="1" material="bow" unbreakable="true"/>
+            <item slot="2" amount="2" material="golden apple"/>
+            <item slot="8" amount="24" material="arrow"/>
+            <action>
+                <set var="current_kill_reward" value="1"/>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-7"> <!-- pot -->
+            <item slot="0" material="diamond sword" unbreakable="true">
+                <enchantment level="5">damage all</enchantment>
+            </item>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment level="5">arrow damage</enchantment>
+            </item>
+            <item slot="2" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="3" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="4" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="5" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="6" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="7" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="8" material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item slot="27" amount="16" material="arrow"/>
+            <helmet material="diamond helmet" damage="250">
+                <enchantment level="1">protection environmental</enchantment>
+            </helmet>
+            <chestplate material="diamond chestplate" damage="300">
+                <enchantment level="2">protection environmental</enchantment>
+            </chestplate>
+            <leggings material="diamond leggings" damage="300">
+                <enchantment level="1">protection environmental</enchantment>
+            </leggings>
+            <boots material="diamond boots" damage="300">
+                <enchantment level="1">protection environmental</enchantment>
+            </boots>
+            <effect amplifier="2">speed</effect>
+            <action>
+                <set var="current_kill_reward" value="3"/>
+            </action>
+        </kit>
+        <kit id="kit-8"> <!-- gapple -->
+            <item slot="0" material="diamond sword" unbreakable="true">
+                <enchantment level="5">damage all</enchantment>
+            </item>
+            <item slot="1" material="golden apple" damage="1" amount="64"/>
+            <helmet material="diamond helmet" damage="250">
+                <enchantment level="3">protection environmental</enchantment>
+            </helmet>
+            <chestplate material="diamond chestplate" damage="300">
+                <enchantment level="3">protection environmental</enchantment>
+            </chestplate>
+            <leggings material="diamond leggings" damage="300">
+                <enchantment level="3">protection environmental</enchantment>
+            </leggings>
+            <boots material="diamond boots" damage="300">
+                <enchantment level="3">protection environmental</enchantment>
+            </boots>
+            <effect amplifier="2">speed</effect>
+        </kit>
+        <kit id="kit-9">
+            <if variant="default"> <!-- gunz -->
+                <item slot="0" material="wood hoe" unbreakable="true" projectile="egg-gun" name="`rEgg Gun"/>
+            </if>
+            <if variant="modern"> <!-- trident -->
+                <item slot="0" material="trident" unbreakable="true">
+                    <enchantment level="3">loyalty</enchantment>
+                    <enchantment level="1">impaling</enchantment>
+                </item>
+                <helmet material="turtle helmet"/>
+                <chestplate material="netherite chestplate"/>
+            </if>
+        </kit>
+        <kit id="kit-10"> <!-- conquest  -->
+            <item slot="0" material="stone sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true"/>
+            <item slot="2" material="golden apple"/>
+            <item slot="8" material="arrow" amount="12"/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+            <leggings material="leather leggings" unbreakable="true" team-color="true">
+                <enchantment level="3">protection projectile</enchantment>
+            </leggings>
+            <boots material="iron boots" unbreakable="true"/>
+            <action>
+                <set var="current_kill_reward" value="2"/>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-11">
+            <if variant="default, modern"> <!-- blasternauts  -->
+                <item slot="0" material="blaze rod" name="`rMelee Stick">
+                    <enchantment level="2">knockback</enchantment>
+                    <enchantment level="2">damage all</enchantment>
+                </item>
+                <item slot="1" material="gold hoe" unbreakable="true" projectile="tnt-gun" name="`rTNT Launcher"/>
+                <item slot="2" material="tnt" amount="6" show-can-place-on="false">
+                    <can-place-on>
+                        <all-blocks/>
+                    </can-place-on>
+                </item>
+                <item slot="3" material="snow ball" amount="16" name="`rGrenade" grenade="true" grenade-power="1.2"/>
+                <item slot="4" material="snow ball" amount="16" name="`rGrenade" grenade="true" grenade-power="1.2"/>
+                <item slot="8" material="potion" damage="8229"/>
+                <action>
+                    <set var="current_kill_reward" value="6"/>
+                </action>
+            </if>
+            <!-- blast bow
+            <if variant="modern">
+                <firework slot="slot.weapon.offhand" amount="128" power="3">
+                    <explosion type="burst" flicker="false" trail="false">
+                        <color>F0F0F0</color>
+                        <fade>DECF2A</fade>
+                    </explosion>
+                </firework>
+                <item slot="0" material="crossbow" unbreakable="true">
+                    <enchantment level="1">quick charge</enchantment>
+                    <enchantment level="1">multishot</enchantment>
+                </item>
+                <action>
+                    <set var="current_player_size" value="0"/>
+                </action>
+            </if> --> 
+            <helmet material="iron helmet" unbreakable="true"/>
+            <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+            <leggings material="chainmail leggings" unbreakable="true">
+                <enchantment level="2">protection explosions</enchantment>
+            </leggings>
+            <boots material="iron boots" unbreakable="true"/>
+            <double-jump/>
+        </kit>
+        <kit id="kit-12" force="true"> <!-- uhc -->
+            <foodlevel>16</foodlevel>
+            <item slot="0" material="iron sword">
+                <enchantment level="2">damage all</enchantment>
+            </item>
+            <item slot="1" material="bow">
+                <enchantment>arrow damage</enchantment>
+            </item>
+            <helmet material="iron helmet">
+                <enchantment>protection environmental</enchantment>
+            </helmet>
+            <chestplate material="iron chestplate">
+                <enchantment>protection environmental</enchantment>
+            </chestplate>
+            <leggings material="iron leggings">
+                <enchantment>protection environmental</enchantment>
+            </leggings>
+            <boots material="iron boots">
+                <enchantment>protection environmental</enchantment>
+            </boots>
+            <item slot="2" material="golden apple" amount="3" consumable="uhc-gapple"/>
+            <item slot="28" material="arrow" amount="32"/>
+        </kit>
+        <kit id="kit-13" force="true"> <!-- soup -->
+            <foodlevel>16</foodlevel>
+            <item slot="0" material="iron sword" unbreakable="true"/>
+            <helmet material="iron helmet"/>
+            <chestplate material="iron chestplate"/>
+            <leggings material="iron leggings"/>
+            <boots material="iron boots"/>
+            <item slot="1" material="mushroom soup" consumable="soup"/>
+            <item slot="2" material="mushroom soup" consumable="soup"/>
+            <item slot="3" material="mushroom soup" consumable="soup"/>
+            <item slot="4" material="mushroom soup" consumable="soup"/>
+            <item slot="5" material="mushroom soup" consumable="soup"/>
+            <item slot="6" material="mushroom soup" consumable="soup"/>
+            <item slot="7" material="mushroom soup" consumable="soup"/>
+            <item slot="8" material="mushroom soup" consumable="soup"/>
+            <item slot="9" material="mushroom soup" consumable="soup"/>
+            <item slot="10" material="mushroom soup" consumable="soup"/>
+            <item slot="11" material="mushroom soup" consumable="soup"/>
+            <item slot="12" material="mushroom soup" consumable="soup"/>
+            <item slot="13" material="mushroom soup" consumable="soup"/>
+            <item slot="14" material="mushroom soup" consumable="soup"/>
+            <item slot="15" material="mushroom soup" consumable="soup"/>
+            <item slot="16" material="mushroom soup" consumable="soup"/>
+            <item slot="17" material="mushroom soup" consumable="soup"/>
+            <item slot="18" material="mushroom soup" consumable="soup"/>
+            <item slot="19" material="mushroom soup" consumable="soup"/>
+            <item slot="20" material="mushroom soup" consumable="soup"/>
+            <item slot="21" material="mushroom soup" consumable="soup"/>
+            <item slot="22" material="mushroom soup" consumable="soup"/>
+            <item slot="23" material="mushroom soup" consumable="soup"/>
+            <item slot="24" material="mushroom soup" consumable="soup"/>
+            <item slot="25" material="mushroom soup" consumable="soup"/>
+            <item slot="26" material="mushroom soup" consumable="soup"/>
+            <item slot="27" material="mushroom soup" consumable="soup"/>
+            <item slot="28" material="mushroom soup" consumable="soup"/>
+            <item slot="29" material="mushroom soup" consumable="soup"/>
+            <item slot="30" material="mushroom soup" consumable="soup"/>
+            <item slot="31" material="mushroom soup" consumable="soup"/>
+            <item slot="32" material="mushroom soup" consumable="soup"/>
+            <item slot="33" material="mushroom soup" consumable="soup"/>
+            <item slot="34" material="mushroom soup" consumable="soup"/>
+            <item slot="35" material="mushroom soup" consumable="soup"/>
+        </kit>
+    </if>
+    <if variant="spleef">
+        <kit id="base-kit">
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
+            <effect duration="0.5s" amplifier="100">slow digging</effect>
+        </kit>
+        <kit id="kit-0" parent="base-kit"> <!-- classic -->
+            <item slot="0" material="diamond spade" unbreakable="true">
+                <enchantment level="5">efficiency</enchantment>
+                <can-destroy>
+                    <material>snow block</material>
+                </can-destroy>
+            </item>
+        </kit>
+        <kit id="kit-1" parent="base-kit"> <!-- build -->
+            <item slot="0" material="diamond spade" unbreakable="true">
+                <enchantment level="5">efficiency</enchantment>
+                <can-destroy>
+                    <material>snow block</material>
+                </can-destroy>
+            </item>
+            <item slot="1" material="snow block" amount="126">
+                <can-place-on>
+                    <material>snow block</material>
+                </can-place-on>
+            </item>
+            <item slot="2" material="snow ball" amount="16"/>
+            <action>
+                <set var="current_kill_reward" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-2" parent="base-kit"> <!-- grenade -->
+            <item slot="0" material="diamond spade" unbreakable="true">
+                <enchantment level="5">efficiency</enchantment>
+                <can-destroy>
+                    <material>snow block</material>
+                </can-destroy>
+            </item>
+            <item slot="1" material="egg" amount="36" name="`rGrenade" grenade="true" grenade-power="0.5"/>
+            <action>
+                <set var="current_kill_reward" value="2"/>
+            </action>
+        </kit>
+        <kit id="kit-3"> <!-- creeper -->
+            <item slot="0" material="diamond spade" unbreakable="true">
+                <enchantment level="5">efficiency</enchantment>
+                <enchantment level="5">knockback</enchantment>
+                <can-destroy>
+                    <material>snow block</material>
+                </can-destroy>
+            </item>
+            <item slot="1" material="monster egg" damage="50" amount="16" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <item slot="2" material="flint and steel" unbreakable="true">
+                <enchantment level="7">knockback</enchantment>
+            </item>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="leather chestplate" unbreakable="true" team-color="true">
+                <enchantment level="2">protection explosions</enchantment>
+            </chestplate>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
+            <action>
+                <set var="current_kill_reward" value="3"/>
+            </action>
+        </kit>
+        <kit id="kit-4" parent="base-kit"> <!-- classic w/ tnt -->
+            <item slot="0" material="diamond spade" unbreakable="true">
+                <enchantment level="5">efficiency</enchantment>
+                <enchantment level="5">knockback</enchantment>
+                <can-destroy>
+                    <material>snow block</material>
+                </can-destroy>
+            </item>
+            <item slot="1" material="tnt" amount="3" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <action>
+                <set var="current_kill_reward" value="4"/>
+            </action>
+        </kit>
+        <kit id="kit-5" parent="base-kit"> <!-- bow spleef -->
+            <item slot="0" material="bow" unbreakable="true">
+                <enchantment>flame</enchantment>
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="9" material="arrow"/>
+        </kit>
+        <kit id="kit-6" parent="base-kit"> <!-- block runner -->
+            <item slot="0" material="snow ball" amount="16"/>
+        </kit>
+    </if>
+    <if variant="cannon">
+        <kit id="kit-0"> <!-- classic -->
+            <item slot="9" material="tnt" amount="64"/>
+            <item slot="18" material="tnt" amount="64"/>
+            <item slot="27" material="tnt" amount="64"/>
+            <item slot="0" material="diamond pickaxe" unbreakable="true"/>
+            <item slot="10" material="tnt" amount="64"/>
+            <item slot="19" material="tnt" amount="64"/>
+            <item slot="28" material="tnt" amount="64"/>
+            <item slot="1" material="dispenser" amount="16"/>
+            <item slot="11" material="tnt" amount="64"/>
+            <item slot="20" material="tnt" amount="64"/>
+            <item slot="29" material="tnt" amount="64"/>
+            <item slot="2" material="step" amount="64"/>
+            <item slot="12" material="stained glass" amount="64" team-color="true"/>
+            <item slot="21" material="stained clay" amount="64" team-color="true"/>
+            <item slot="30" material="stained clay" amount="64" team-color="true"/>
+            <item slot="3" material="stained clay" amount="64" team-color="true"/>
+            <!-- <item slot="13" material=" "/> -->
+            <item slot="22" material="trap door" amount="16"/>
+            <item slot="31" material="ladder" amount="16"/>
+            <item slot="4" material="nether fence" amount="64"/>
+            <item slot="14" material="piston base" amount="16"/>
+            <item slot="23" material="lever" amount="16"/>
+            <item slot="32" material="stone plate" amount="16"/>
+            <item slot="5"  material="stone button" amount="16"/>
+            <item slot="15" material="water bucket"/>
+            <item slot="24" material="water bucket"/>
+            <item slot="33" material="water bucket"/>
+            <item slot="6" material="water bucket"/>
+            <item slot="16" material="diode" amount="16"/>
+            <item slot="25" material="redstone torch on" amount="16"/>
+            <item slot="34" material="redstone block" amount="16"/>
+            <item slot="7" material="redstone" amount="64"/>
+            <item slot="17" material="tnt" amount="64"/>
+            <item slot="26" material="tnt" amount="64"/>
+            <item slot="35" material="tnt" amount="64"/>
+            <item slot="8" material="tnt" amount="64"/>
+            <helmet material="leather helmet" team-color="true" unbreakable="true" enchantment="water worker:3"/>
+            <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+            <leggings material="leather leggings" team-color="true" unbreakable="true"/>
+            <boots material="leather boots" team-color="true" unbreakable="true"/>
+            <effect amplifier="10" duration="1s">resistance</effect>
+            <effect>night vision</effect>
+            <action>
+                <set var="current_kit_requires_survival" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-1" parents="kit-0"/> <!-- itty-bitty -->
+        <kit id="kit-2" parents="kit-0"/> <!-- wide -->
+        <kit id="kit-3" parents="kit-0"/> <!-- diagonal -->
+        <kit id="kit-4" parents="kit-0"/> <!-- cubes -->
+        <kit id="kit-5" parents="kit-0"/> <!-- ships -->
+        <kit id="kit-6" parents="kit-0"/> <!-- levels -->
+        <kit id="kit-7" parents="kit-0"/> <!-- descent -->
+        <kit id="kit-8" parents="kit-0"/> <!-- submarine -->
+        <kit id="kit-9" parents="kit-0"/> <!-- war wars -->
+        <kit id="kit-10" parents="kit-0"/> <!-- fortress -->
+        <kit id="kit-11" parents="kit-0"/> <!-- balloon -->
+    </if>
+    <if variant="cacti">
+        <kit id="kit-0"> <!-- classic -->
+            <item slot="0" material="cactus" amount="16"/>
+            <item slot="1" material="fishing rod" unbreakable="true"/>
+            <effect amplifier="2">slow digging</effect>
+            <effect amplifier="20">weakness</effect>
+            <health>1</health>
+            <max-health>1</max-health>
+            <knockback-reduction>0.5</knockback-reduction>
+            <action>
+                <set var="current_kit_requires_survival" value="1"/>
+                <set var="current_kill_reward" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-1" parents="kit-0"> <!-- fast digging -->
+            <effect>haste</effect>
+            <effect amplifier="99" duration="0">slow digging</effect>
+        </kit>
+        <kit id="kit-2" parents="kit-0"> <!-- double knockback -->
+            <knockback-reduction>0.15</knockback-reduction>
+        </kit>
+        <kit id="kit-3" parents="kit-0"> <!-- ghost squadron -->
+            <item slot="2" material="exp bottle" amount="3"/>
+            <effect>invisibility</effect>
+        </kit>
+        <kit id="kit-4"> <!-- sumo -->
+            <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
+            <health>20</health>
+            <max-health>20</max-health>
+            <knockback-reduction>0.15</knockback-reduction>
+            <effect amplifier="10">resistance</effect>
+        </kit>
+        <kit id="kit-5" parents="kit-0" force="true"> <!-- cacti toss -->
+            <item slot="0" material="cactus" amount="16" name="`rThrowable Cactus" projectile="cacti-gun"/>
+            <action>
+                <set var="current_kill_reward" value="2"/>
+            </action>
+        </kit>
+    </if>
+    <if variant="tug">
+        <kit id="kit-0"> <!-- classic -->
+            <clear/>
+            <item slot="0" material="stone sword" unbreakable="true"/>
+            <item slot="1" material="diamond pickaxe" unbreakable="true" enchantment="efficiency"/>
+            <item slot="2" material="snowball" amount="6"/>
+            <item slot="3" material="stained clay" amount="64" team-color="true"/>
+            <item slot="4" material="stained clay" amount="64" team-color="true"/>
+            <item slot="5" material="golden apple"/>
+            <effect>night vision</effect>
+            <action>
+                <action id="show-tug-progress"/>
+                <set var="current_kit_requires_survival" value="1"/>
+                <set var="current_kill_reward" value="1"/>
+                <set var="current_kill_reward_includes_gapple" value="1"/>
+            </action>
+        </kit>
+        <kit id="kit-1" parents="kit-0"/> <!-- bridge gone -->
+        <kit id="kit-2" parents="kit-0"/> <!-- honey -->
+        <kit id="kit-3" parents="kit-0"/> <!-- lure -->
+        <kit id="kit-4" parents="kit-0"/> <!-- nid -->
+        <kit id="kit-5" parents="kit-0"/> <!-- zzuf -->
+        <kit id="kit-6" parents="kit-0"/> <!-- blocked off -->
+        <kit id="kit-7" parents="kit-0"/> <!-- directrix -->
+        <kit id="kit-8" parents="kit-0"/> <!-- cacti -->
+    </if>
+    <kit id="uhc-gapple-eat" force="true">
+        <foodlevel>16</foodlevel>
+    </kit>
+    <kit id="soup-eat" force="true">
+        <effect duration="0.1s">instant health</effect>
+        <foodlevel>16</foodlevel>
+    </kit>
+</kits>
+<consumables>
+    <consumable id="uhc-gapple" action="uhc-gapple-eat" on="eat" override="false"/>
+    <consumable id="soup" action="soup-eat" on="click" override="true" consume="true"/>
+    <consumable id="spectator-mode" action="enable-spectator-mode" on="click" consume="false"/>
+    <consumable id="spectate-next" action="goto-next-arena" on="click" consume="false"/>
+    <consumable id="spectate-prev" action="goto-prev-arena" on="click" consume="false"/>
+</consumables>
+<projectiles>
+    <projectile id="egg-gun" name="Egg Gun" projectile="Egg" velocity="3.5" damage="3" throwable="false" cooldown="0s"/>
+    <projectile id="tnt-gun" name="TNT Gun" projectile="TNTPrimed" velocity="2" damage="15" throwable="false" cooldown="3s"/>
+    <projectile id="cacti-gun" name="cactus" projectile="FallingBlock" material="cactus" velocity="0.75" damage="0" throwable="true" cooldown="0s"/>
+</projectiles>
+<modifybowprojectile pickup-filter="disable_arrow_pickup=0"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <instantignite>${tnt-instant-ignite}</instantignite>
+    <fuse>${tnt-fuse}</fuse>
+    <power>${tnt-power}</power>
+</tnt>
+<timelock>on</timelock>
+<kill-rewards>
+    <if variant="default">
+        <kill-reward filter="current_kill_reward=1">
+            <item material="arrow" amount="12"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=2">
+            <item material="arrow" amount="4"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=3">
+            <item material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item material="potion" damage="16421">
+                <potion amplifier="2">heal</potion>
+            </item>
+            <item material="arrow" amount="6"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=4">
+            <item material="tnt" amount="2" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <item material="snow ball" amount="12" name="`rGrenade" grenade="true" grenade-power="1.2"/>
+            <item material="potion" damage="8229"/>
+        </kill-reward>
+    </if>
+    <if variant="spleef">
+        <kill-reward filter="current_kill_reward=1">
+            <item material="snow ball" amount="16"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=2">
+            <item material="egg" amount="6" name="`rGrenade" grenade="true" grenade-power="0.5"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=3">
+            <item material="monster egg" damage="50" amount="6" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=4">
+            <item material="tnt" amount="3" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+        </kill-reward>
+    </if>
+    <if variant="cacti">
+        <kill-reward filter="current_kill_reward=1">
+            <item material="cactus" amount="4"/>
+            <item material="tnt"/>
+        </kill-reward>
+        <kill-reward filter="current_kill_reward=2">
+            <item material="cactus" amount="4" name="`rThrowable Cactus" projectile="cacti-gun"/>
+            <item material="tnt"/>
+        </kill-reward>
+    </if>
+    <if variant="tug">
+        <kill-reward>
+            <item material="snowball" amount="2"/>
+        </kill-reward>
+    </if>
+</kill-rewards>
+<if variant="cacti">
+    <block-drops>
+        <rule filter="all(cactus, current_kit=5)">
+            <drops>
+                <item material="cactus" name="`rThrowable Cactus" projectile="cacti-gun"/>
+            </drops>
+        </rule>
+    </block-drops>
+</if>
+<damage>
+    <deny>
+        <any>
+            <not>
+                <any>
+                    <filter id="all(all-arenas, state=${running})"/>
+                    <below y="0"/>
+                </any>
+            </not>
+            <attacker>
+                <all>
+                    <not>
+                        <variable var="playing">1</variable>
+                    </not>
+                    <cause>melee</cause>
+                </all>
+            </attacker>
+            <if variant="spleef, cacti">
+                <all>
+                    <cause>melee</cause>
+                    <if variant="cacti">
+                        <not>
+                            <variable var="current_kit">4</variable> <!-- sumo -->
+                        </not>
+                    </if>
+                </all>
+            </if>
+            <if variant="spleef">
+                <all>
+                    <variable var="current_kit">5</variable> <!-- bow spleef -->
+                    <any>
+                        <cause>projectile</cause>
+                        <cause>combustion</cause>
+                    </any>
+                </all>
+            </if>
+        </any>
+    </deny>
+</damage>
+<disabledamage>
+    <damage self="${tnt-disable-self}" ally="${tnt-disable-ally}" enemy="${tnt-disable-ally}" other="true">block explosion</damage>
+    <damage>fall</damage>
+</disabledamage>
+<filters>
+    <material id="air">air</material>
+    <material id="tnt">tnt</material>
+    <material id="wool">wool</material>
+    <material id="arena-spawn-box-material">stained glass:0</material>
+    <variable id="reward-gapple" var="current_kill_reward_includes_gapple">1</variable>
+    <any id="clearable-entities">
+        <entity>dropped item</entity>
+        <entity>arrow</entity>
+        <entity>creeper</entity>
+        <entity id="tnt-primed">primed tnt</entity>
+    </any>
+    <cause id="trample">trample</cause>
+    <time id="intro-announcer-1">3s</time>
+    <time id="intro-announcer-2">6s</time>
+    <time id="intro-announcer-3">9s</time>
+    <time id="intro-announcer-4">12s</time>
+    <time id="intro-announcer-5">15s</time>
+    <after id="transition-to-idle" filter="all(match-running, state=${finished})" duration="1s"/>
+    <after id="transition-to-starting" filter="all(match-running, state=${idle})" duration="2s"/>
+    <any id="transition-to-running">
+        <after filter="all(match-running, state=${starting}, current_round=1)" duration="${round-begin-seconds}s" message="Round 1 begins in {0}"/>
+        <after filter="all(match-running, state=${starting}, current_round=2)" duration="${round-begin-seconds}s" message="Round 2 begins in {0}"/>
+        <after filter="all(match-running, state=${starting}, current_round=3)" duration="${round-begin-seconds}s" message="Round 3 begins in {0}"/>
+    </any>
+    <after id="countdown-start" filter="all(match-running, state=${starting})" duration="${round-begin-countdown-after-seconds}s"/>
+    <all id="teleport-to-arena">
+        <if constant="round-begin-rearrange-after-seconds">
+            <after filter="all(match-running, state=${starting})" duration="${round-begin-rearrange-after-seconds}"/>
+        </if>
+        <unless constant="round-begin-rearrange-after-seconds">
+            <filter id="all(match-running, state=${running})"/>
+        </unless>
+    </all>
+    <all id="all-arenas-finished">
+        <variable id="arena-1-finished" var="arena_finished" index="0">1..</variable>
+        <variable id="arena-2-finished" var="arena_finished" index="1">1..</variable>
+        <variable id="arena-3-finished" var="arena_finished" index="2">1..</variable>
+        <variable id="arena-4-finished" var="arena_finished" index="3">1..</variable>
+    </all>
+    <any id="final-arena">
+        <filter id="all(not(arena-1-finished), arena-2-finished, arena-3-finished, arena-4-finished)"/>
+        <filter id="all(not(arena-2-finished), arena-1-finished, arena-3-finished, arena-4-finished)"/>
+        <filter id="all(not(arena-3-finished), arena-1-finished, arena-2-finished, arena-4-finished)"/>
+        <filter id="all(not(arena-4-finished), arena-1-finished, arena-2-finished, arena-3-finished)"/>
+    </any>
+    <any id="arena-1-teams">
+        <variable id="placement-1-team" var="placement">1</variable>
+        <variable id="placement-2-team" var="placement">2</variable>
+    </any>
+    <any id="arena-2-teams">
+        <variable id="placement-3-team" var="placement">3</variable>
+        <variable id="placement-4-team" var="placement">4</variable>
+    </any>
+    <any id="arena-3-teams">
+        <variable id="placement-5-team" var="placement">5</variable>
+        <variable id="placement-6-team" var="placement">6</variable>
+    </any>
+    <any id="arena-4-teams">
+        <variable id="placement-7-team" var="placement">7</variable>
+        <variable id="placement-8-team" var="placement">8</variable>
+    </any>
+    <variable id="odd-placement" scope="team" value="placement % 2">1</variable>
+    <players id="team-has-active-players" filter="all(match-running, alive, playing=1)"/>
+    <any id="arena-1-has-players">
+        <players id="placement-1-team-has-active-players" filter="all(match-running, placement-1-team, playing=1, not(arena-1-finished))"/>
+        <players id="placement-2-team-has-active-players" filter="all(match-running, placement-2-team, playing=1, not(arena-1-finished))"/>
+    </any>
+    <any id="arena-2-has-players">
+        <players id="placement-3-team-has-active-players" filter="all(match-running, placement-3-team, playing=1, not(arena-2-finished))"/>
+        <players id="placement-4-team-has-active-players" filter="all(match-running, placement-4-team, playing=1, not(arena-2-finished))"/>
+    </any>
+    <any id="arena-3-has-players">
+        <players id="placement-5-team-has-active-players" filter="all(match-running, placement-5-team, playing=1, not(arena-3-finished))"/>
+        <players id="placement-6-team-has-active-players" filter="all(match-running, placement-6-team, playing=1, not(arena-3-finished))"/>
+    </any>
+    <any id="arena-4-has-players">
+        <players id="placement-7-team-has-active-players" filter="all(match-running, placement-7-team, playing=1, not(arena-4-finished))"/>
+        <players id="placement-8-team-has-active-players" filter="all(match-running, placement-8-team, playing=1, not(arena-4-finished))"/>
+    </any>
+    <after id="win-exclusive-delayed" duration="0.5s">
+        <any id="win-exclusive">
+            <all id="placement-1-defeat-2"><filter id="all(placement=1, placement-1-team-has-active-players, not(placement-2-team-has-active-players))"/></all>
+            <all id="placement-2-defeat-1"><filter id="all(placement=2, placement-2-team-has-active-players, not(placement-1-team-has-active-players))"/></all>
+            <all id="placement-3-defeat-4"><filter id="all(placement=3, placement-3-team-has-active-players, not(placement-4-team-has-active-players))"/></all>
+            <all id="placement-4-defeat-3"><filter id="all(placement=4, placement-4-team-has-active-players, not(placement-3-team-has-active-players))"/></all>
+            <all id="placement-5-defeat-6"><filter id="all(placement=5, placement-5-team-has-active-players, not(placement-6-team-has-active-players))"/></all>
+            <all id="placement-6-defeat-5"><filter id="all(placement=6, placement-6-team-has-active-players, not(placement-5-team-has-active-players))"/></all>
+            <all id="placement-7-defeat-8"><filter id="all(placement=7, placement-7-team-has-active-players, not(placement-8-team-has-active-players))"/></all>
+            <all id="placement-8-defeat-7"><filter id="all(placement=8, placement-8-team-has-active-players, not(placement-7-team-has-active-players))"/></all>
+        </any>
+    </after>
+    <after id="round-running-delay" filter="all(match-running, state=${running})" duration="1s"/>
+    <if variant="default">
+        <all id="breakable-blocks">
+            <never/>
+        </all>
+    </if>
+    <if variant="spleef">
+        <all id="breakable-blocks">
+            <region id="all-arenas"/>
+            <any>
+                <material id="snow">snow block</material>
+                <filter id="tnt"/>
+            </any>
+        </all>
+        <any id="placeable-blocks">
+            <filter id="tnt"/>
+            <filter id="all(snow, not(current_kit=5..6))"/> <!-- bow spleef, block runner -->
+        </any>
+    </if>
+    <if variant="cannon">
+        <any id="arena-wall-material">
+            <material>stained glass:5</material>
+            <material>stained glass:7</material>
+            <material>stained glass:8</material>
+        </any>
+        <any id="bridge-material">
+            <material>stained glass:0</material>
+            <material>stained glass:5</material>
+        </any>
+        <players id="placement-1-team-inside-overtime-zone" filter="all(match-running, placement-1-team, alive, playing=1, arena-1-overtime-capture-area)"/>
+        <players id="placement-2-team-inside-overtime-zone" filter="all(match-running, placement-2-team, alive, playing=1, arena-1-overtime-capture-area)"/>
+        <players id="placement-3-team-inside-overtime-zone" filter="all(match-running, placement-3-team, alive, playing=1, arena-2-overtime-capture-area)"/>
+        <players id="placement-4-team-inside-overtime-zone" filter="all(match-running, placement-4-team, alive, playing=1, arena-2-overtime-capture-area)"/>
+        <players id="placement-5-team-inside-overtime-zone" filter="all(match-running, placement-5-team, alive, playing=1, arena-3-overtime-capture-area)"/>
+        <players id="placement-6-team-inside-overtime-zone" filter="all(match-running, placement-6-team, alive, playing=1, arena-3-overtime-capture-area)"/>
+        <players id="placement-7-team-inside-overtime-zone" filter="all(match-running, placement-7-team, alive, playing=1, arena-4-overtime-capture-area)"/>
+        <players id="placement-8-team-inside-overtime-zone" filter="all(match-running, placement-8-team, alive, playing=1, arena-4-overtime-capture-area)"/>
+        <all id="win-cannon-overtime">
+            <filter id="all(match-running, state=${running}, overtime_level=3)"/>
+            <any>
+                <filter id="all(placement-1-team, placement-1-team-inside-overtime-zone)"/>
+                <filter id="all(placement-2-team, placement-2-team-inside-overtime-zone)"/>
+                <filter id="all(placement-3-team, placement-3-team-inside-overtime-zone)"/>
+                <filter id="all(placement-4-team, placement-4-team-inside-overtime-zone)"/>
+                <filter id="all(placement-5-team, placement-5-team-inside-overtime-zone)"/>
+                <filter id="all(placement-6-team, placement-6-team-inside-overtime-zone)"/>
+                <filter id="all(placement-7-team, placement-7-team-inside-overtime-zone)"/>
+                <filter id="all(placement-8-team, placement-8-team-inside-overtime-zone)"/>
+            </any>
+        </all>
+        <all id="offset-teleport">
+            <filter id="all(match-running, participating, state=${running}, playing=1, current_kit=3, all-arenas)"/>
+            <not>
+                <after duration="0.5" filter="state=${running}"/>
+            </not>
+        </all>
+    </if>
+    <if variant="cacti">
+        <any id="allowed-interactions">
+            <all>
+                <region id="all-arenas"/>
+                <any>
+                    <cause>explosion</cause>
+                    <cause>player</cause>
+                </any>
+                <any>
+                    <material>cactus</material>
+                    <material>tnt</material>
+                </any>
+            </all>
+            <all>
+                <cause>world</cause>
+                <not>
+                    <cause>explosion</cause>
+                </not>
+                <any>
+                    <any id="support-blocks">
+                        <material>log 2</material>
+                        <material>wood step</material>
+                    </any>
+                    <any id="fall-blocks">
+                        <material id="sand">sand</material>
+                        <material>double step</material>
+                        <material id="cactus">cactus</material>
+                    </any>
+                </any>
+            </all>
+        </any>
+        <after id="drop-segment-12" duration="30s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-11" duration="38s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-10" duration="46s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-9"  duration="54s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-8"  duration="62s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-7"  duration="70s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-6"  duration="78s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-5"  duration="80s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-4"  duration="85s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-3"  duration="90s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-2"  duration="95s" filter="all(match-running, state=${running})"/>
+        <after id="drop-segment-1"  duration="100s" filter="all(match-running, state=${running})"/>
+    </if>
+    <if variant="tug">
+        <all id="tug-visual-blocks">
+            <material>stained clay</material>
+            <any>
+                <below y="6"/>
+                <above y="19"/>
+            </any>
+        </all>
+        <all id="allowed-blocks">
+            <region id="buildable-area"/>
+            <material>stained clay</material>
+        </all>
+        <variable id="owns-progress-1" scope="team" value="tug[(current_arena - 1) + (4 * 0)] - current_team">0</variable>
+        <variable id="owns-progress-2" scope="team" value="tug[(current_arena - 1) + (4 * 1)] - current_team">0</variable>
+        <variable id="owns-progress-3" scope="team" value="tug[(current_arena - 1) + (4 * 2)] - current_team">0</variable>
+        <variable id="owns-progress-4" scope="team" value="tug[(current_arena - 1) + (4 * 3)] - current_team">0</variable>
+        <variable id="owns-progress-5" scope="team" value="tug[(current_arena - 1) + (4 * 4)] - current_team">0</variable>
+        <all id="progress-1-exclusive">
+            <region id="progress-1"/>
+            <region id="capturable-height"/>
+        </all>
+        <all id="progress-2-exclusive">
+            <region id="progress-2"/>
+            <region id="capturable-height"/>
+        </all>
+        <all id="progress-3-exclusive">
+            <region id="progress-3"/>
+            <region id="capturable-height"/>
+        </all>
+        <all id="progress-4-exclusive">
+            <region id="progress-4"/>
+            <region id="capturable-height"/>
+        </all>
+        <all id="progress-5-exclusive">
+            <region id="progress-5"/>
+            <region id="capturable-height"/>
+        </all>
+    </if>
+</filters>
+<regions>
+    <cuboid id="lobby" min="${lobby-origin}" size="${lobby-size}"/>
+    <cylinder id="lobby-spawn" base="${lobby-spawn}" radius="5" height="0"/>
+    <cylinder id="host-console" base="${host-console}" radius="1.5" height="2"/>
+    <below id="below-arenas" y="0"/>
+    <union id="all-arenas">
+        <cuboid id="arena-1" min="${arena-1-origin}" size="${arena-1-size}"/>
+        <translate id="arena-2" region="arena-1" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+        <translate id="arena-3" region="arena-1" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+        <translate id="arena-4" region="arena-1" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    </union>
+    <block id="arena-1-spawn-1" location="${arena-1-spawn-1-spawn}"/>
+    <block id="arena-1-spawn-2" location="${arena-1-spawn-2-spawn}"/>
+    <translate id="arena-2-spawn-1" region="arena-1-spawn-1" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+    <translate id="arena-2-spawn-2" region="arena-1-spawn-2" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+    <translate id="arena-3-spawn-1" region="arena-1-spawn-1" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+    <translate id="arena-3-spawn-2" region="arena-1-spawn-2" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+    <translate id="arena-4-spawn-1" region="arena-1-spawn-1" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    <translate id="arena-4-spawn-2" region="arena-1-spawn-2" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    <union id="all-arenas-spawn-boxes">
+        <union id="arena-1-spawn-boxes">
+            <complement id="arena-1-spawn-1-box">
+                <resize id="arena-1-spawn-1-box-outer" region="arena-1-spawn-1-box-inner" min="1,1,1" max="1,1,1"/>
+                <resize id="arena-1-spawn-1-box-inner" region="arena-1-spawn-1" min="1,0,1" max="1,2,1"/>
+            </complement>
+            <complement id="arena-1-spawn-2-box">
+                <resize id="arena-1-spawn-2-box-outer" region="arena-1-spawn-2-box-inner" min="1,1,1" max="1,1,1"/>
+                <resize id="arena-1-spawn-2-box-inner" region="arena-1-spawn-2" min="1,0,1" max="1,2,1"/>
+            </complement>
+        </union>
+        <translate id="arena-2-spawn-boxes" region="arena-1-spawn-boxes" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+        <translate id="arena-3-spawn-boxes" region="arena-1-spawn-boxes" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+        <translate id="arena-4-spawn-boxes" region="arena-1-spawn-boxes" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    </union>
+    <union id="all-spectators">
+        <cuboid id="arena-1-spectator" min="${arena-1-spectator-origin}" size="${arena-1-spectator-size}"/>
+        <translate id="arena-2-spectator" region="arena-1-spectator" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+        <translate id="arena-3-spectator" region="arena-1-spectator" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+        <translate id="arena-4-spectator" region="arena-1-spectator" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    </union>
+    <point id="arena-1-spectator-spawn">${arena-1-spectator-spawn}</point>
+    <translate id="arena-2-spectator-spawn" region="arena-1-spectator-spawn" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+    <translate id="arena-3-spectator-spawn" region="arena-1-spectator-spawn" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+    <translate id="arena-4-spectator-spawn" region="arena-1-spectator-spawn" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    <union id="all-arena-1">
+        <resize region="arena-1" min="0,0,0" max="0,20,0"/>
+        <region id="arena-1-spectator"/>
+    </union>
+    <translate id="all-arena-2" region="all-arena-1" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+    <translate id="all-arena-3" region="all-arena-1" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+    <translate id="all-arena-4" region="all-arena-1" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+    <apply region="lobby" use="never" block-place="tnt" block-break="never"/>
+    <apply region="all-arenas" use="deny(playing=0)"/>
+    <apply region="below-arenas" enter="not(spectator_mode=1)"/>
+    <if variant="default, spleef">
+        <apply block-break="breakable-blocks" block-physics="breakable-blocks"/>
+    </if>
+    <if variant="spleef">
+        <apply region="all-arenas" block-place="placeable-blocks"/>
+    </if>
+    <if variant="cacti">
+        <apply block="allowed-interactions"/>
+        <apply region="all-spectators" leave="any(playing=1, state=${idle})"/>
+    </if>
+    <if variant="cannon">
+        <cuboid id="lobby-jump" min="188,4,29" size="1,5,5"/>
+        <union id="arena-bridges"> <!-- 0 -->
+            <cuboid id="arena-1-bridge" min="248,9,-16" size="1,1,29"/>
+            <translate id="arena-2-bridge" region="arena-1-bridge" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-bridge" region="arena-1-bridge" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-bridge" region="arena-1-bridge" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="arena-bridges-wide"> <!-- 1 -->
+            <cuboid id="arena-1-bridge-wide" min="246,9,-16" size="5,1,29"/>
+            <translate id="arena-2-bridge-wide" region="arena-1-bridge-wide" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-bridge-wide" region="arena-1-bridge-wide" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-bridge-wide" region="arena-1-bridge-wide" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="arena-bridges-diagonal"> <!-- 2 -->
+            <union id="arena-1-bridge-diagonal">
+                <union id="arena-1-side-1-bridge-diagonal">
+                    <cuboid min="250,9,-16" size="1,1,6"/>
+                    <cuboid min="249,9,-11" size="1,1,7"/>
+                    <cuboid min="248,9,-5" size="1,1,4"/>
+                </union>
+                <mirror origin="248.5,9,-1.5" normal="-1,0,0">
+                    <mirror region="arena-1-side-1-bridge-diagonal" origin="248.5,9,-1.5" normal="0,0,1"/>
+                </mirror>
+            </union>
+            <translate id="arena-2-bridge-diagonal" region="arena-1-bridge-diagonal" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-bridge-diagonal" region="arena-1-bridge-diagonal" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-bridge-diagonal" region="arena-1-bridge-diagonal" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="arena-bridges-side"> <!-- 3 -->
+            <translate region="arena-bridges" offset="10,0,0"/>
+            <translate region="arena-bridges" offset="-10,0,0"/>
+        </union>
+        <translate id="arena-bridges-lower" offset="0,-2,0" region="arena-bridges"/> <!-- 4 -->
+        <union id="buildable-area">
+            <cuboid id="arena-1-buildable-area" min="242,1,-29" size="13,22,55"/>
+            <translate id="arena-2-buildable-area" region="arena-1-buildable-area" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-buildable-area" region="arena-1-buildable-area" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-buildable-area" region="arena-1-buildable-area" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="buildable-area-wide">
+            <cuboid id="arena-1-buildable-area-wide" min="233,1,-29" size="31,22,55"/>
+            <translate id="arena-2-buildable-area-wide" region="arena-1-buildable-area-wide" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-buildable-area-wide" region="arena-1-buildable-area-wide" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-buildable-area-wide" region="arena-1-buildable-area-wide" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="buildable-area-middle">
+            <cuboid id="arena-1-buildable-area-middle" min="230,1,-16" size="37,22,29"/>
+            <translate id="arena-2-buildable-area-middle" region="arena-1-buildable-area-middle" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-buildable-area-middle" region="arena-1-buildable-area-middle" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-buildable-area-middle" region="arena-1-buildable-area-middle" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="overtime-capture-area">
+            <cuboid id="arena-1-overtime-capture-area" min="230,0,-3" size="37,38,3"/>
+            <translate id="arena-2-overtime-capture-area" region="arena-1-overtime-capture-area" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-overtime-capture-area" region="arena-1-overtime-capture-area" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-overtime-capture-area" region="arena-1-overtime-capture-area" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <apply block-place="deny(all(buildable-area-middle, overtime_level=..1))" message="You may not modify that block"/>
+        <apply block="all(not(bridge-material), any(all(current_platform_size=0, buildable-area), all(current_platform_size=1, buildable-area-wide)))" message="You may not modify that block"/>
+        <apply region="lobby-jump" velocity="1.5,0.8,0"/>
+    </if>
+    <if variant="cacti">
+        <union id="snowball-spawners">
+            <point id="arena-1-spawner">248.5,0,-1.5</point>
+            <translate id="arena-2-spawner" region="arena-1-spawner" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-spawner" region="arena-1-spawner" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-spawner" region="arena-1-spawner" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <union id="arenas-segment-1">
+            <cylinder id="arena-1-segment-1" base="248.5,0,-1.5" radius="4" height="4"/>
+            <translate id="arena-2-segment-1" region="arena-1-segment-1" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-segment-1" region="arena-1-segment-1" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-segment-1" region="arena-1-segment-1" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <complement id="arenas-segment-2">
+            <union id="arenas-cylinder-2">
+                <cylinder id="arena-1-segment-2" base="248.5,0,-1.5" radius="5" height="4"/>
+                <translate id="arena-2-segment-2" region="arena-1-segment-2" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-2" region="arena-1-segment-2" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-2" region="arena-1-segment-2" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-segment-1"/>
+        </complement>
+        <complement id="arenas-segment-3">
+            <union id="arenas-cylinder-3">
+                <cylinder id="arena-1-segment-3" base="248.5,0,-1.5" radius="6" height="4"/>
+                <translate id="arena-2-segment-3" region="arena-1-segment-3" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-3" region="arena-1-segment-3" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-3" region="arena-1-segment-3" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-2"/>
+        </complement>
+        <complement id="arenas-segment-4">
+            <union id="arenas-cylinder-4">
+                <cylinder id="arena-1-segment-4" base="248.5,0,-1.5" radius="7" height="4"/>
+                <translate id="arena-2-segment-4" region="arena-1-segment-4" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-4" region="arena-1-segment-4" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-4" region="arena-1-segment-4" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-3"/>
+        </complement>
+        <complement id="arenas-segment-5">
+            <union id="arenas-cylinder-5">
+                <cylinder id="arena-1-segment-5" base="248.5,0,-1.5" radius="8" height="4"/>
+                <translate id="arena-2-segment-5" region="arena-1-segment-5" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-5" region="arena-1-segment-5" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-5" region="arena-1-segment-5" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-4"/>
+        </complement>
+        <complement id="arenas-segment-6">
+            <union id="arenas-cylinder-6">
+                <cylinder id="arena-1-segment-6" base="248.5,0,-1.5" radius="9" height="4"/>
+                <translate id="arena-2-segment-6" region="arena-1-segment-6" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-6" region="arena-1-segment-6" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-6" region="arena-1-segment-6" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-5"/>
+        </complement>
+        <complement id="arenas-segment-7">
+            <union id="arenas-cylinder-7">
+                <cylinder id="arena-1-segment-7" base="248.5,0,-1.5" radius="10" height="4"/>
+                <translate id="arena-2-segment-7" region="arena-1-segment-7" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-7" region="arena-1-segment-7" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-7" region="arena-1-segment-7" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-6"/>
+        </complement>
+        <complement id="arenas-segment-8">
+            <union id="arenas-cylinder-8">
+                <cylinder id="arena-1-segment-8" base="248.5,0,-1.5" radius="11" height="4"/>
+                <translate id="arena-2-segment-8" region="arena-1-segment-8" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-8" region="arena-1-segment-8" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-8" region="arena-1-segment-8" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-7"/>
+        </complement>
+        <complement id="arenas-segment-9">
+            <union id="arenas-cylinder-9">
+                <cylinder id="arena-1-segment-9" base="248.5,0,-1.5" radius="12" height="4"/>
+                <translate id="arena-2-segment-9" region="arena-1-segment-9" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-9" region="arena-1-segment-9" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-9" region="arena-1-segment-9" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-8"/>
+        </complement>
+        <complement id="arenas-segment-10">
+            <union id="arenas-cylinder-10">
+                <cylinder id="arena-1-segment-10" base="248.5,0,-1.5" radius="13" height="4"/>
+                <translate id="arena-2-segment-10" region="arena-1-segment-10" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-10" region="arena-1-segment-10" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-10" region="arena-1-segment-10" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-9"/>
+        </complement>
+        <complement id="arenas-segment-11">
+            <union id="arenas-cylinder-11">
+                <cylinder id="arena-1-segment-11" base="248.5,0,-1.5" radius="14" height="4"/>
+                <translate id="arena-2-segment-11" region="arena-1-segment-11" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-11" region="arena-1-segment-11" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-11" region="arena-1-segment-11" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-10"/>
+        </complement>
+        <complement id="arenas-segment-12">
+            <union id="arenas-cylinder-12">
+                <cylinder id="arena-1-segment-12" base="248.5,0,-1.5" radius="15" height="4"/>
+                <translate id="arena-2-segment-12" region="arena-1-segment-12" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-segment-12" region="arena-1-segment-12" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-segment-12" region="arena-1-segment-12" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <region id="arenas-cylinder-11"/>
+        </complement>
+    </if>
+    <if variant="tug">
+        <below id="capturable-height" y="8"/>
+        <union id="all-progress">
+            <union id="progress-1">
+                <cuboid id="arena-1-progress-1" min="249,5,-14" size="3,17,3"/>
+                <translate id="arena-2-progress-1" region="arena-1-progress-1" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+                <translate id="arena-3-progress-1" region="arena-1-progress-1" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+                <translate id="arena-4-progress-1" region="arena-1-progress-1" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+            </union>
+            <translate id="progress-2" region="progress-1" offset="0,0,22"/>
+            <translate id="progress-3" region="progress-2" offset="0,0,22"/>
+            <translate id="progress-4" region="progress-3" offset="0,0,22"/>
+            <translate id="progress-5" region="progress-4" offset="0,0,22"/>
+        </union>
+        <above id="above-12" y="12"/>
+        <union id="buildable-area">
+            <complement id="arena-1-buildable-area">
+                <cuboid min="241,0,-22" size="19,11,107"/>
+                <intersect id="arena-1-progress-1-island">
+                    <resize region="arena-1-progress-1" min="1,1,1" max="1,0,1"/>
+                    <below y="6"/>
+                </intersect>
+                <translate id="arena-1-progress-2-island" region="arena-1-progress-1-island" offset="0,0,22"/>
+                <translate id="arena-1-progress-3-island" region="arena-1-progress-2-island" offset="0,0,22"/>
+                <translate id="arena-1-progress-4-island" region="arena-1-progress-3-island" offset="0,0,22"/>
+            </complement>
+            <translate id="arena-2-buildable-area" region="arena-1-buildable-area" offset="${arena-2-x-offset},0,${arena-2-z-offset}"/>
+            <translate id="arena-3-buildable-area" region="arena-1-buildable-area" offset="${arena-3-x-offset},0,${arena-3-z-offset}"/>
+            <translate id="arena-4-buildable-area" region="arena-1-buildable-area" offset="${arena-4-x-offset},0,${arena-4-z-offset}"/>
+        </union>
+        <apply block="allowed-blocks"/>
+    </if>
+</regions>
+<variables scope="player">
+    <variable id="debug"/>
+    <variable id="goto"/>
+    <variable id="playing"/>
+    <variable id="respawns"/>
+    <variable id="spectator_mode"/>
+    <variable id="current_kit_requires_survival"/>
+    <variable id="current_kit_max_respawns"/>
+    <variable id="current_kill_reward"/>
+    <variable id="current_kill_reward_includes_gapple"/>
+    <variable id="current_player_size" default="1"/>
+    <variable id="ptemp"/>
+</variables>
+<variables scope="team">
+    <variable id="current_team"/>
+    <variable id="current_arena"/>
+    <variable id="placement"/>
+    <variable id="won"/>
+    <variable id="ttemp"/>
+</variables>
+<variables scope="match">
+    <score id="score"/>
+    <array id="kits" size="3"/>
+    <array id="kit_chance" size="${kit-count}"/>
+    <array id="arena_finished" size="4"/>
+    <array id="arena_matchups" size="8"/>
+    <array id="callout" size="2"/>
+    <variable id="temp"/>
+    <variable id="index"/>
+    <variable id="min_index"/>
+    <variable id="overtime_level"/>
+    <variable id="state"/>
+    <variable id="current_round"/>
+    <variable id="current_variant"/>
+    <variable id="current_kit"/>
+    <variable id="teleport"/>
+    <variable id="disable_arrow_pickup" default="1"/>
+    <if variant="cannon">
+        <variable id="current_platform_size"/>
+        <variable id="current_platform_bridge"/>
+    </if>
+    <if variant="tug">
+        <array id="tug" size="20"/>
+        <cuboid id="color" min="249,5,-14" size="3,17,3"/>
+        <variable id="offset"/>
+        <variable id="tuggability" scope="team"/>
+    </if>
+    <cuboid id="arena_anchor" min="${arena-1-origin}" size="1,1,1"/>
+</variables>
+<constant id="intro">0</constant>
+<constant id="idle">1</constant>
+<constant id="starting">2</constant>
+<constant id="running">3</constant>
+<constant id="finished">4</constant>
+<replacements>
+    <switch id="current-kit-name" value="current_kit" scope="match">
+        <if constant="kit-count" constant-value="1.." constant-comparison="range"><case match="0" result="${kit-0-name}"/></if>
+        <if constant="kit-count" constant-value="2.." constant-comparison="range"><case match="1" result="${kit-1-name}"/></if>
+        <if constant="kit-count" constant-value="3.." constant-comparison="range"><case match="2" result="${kit-2-name}"/></if>
+        <if constant="kit-count" constant-value="4.." constant-comparison="range"><case match="3" result="${kit-3-name}"/></if>
+        <if constant="kit-count" constant-value="5.." constant-comparison="range"><case match="4" result="${kit-4-name}"/></if>
+        <if constant="kit-count" constant-value="6.." constant-comparison="range"><case match="5" result="${kit-5-name}"/></if>
+        <if constant="kit-count" constant-value="7.." constant-comparison="range"><case match="6" result="${kit-6-name}"/></if>
+        <if constant="kit-count" constant-value="8.." constant-comparison="range"><case match="7" result="${kit-7-name}"/></if>
+        <if constant="kit-count" constant-value="9.." constant-comparison="range"><case match="8" result="${kit-8-name}"/></if>
+        <if constant="kit-count" constant-value="10.." constant-comparison="range"><case match="9" result="${kit-9-name}"/></if>
+        <if constant="kit-count" constant-value="11.." constant-comparison="range"><case match="10" result="${kit-10-name}"/></if>
+        <if constant="kit-count" constant-value="12.." constant-comparison="range"><case match="11" result="${kit-11-name}"/></if>
+        <if constant="kit-count" constant-value="13.." constant-comparison="range"><case match="12" result="${kit-12-name}"/></if>
+        <if constant="kit-count" constant-value="14.." constant-comparison="range"><case match="13" result="${kit-13-name}"/></if>
+    </switch>
+    <decimal id="current-kit-number" scope="match" value="current_kit"/>
+    <switch id="round-1-kit-display" scope="match" value="(bound(abs(kits[0] - current_kit), 0, 1) + 1) % 2">
+        <case match="0" result="[_]"/>
+        <case match="1" result="`a[1]"/>
+    </switch>
+    <switch id="round-2-kit-display" scope="match" value="(bound(abs(kits[1] - current_kit), 0, 1) + 1) % 2">
+        <case match="0" result="[_]"/>
+        <case match="1" result="`a[2]"/>
+    </switch>
+    <switch id="round-3-kit-display" scope="match" value="(bound(abs(kits[2] - current_kit), 0, 1) + 1) % 2">
+        <case match="0" result="[_]"/>
+        <case match="1" result="`a[3]"/>
+    </switch>
+    <switch id="team-callout-0" scope="match" value="callout[0]">
+        <case match="1" result="`4Red"/>
+        <case match="2" result="`9Blue"/>
+        <case match="3" result="`2Green"/>
+        <case match="4" result="`6Orange"/>
+        <case match="5" result="`eYellow"/>
+        <case match="6" result="`5Purple"/>
+        <case match="7" result="`dPink"/>
+        <case match="8" result="`3Cyan"/>
+    </switch>
+    <switch id="team-callout-1" scope="match" value="callout[1]">
+        <case match="1" result="`4Red"/>
+        <case match="2" result="`9Blue"/>
+        <case match="3" result="`2Green"/>
+        <case match="4" result="`6Orange"/>
+        <case match="5" result="`eYellow"/>
+        <case match="6" result="`5Purple"/>
+        <case match="7" result="`dPink"/>
+        <case match="8" result="`3Cyan"/>
+    </switch>
+</replacements>
+<actions>
+    <trigger scope="player" filter="all(debug=1, state=${intro})"><action><message text="state=intro"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, state=${idle})"><action><message text="state=idle"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, state=${starting})"><action><message text="state=starting"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, state=${running})"><action><message text="state=running"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, state=${finished})"><action><message text="state=finished"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, current_round=1)"><action><message text="current_round=1"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, current_round=2)"><action><message text="current_round=2"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, current_round=3)"><action><message text="current_round=3"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, playing=1)"><action><message text="playing=1"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, playing=0)"><action><message text="playing=0"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, respawns=1..)"><action><message text="respawns=1.."/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, respawns=0)"><action><message text="respawns=0"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, teleport=0)"><action><message text="teleport=0"/></action></trigger>
+    <trigger scope="player" filter="all(debug=1, teleport=1)"><action><message text="teleport=1"/></action></trigger>
+    <trigger scope="match" filter="always">
+        <action>
+            <!-- kit setup - cheers, Pablo <3 -->
+            <repeat times="${kit-count}">
+                <set var="kit_chance" index="index" value="random()"/>
+                <set var="index" value="index + 1"/>
+            </repeat>
+            <repeat times="3">
+                <set var="index" value="0"/>
+                <set var="min_index" value="0"/>
+                <repeat times="${kit-count}">
+                    <set var="temp" value="kit_chance[min_index] - kit_chance[index]"/>
+                    <action filter="temp=0..">
+                        <set var="min_index" value="index"/>
+                    </action>
+                    <set var="index" value="index + 1"/>
+                </repeat>
+                <set var="kits" index="current_round" value="min_index"/>
+                <set var="kit_chance" index="min_index" value="999"/>
+                <set var="current_round" value="current_round + 1"/>
+            </repeat>
+            <set var="current_round" value="0"/>
+            <action id="pick-next-variant">
+                <if constant="arena-variant-selection" constant-value="random">
+                    <set var="current_variant" value="floor(random() * ${arena-variants})"/>
+                </if>
+                <if constant="arena-variant-selection" constant-value="kit">
+                    <set var="current_variant" value="current_kit"/>
+                </if>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(playing=1, respawns=1.., dead)">
+        <action>
+            <set var="respawns" value="respawns - 1"/>
+            <action filter="respawns=0">
+                <set var="playing" value="0"/>
+                <set var="goto" value="goto - 1"/>
+                <action id="goto-next-arena"/>
+            </action>
+        </action>
+    </trigger>
+    <action id="enable-spectator-mode" scope="player" filter="all(participating, alive, spectator_mode=0, playing=0)">
+        <sound key="${entity.experience_orb.pickup}" volume="1" pitch="1.2"/>
+        <message text="`7`oFrom `6${host-name}`r: Return to the arena observing zone to exit spectator mode"/>
+        <set var="spectator_mode" value="1"/>
+        <kit force="true">
+            <game-mode>spectator</game-mode>
+        </kit>
+        <teleport x="player.x" y="player.y + 0.2" z="player.z"/>
+    </action>
+    <action id="disable-spectator-mode" scope="player" filter="all(participating, spectator_mode=1)">
+        <set var="spectator_mode" value="0"/>
+        <kit force="true">
+            <game-mode>adventure</game-mode>
+        </kit>
+    </action>
+    <trigger scope="player" filter="all(participating, playing=0, all-spectators)" action="disable-spectator-mode"/>
+    <trigger scope="player" filter="all(participating, state=${running}, playing=0, spectator_mode=0, not(all-spectators), not(all-arenas-finished), not(lobby))" action="enable-spectator-mode"/>
+    <action id="goto-next-arena" scope="player" filter="all(participating, playing=0)">
+        <set var="goto" value="goto + 1"/>
+        <action filter="goto=5.."><set var="goto" value="1"/></action>
+    </action>
+    <action id="goto-prev-arena" scope="player" filter="all(participating, playing=0)">
+        <set var="goto" value="goto - 1"/>
+        <action filter="goto=..0"><set var="goto" value="4"/></action>
+    </action>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, lobby)" action="goto-next-arena"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, arena-1-spectator, arena-1-finished, not(all-arenas-finished))" action="goto-next-arena"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, arena-2-spectator, arena-2-finished, not(all-arenas-finished))" action="goto-next-arena"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, arena-3-spectator, arena-3-finished, not(all-arenas-finished))" action="goto-next-arena"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, arena-4-spectator, arena-4-finished, not(all-arenas-finished))" action="goto-next-arena"/>
+    <action id="display-current-matchup" scope="player">
+        <message actionbar="{0} `bvs {1} {2}">
+            <replacements>
+                <switch id="0">
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=1), all(all-arena-2, arena_matchups[2]=1), all(all-arena-3, arena_matchups[4]=1), all(all-arena-4, arena_matchups[6]=1))" result="`4Red"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=2), all(all-arena-2, arena_matchups[2]=2), all(all-arena-3, arena_matchups[4]=2), all(all-arena-4, arena_matchups[6]=2))" result="`9Blue"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=3), all(all-arena-2, arena_matchups[2]=3), all(all-arena-3, arena_matchups[4]=3), all(all-arena-4, arena_matchups[6]=3))" result="`2Green"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=4), all(all-arena-2, arena_matchups[2]=4), all(all-arena-3, arena_matchups[4]=4), all(all-arena-4, arena_matchups[6]=4))" result="`6Orange"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=5), all(all-arena-2, arena_matchups[2]=5), all(all-arena-3, arena_matchups[4]=5), all(all-arena-4, arena_matchups[6]=5))" result="`eYellow"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=6), all(all-arena-2, arena_matchups[2]=6), all(all-arena-3, arena_matchups[4]=6), all(all-arena-4, arena_matchups[6]=6))" result="`5Purple"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=7), all(all-arena-2, arena_matchups[2]=7), all(all-arena-3, arena_matchups[4]=7), all(all-arena-4, arena_matchups[6]=7))" result="`dPink"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[0]=8), all(all-arena-2, arena_matchups[2]=8), all(all-arena-3, arena_matchups[4]=8), all(all-arena-4, arena_matchups[6]=8))" result="`3Cyan"/>
+                </switch>
+                <switch id="1">
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=1), all(all-arena-2, arena_matchups[3]=1), all(all-arena-3, arena_matchups[5]=1), all(all-arena-4, arena_matchups[7]=1))" result="`4Red"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=2), all(all-arena-2, arena_matchups[3]=2), all(all-arena-3, arena_matchups[5]=2), all(all-arena-4, arena_matchups[7]=2))" result="`9Blue"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=3), all(all-arena-2, arena_matchups[3]=3), all(all-arena-3, arena_matchups[5]=3), all(all-arena-4, arena_matchups[7]=3))" result="`2Green"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=4), all(all-arena-2, arena_matchups[3]=4), all(all-arena-3, arena_matchups[5]=4), all(all-arena-4, arena_matchups[7]=4))" result="`6Orange"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=5), all(all-arena-2, arena_matchups[3]=5), all(all-arena-3, arena_matchups[5]=5), all(all-arena-4, arena_matchups[7]=5))" result="`eYellow"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=6), all(all-arena-2, arena_matchups[3]=6), all(all-arena-3, arena_matchups[5]=6), all(all-arena-4, arena_matchups[7]=6))" result="`5Purple"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=7), all(all-arena-2, arena_matchups[3]=7), all(all-arena-3, arena_matchups[5]=7), all(all-arena-4, arena_matchups[7]=7))" result="`dPink"/>
+                    <case filter="any(all(all-arena-1, arena_matchups[1]=8), all(all-arena-2, arena_matchups[3]=8), all(all-arena-3, arena_matchups[5]=8), all(all-arena-4, arena_matchups[7]=8))" result="`3Cyan"/>
+                </switch>
+                <switch id="2">
+                    <case filter="any(all(all-arena-1, arena_finished[0]=1), all(all-arena-2, arena_finished[1]=1), all(all-arena-3, arena_finished[2]=1), all(all-arena-4, arena_finished[3]=1))" result="`b(won by `4Red`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=2), all(all-arena-2, arena_finished[1]=2), all(all-arena-3, arena_finished[2]=2), all(all-arena-4, arena_finished[3]=2))" result="`b(won by `9Blue`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=3), all(all-arena-2, arena_finished[1]=3), all(all-arena-3, arena_finished[2]=3), all(all-arena-4, arena_finished[3]=3))" result="`b(won by `2Green`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=4), all(all-arena-2, arena_finished[1]=4), all(all-arena-3, arena_finished[2]=4), all(all-arena-4, arena_finished[3]=4))" result="`b(won by `6Orange`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=5), all(all-arena-2, arena_finished[1]=5), all(all-arena-3, arena_finished[2]=5), all(all-arena-4, arena_finished[3]=5))" result="`b(won by `eYellow`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=6), all(all-arena-2, arena_finished[1]=6), all(all-arena-3, arena_finished[2]=6), all(all-arena-4, arena_finished[3]=6))" result="`b(won by `5Purple`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=7), all(all-arena-2, arena_finished[1]=7), all(all-arena-3, arena_finished[2]=7), all(all-arena-4, arena_finished[3]=7))" result="`b(won by `dPink`b)"/>
+                    <case filter="any(all(all-arena-1, arena_finished[0]=8), all(all-arena-2, arena_finished[1]=8), all(all-arena-3, arena_finished[2]=8), all(all-arena-4, arena_finished[3]=8))" result="`b(won by `3Cyan`b)"/>
+                </switch>
+            </replacements>
+        </message>
+    </action>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=0, all-arena-1)" observers="true" action="display-current-matchup"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=0, all-arena-2)" observers="true" action="display-current-matchup"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=0, all-arena-3)" observers="true" action="display-current-matchup"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=0, all-arena-4)" observers="true" action="display-current-matchup"/>
+    <action id="apply-clear-kit" scope="match">
+        <switch-scope inner="player">
+            <kit id="clear-kit"/>
+            <set var="goto" value="0"/>
+            <set var="teleport" value="0"/>
+        </switch-scope>
+    </action>
+    <action id="apply-current-kit" scope="match">
+        <switch-scope inner="player">
+            <action id="apply-current-player-kit">
+                <kit>
+                    <clear effects="true" items="false" armor="false"/>
+                </kit>
+                <if constant="kit-count" constant-value="1.." constant-comparison="range">
+                    <action filter="current_kit=0">
+                        <kit id="kit-0"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="2.." constant-comparison="range">
+                    <action filter="current_kit=1">
+                        <kit id="kit-1"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="3.." constant-comparison="range">
+                    <action filter="current_kit=2">
+                        <kit id="kit-2"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="4.." constant-comparison="range">
+                    <action filter="current_kit=3">
+                        <kit id="kit-3"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="5.." constant-comparison="range">
+                    <action filter="current_kit=4">
+                        <kit id="kit-4"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="6.." constant-comparison="range">
+                    <action filter="current_kit=5">
+                        <kit id="kit-5"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="7.." constant-comparison="range">
+                    <action filter="current_kit=6">
+                        <kit id="kit-6"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="8.." constant-comparison="range">
+                    <action filter="current_kit=7">
+                        <kit id="kit-7"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="9.." constant-comparison="range">
+                    <action filter="current_kit=8">
+                        <kit id="kit-8"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="10.." constant-comparison="range">
+                    <action filter="current_kit=9">
+                        <kit id="kit-9"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="11.." constant-comparison="range">
+                    <action filter="current_kit=10">
+                        <kit id="kit-10"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="12.." constant-comparison="range">
+                    <action filter="current_kit=11">
+                        <kit id="kit-11"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="13.." constant-comparison="range">
+                    <action filter="current_kit=12">
+                        <kit id="kit-12"/>
+                    </action>
+                </if>
+                <if constant="kit-count" constant-value="14.." constant-comparison="range">
+                    <action filter="current_kit=13">
+                        <kit id="kit-13"/>
+                    </action>
+                </if>
+            </action>
+        </switch-scope>
+        <action filter="teleport=1">
+            <action id="display-current-kit-title"/>
+        </action>
+        <if variant="modern">
+            <action filter="current_kit=11"> <!-- blast bow -->
+                <set var="disable_arrow_pickup" value="0"/>
+            </action>
+        </if>
+        <if variant="cannon">
+            <!-- set current platform buildable size preset -->
+            <set var="current_platform_size" value="0"/> <!-- default -->
+            <action filter="current_kit=2..9">
+                <set var="current_platform_size" value="1"/> <!-- wide -->
+            </action>
+            <!-- set current platform overtime bridge preset -->
+            <set var="current_platform_bridge" value="0"/> <!-- default -->
+            <action filter="current_kit=2">
+                <set var="current_platform_bridge" value="1"/> <!-- wide -->
+            </action>
+            <action filter="current_kit=3">
+                <set var="current_platform_bridge" value="2"/> <!-- diagonal -->
+            </action>
+            <action filter="any(current_kit=4, current_kit=6)">
+                <set var="current_platform_bridge" value="3"/> <!-- sides -->
+            </action>
+            <action filter="any(current_kit=5, current_kit=9, current_kit=11)">
+                <set var="current_platform_bridge" value="4"/> <!-- lower default -->
+            </action>
+        </if>
+        <if variant="spleef">
+            <action filter="current_kit=5"> <!-- bow spleef -->
+                <fill region="all-arenas" filter="snow" material="tnt" events="true"/>
+            </action>
+        </if>
+    </action>
+    <trigger scope="player" filter="all(match-running, state=${starting}, lobby, playing=0)" action="apply-current-player-kit"/>
+    <action id="display-current-kit-title" scope="match">
+        <message actionbar="{kit}">
+            <replacements>
+                <replacement id="kit">current-kit-name</replacement>
+            </replacements>
+        </message>
+    </action>
+    <trigger scope="player" filter="observing" observers="true" action="playing:=0"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, current_kit_requires_survival=1, all-arenas)" action="survival-kit"/>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, all-spectators)" action="spectator-kit"/>
+    <if min-server-version="1.21.10">
+        <action id="player-size-tiny" scope="match" expose="true">
+            <switch-scope inner="player" filter="all(alive, playing=1)">
+                <set var="current_player_size" value="0"/>
+            </switch-scope>
+        </action>
+        <action id="player-size-normal" scope="match" expose="true">
+            <switch-scope inner="player" filter="all(alive, playing=1)">
+                <set var="current_player_size" value="1"/>
+            </switch-scope>
+        </action>
+        <action id="player-size-big" scope="match" expose="true">
+            <switch-scope inner="player" filter="all(alive, playing=1)">
+                <set var="current_player_size" value="2"/>
+            </switch-scope>
+        </action>
+    </if>
+    <trigger scope="player" filter="all(observing, host-console, not(match-started))" observers="true">
+        <action>
+            <sound key="${entity.experience_orb.pickup}" volume="1" pitch="1.2"/>
+            <message>
+                <text>{"text": "`7`oFrom `6${host-name}`r: Psst, have you heard about the super secret settings? ","extra":[{"text":" [Let me see] ","clickEvent":{"action":"run_command","value":"/action trigger kit-console-intro"},"color":"blue"}],"color": "white"}</text>
+            </message>
+        </action>
+    </trigger>
+    <action id="kit-console-intro" scope="player" expose="true" filter="not(match-started)">
+        <sound key="${entity.experience_orb.pickup}" volume="1" pitch="1.2"/>
+        <message text="`7`oFrom `6${host-name}`r: Use the controls below to change the ${kit-noun} for each round. `b[1]`r indicates that the ${kit-noun} is currently selected for the corresponding `3[Round]`r. Here are the available ${kit-noun}s for this tournament:"/>
+        <action id="kit-console"/>
+    </action>
+    <action id="kit-console" scope="player" expose="true" filter="not(match-started)">
+        <message>
+            <text>{"text": "","extra":[{"text":" [1] ","hoverEvent":{"action":"show_text","contents":{"text":"Round 1","color":"dark_aqua"}},"color":"dark_aqua"},{"text":"[2] ","hoverEvent":{"action":"show_text","contents":{"text":"Round 2","color":"dark_aqua"}},"color":"dark_aqua"},{"text":"[3]","hoverEvent":{"action":"show_text","contents":{"text":"Round 3","color":"dark_aqua"}},"color":"dark_aqua"}],"color": "white"}</text>
+        </message>
+        <set var="current_kit" value="0"/>
+        <repeat times="${kit-count}">
+            <message>
+                <text>{"text": "","extra":[{"text":" {r1} ","clickEvent":{"action":"run_command","value":"/action trigger set-round-1-kit-{num}"},"hoverEvent":{"action":"show_text","contents":{"text":"Set `3Round 1 `b${kit-noun} to {kit}","color":"aqua"}},"color":"aqua"},{"text":"{r2} ","clickEvent":{"action":"run_command","value":"/action trigger set-round-2-kit-{num}"},"hoverEvent":{"action":"show_text","contents":{"text":"Set `3Round 2 `b${kit-noun} to {kit}","color":"aqua"}},"color":"aqua"},{"text":"{r3}","clickEvent":{"action":"run_command","value":"/action trigger set-round-3-kit-{num}"},"hoverEvent":{"action":"show_text","contents":{"text":"Set `3Round 3 `b${kit-noun} to {kit}","color":"aqua"}},"color":"aqua"},{"text":" : {kit}"}],"color":"white"}</text>
+                <replacements>
+                    <replacement id="kit">current-kit-name</replacement>
+                    <replacement id="num">current-kit-number</replacement>
+                    <replacement id="r1">round-1-kit-display</replacement>
+                    <replacement id="r2">round-2-kit-display</replacement>
+                    <replacement id="r3">round-3-kit-display</replacement>
+                </replacements>
+            </message>
+            <set var="current_kit" value="current_kit + 1"/>
+        </repeat>
+        <message>
+            <text>{"text": " `bIntroduction `r: ","extra":[{"text":"{state}"}],"clickEvent":{"action":"run_command","value":"/action trigger toggle-intro"},"hoverEvent":{"action":"show_text","contents":{"text":"`bToggle whether `6${host-name} `bdoes prematch introductions."}}}</text>
+            <replacements>
+                <switch id="state" value="state">
+                    <case match="0" result="`a[On]"/>
+                    <case match="1" result="`c[Off]"/>
+                </switch>
+            </replacements>
+        </message>
+        <message>
+            <text>{"text": " `bDebug Messages `r: ","extra":[{"text":"{state}"}],"clickEvent":{"action":"run_command","value":"/action trigger toggle-debug"},"hoverEvent":{"action":"show_text","contents":{"text":"`bPrint debug messages in chat."}}}</text>
+            <replacements>
+                <switch id="state" value="debug">
+                    <case match="0" result="`c[Off]"/>
+                    <case match="1" result="`a[On]"/>
+                </switch>
+            </replacements>
+        </message>
+    </action>
+    <action id="set-kit-console-selection" scope="player" filter="not(match-started)">
+        <switch-scope inner="match">
+            <set var="kits" index="current_round - 1" value="current_kit"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: The ${kit-noun} for round {round} has been set to {kit}`r!">
+                <replacements>
+                    <decimal id="round" value="current_round"/>
+                    <replacement id="kit">current-kit-name</replacement>
+                </replacements>
+            </message>
+        </switch-scope>
+        <action id="kit-console"/>
+    </action>
+    <if constant="kit-count" constant-value="1.." constant-comparison="range">
+        <action id="set-round-1-kit-0" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="0"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-0" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="0"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-0" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="0"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="2.." constant-comparison="range">
+        <action id="set-round-1-kit-1" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="1"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-1" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="1"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-1" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="1"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="3.." constant-comparison="range">
+        <action id="set-round-1-kit-2" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="2"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-2" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="2"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-2" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="2"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="4.." constant-comparison="range">
+        <action id="set-round-1-kit-3" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="3"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-3" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="3"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-3" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="3"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="5.." constant-comparison="range">
+        <action id="set-round-1-kit-4" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="4"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-4" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="4"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-4" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="4"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="6.." constant-comparison="range">
+        <action id="set-round-1-kit-5" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="5"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-5" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="5"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-5" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="5"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="7.." constant-comparison="range">
+        <action id="set-round-1-kit-6" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="6"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-6" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="6"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-6" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="6"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="8.." constant-comparison="range">
+        <action id="set-round-1-kit-7" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="7"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-7" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="7"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-7" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="7"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="9.." constant-comparison="range">
+        <action id="set-round-1-kit-8" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="8"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-8" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="8"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-8" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="8"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="10.." constant-comparison="range">
+        <action id="set-round-1-kit-9" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="9"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-9" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="9"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-9" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="9"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="11.." constant-comparison="range">
+        <action id="set-round-1-kit-10" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="10"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-10" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="10"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-10" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="10"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="12.." constant-comparison="range">
+        <action id="set-round-1-kit-11" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="11"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-11" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="11"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-11" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="11"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="13.." constant-comparison="range">
+        <action id="set-round-1-kit-12" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="12"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-12" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="12"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-12" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="12"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <if constant="kit-count" constant-value="14.." constant-comparison="range">
+        <action id="set-round-1-kit-13" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="1"/>
+            <set var="current_kit" value="13"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-2-kit-13" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="2"/>
+            <set var="current_kit" value="13"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+        <action id="set-round-3-kit-13" scope="player" expose="true" filter="not(match-started)">
+            <set var="current_round" value="3"/>
+            <set var="current_kit" value="13"/>
+            <action id="set-kit-console-selection"/>
+        </action>
+    </if>
+    <action id="toggle-intro" scope="player" expose="true" filter="not(match-started)">
+        <set var="state" value="1 - state"/>
+        <action id="kit-console"/>
+    </action>
+    <action id="toggle-debug" scope="player" expose="true" filter="not(match-started)">
+        <set var="debug" value="1 - debug"/>
+        <action id="kit-console"/>
+    </action>
+    <!--
+    pre-match introduction announcements
+    -->
+    <trigger scope="match" filter="match-started">
+        <action>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: Welcome to The Grand ${tournament-type} Tournament!"/>
+            <sound key="${entity.villager.trade}"/>
+            <set var="temp" value="(kits[0] + kits[1] + kits[2]) - (max(kits[0], kits[1], kits[2]) * 3)"/> <!-- test to see if all 3 rounds use the same kit - if 0 all kits are the same -->
+            <set var="current_round" value="0"/>
+            <set var="current_kit" value="0"/>
+            <set var="index" value="1"/>
+            <switch-scope inner="team">
+                <set var="placement" value="index"/>
+                <set var="index" value="index + 1"/>
+                <action filter="team-1"><set var="current_team" value="1"/></action>
+                <action filter="team-2"><set var="current_team" value="2"/></action>
+                <action filter="team-3"><set var="current_team" value="3"/></action>
+                <action filter="team-4"><set var="current_team" value="4"/></action>
+                <action filter="team-5"><set var="current_team" value="5"/></action>
+                <action filter="team-6"><set var="current_team" value="6"/></action>
+                <action filter="team-7"><set var="current_team" value="7"/></action>
+                <action filter="team-8"><set var="current_team" value="8"/></action>
+            </switch-scope>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${intro}, intro-announcer-1)">
+        <action>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: In this Swiss tournament you will ${tournament-action} against teams with the same number of wins."/>
+            <sound key="${entity.villager.trade}"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${intro}, intro-announcer-2)">
+        <action>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: Each round you will use {announce_0} ${kit-noun} to ${tournament-action} your way to victory with!">
+                <replacements>
+                    <switch id="announce_0">
+                        <case filter="temp=0" result="the same"/>
+                        <case filter="not(temp=0)" result="a different"/>
+                    </switch>
+                </replacements>
+            </message>
+            <sound key="${entity.villager.trade}"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${intro}, intro-announcer-3)">
+        <action>
+            <set var="current_kit" value="kits[0]"/>
+            <action id="apply-clear-kit"/>
+            <action id="apply-current-kit"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: {announce_0} ${kit-noun} will be {kit}`r!">
+                <replacements>
+                    <replacement id="kit">current-kit-name</replacement>
+                    <switch id="announce_0">
+                        <case filter="temp=0" result="Your"/>
+                        <case filter="not(temp=0)" result="The first"/>
+                    </switch>
+                </replacements>
+            </message>
+            <sound key="${entity.villager.trade}"/>
+            <action filter="temp=0">
+                <set var="state" value="${idle}"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${intro}, intro-announcer-4)">
+        <action>
+            <kill-entities id="clear-entities" filter="clearable-entities"/>
+            <set var="current_kit" value="kits[1]"/>
+            <action id="apply-clear-kit"/>
+            <action id="apply-current-kit"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: In the second round your ${kit-noun} will be {kit}`r!">
+                <replacements>
+                    <replacement id="kit">current-kit-name</replacement>
+                </replacements>
+            </message>
+            <sound key="${entity.villager.trade}"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${intro}, intro-announcer-5)">
+        <action filter="not(temp=0)">
+            <action id="clear-entities"/>
+            <set var="state" value="${idle}"/>
+            <set var="current_kit" value="kits[2]"/>
+            <action id="apply-clear-kit"/>
+            <action id="apply-current-kit"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: And for the grand finale the ${kit-noun} will be {kit}`r!">
+                <replacements>
+                    <replacement id="kit">current-kit-name</replacement>
+                </replacements>
+            </message>
+            <sound key="${entity.villager.trade}"/>
+        </action>
+    </trigger>
+    <!--
+    round controls
+    -->
+    <trigger scope="match" action="state:=${idle}" filter="transition-to-idle"/>
+    <trigger scope="match" action="state:=${starting}" filter="transition-to-starting"/>
+    <trigger scope="match" action="state:=${running}" filter="transition-to-running"/>
+    <trigger scope="match" filter="all(match-running, state=${starting})">
+        <action>
+            <set var="current_round" value="current_round + 1"/>
+            <set var="current_kit" value="kits[current_round - 1]"/>
+            <set var="overtime_level" value="0"/>
+            <set var="index" value="0"/>
+            <repeat times="4">
+                <set var="arena_finished" index="index" value="0"/>
+                <set var="index" value="index + 1"/>
+            </repeat>
+            <switch-scope inner="team">
+                <set var="won" value="0"/>
+                <set var="current_arena" value="ceil(placement / 2)"/>
+                <set var="arena_matchups" index="placement - 1" value="current_team"/>
+            </switch-scope>
+            <action id="clear-entities"/>
+            <action id="pick-next-variant"/>
+            <action id="apply-current-variant"/>
+            <action id="apply-clear-kit"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: {announce_1}{p} `aRound {round} `r{announce_2} in `a${round-begin-seconds} seconds`r!">
+                <replacements>
+                    <decimal id="round" value="current_round"/>
+                    <switch id="announce_1" value="floor(random() * 10)">
+                        <case filter="current_round=3" result="It's time for the `dfinal showdown`r"/>
+                        <case match="0" result="Get ready"/>
+                        <case match="1" result="Brace yourselves"/>
+                        <case match="2" result="Buckle up"/>
+                        <case match="3" result="Lock and load"/>
+                        <case match="4" result="Here we go"/>
+                        <case match="5" result="Get hyped"/>
+                        <case match="6" result="Hope you're ready"/>
+                        <case match="7" result="All eyes forward"/>
+                        <case match="8" result="The countdown begins"/>
+                        <case match="9" result="Ready or not"/>
+                    </switch>
+                    <switch id="p">
+                        <case filter="current_round=1..2" result=","/>
+                        <case filter="current_round=3" result="!"/>
+                    </switch>
+                    <switch id="announce_2" value="floor(random() * 10)">
+                        <case match="0" result="starts"/>
+                        <case match="1" result="is about to commence"/>
+                        <case match="2" result="kicks off"/>
+                        <case match="3" result="will ignite"/>
+                        <case match="4" result="is coming up"/>
+                        <case match="5" result="takes off"/>
+                        <case match="6" result="begins"/>
+                        <case match="7" result="gets cracking"/>
+                        <case match="8" result="launches"/>
+                        <case match="9" result="gets underway"/>
+                    </switch>
+                </replacements>
+            </message>
+            <if variant="tug">
+                <fill region="all-progress" filter="tug-visual-blocks" material="stained clay:0"/>
+                <set var="index" value="0"/>
+                <repeat times="20">
+                    <set var="tug" index="index" value="100"/>
+                    <set var="index" value="index + 1"/>
+                </repeat>
+            </if>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="transition-to-starting">
+        <action>
+            <set var="playing" value="1"/>
+            <set var="respawns" value="current_kit_max_respawns"/>
+            <action filter="current_kit_max_respawns=0">
+                <set var="respawns" value="${kit-default-respawns}"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="teleport-to-arena" action="teleport:=1"/>
+    <if constant="round-begin-rearrange-after-seconds">
+        <trigger scope="match" filter="all(match-running, teleport=1)">
+            <action>
+                <action id="apply-current-kit"/>
+                <fill region="all-arenas-spawn-boxes" filter="air" material="stained glass"/>
+                <action filter="current_round=1">
+                    <message text="`7[`6${host-title}`7] `6${host-name}`r: Use this time to rearrange your inventory to your liking!"/>
+                    <sound key="${entity.villager.trade}"/>
+                </action>
+                <if variant="tug">
+                    <switch-scope inner="team">
+                        <set var="tuggability" value="0"/>
+                        <action filter="placement=1"><set var="index" value="0"/></action>
+                        <action filter="placement=3"><set var="index" value="1"/></action>
+                        <action filter="placement=5"><set var="index" value="2"/></action>
+                        <action filter="placement=7"><set var="index" value="3"/></action>
+                        <action filter="placement=2"><set var="index" value="16"/></action>
+                        <action filter="placement=4"><set var="index" value="17"/></action>
+                        <action filter="placement=6"><set var="index" value="18"/></action>
+                        <action filter="placement=8"><set var="index" value="19"/></action>
+                        <set var="tug" index="index" value="current_team"/>
+                        <set var="callout" index="0" value="current_team"/>
+                        <set var="index" value="floor(index / 4)"/>
+                        <set var="temp" value="current_arena"/>
+                        <switch-scope inner="match">
+                            <action id="color-tug"/>
+                        </switch-scope>
+                    </switch-scope>
+                </if>
+            </action>
+        </trigger>
+    </if>
+    <trigger scope="match" filter="all(match-running, state=${running})">
+        <action>
+            <action id="apply-current-kit"/>
+            <fill region="all-arenas-spawn-boxes" filter="arena-spawn-box-material" material="air"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: {announce_0}">
+                <replacements>
+                    <switch id="announce_0" value="floor(random() * 10)">
+                        <case filter="current_round=1" result="Let The Grand ${tournament-type} Tournament begin!"/>
+                        <case match="0" result="Aaaaand fight!"/>
+                        <case match="1" result="May the best team win!"/>
+                        <case match="2" result="Let the battle rage on!"/>
+                        <case match="3" result="And so it begins!"/>
+                        <case match="4" result="Now or never!"/>
+                        <case match="5" result="Let the chaos commence!"/>
+                        <case match="6" result="Time to bring the heat!"/>
+                        <case match="7" result="Show no mercy!"/>
+                        <case match="8" result="Go, go, go!"/>
+                        <case match="9" result="Time to dominate!"/>
+                    </switch>
+                </replacements>
+            </message>
+            <switch-scope inner="player">
+                <set var="teleport" value="0"/>
+            </switch-scope>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=1, arena-1)" action="goto:=1"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=1, arena-2)" action="goto:=2"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=1, arena-3)" action="goto:=3"/>
+    <trigger scope="player" filter="all(match-running, state=${running}, playing=1, arena-4)" action="goto:=4"/>
+    <trigger scope="team" filter="all(match-running, state=${running}, round-running-delay, ${win-condition})">
+        <action id="claim-arena-win">
+            <switch-scope inner="player" filter="playing=1">
+                <action id="spectate-next-arena"/>
+            </switch-scope>
+            <message text="{ translate: 'broadcast.gameOver.teamWon', color: 'green' }" subtitle="{ translate: 'broadcast.gameOver.teamWon', color: 'green' }"/>
+            <sound preset="OBJECTIVE_GOOD"/>
+            <sound preset="OBJECTIVE_FIREWORKS_TWINKLE"/>
+            <set var="won" value="1"/>
+            <set var="index" value="floor((placement - 1) / 2)"/>
+            <set var="callout" index="0" value="current_team"/>
+            <set var="arena_finished" index="index" value="current_team"/>
+            <switch-scope inner="match">
+                <switch-scope inner="team" filter="all(won=0, any(all(index=0, arena-1-teams), all(index=1, arena-2-teams), all(index=2, arena-3-teams), all(index=3, arena-4-teams)))">
+                    <message text="{ translate: 'broadcast.gameOver.teamLost', color: 'red' }" subtitle="{ translate: 'broadcast.gameOver.teamLost', color: 'red' }"/>
+                    <sound preset="OBJECTIVE_BAD"/>
+                    <set var="callout" index="1" value="current_team"/>
+                    <switch-scope inner="player" filter="playing=1">
+                        <action id="spectate-next-arena"/>
+                    </switch-scope>
+                </switch-scope>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: {winner} `rhas defeated {loser}`r!">
+                    <replacements>
+                        <replacement id="winner">team-callout-0</replacement>
+                        <replacement id="loser">team-callout-1</replacement>
+                    </replacements>
+                </message>
+            </switch-scope>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=0, spectator_mode=0, any(lobby, all(arena-1, arena-1-finished), all(arena-2, arena-2-finished), all(arena-3, arena-3-finished), all(arena-4, arena-4-finished)))">
+        <action id="spectate-next-arena">
+            <kit id="spectator-kit"/>
+            <action id="goto-next-arena"/>
+        </action>
+    </trigger>
+    <trigger scope="team" action="claim-arena-win" filter="all(match-running, state=${running}, round-running-delay, not(arena-1-finished), placement-1-team, not(arena-1-has-players))"/>
+    <trigger scope="team" action="claim-arena-win" filter="all(match-running, state=${running}, round-running-delay, not(arena-2-finished), placement-3-team, not(arena-2-has-players))"/>
+    <trigger scope="team" action="claim-arena-win" filter="all(match-running, state=${running}, round-running-delay, not(arena-3-finished), placement-5-team, not(arena-3-has-players))"/>
+    <trigger scope="team" action="claim-arena-win" filter="all(match-running, state=${running}, round-running-delay, not(arena-4-finished), placement-7-team, not(arena-4-has-players))"/>
+    <trigger scope="match" filter="all(match-running, state=${running}, all-arenas-finished)">
+        <action>
+            <set var="state" value="${finished}"/>
+            <action id="clear-entities"/>
+            <action id="apply-clear-kit"/>
+            <switch-scope inner="player">
+                <action id="disable-spectator-mode"/>
+            </switch-scope>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, state=${idle}, current_round=1..)">
+        <action>
+            <switch-scope inner="team">
+                <action filter="won=1">
+                    <set var="score" value="score + 1"/>
+                    <action filter="arena-1-teams"><set var="temp" value="1"/></action>
+                    <action filter="arena-2-teams"><set var="temp" value="2"/></action>
+                    <action filter="arena-3-teams"><set var="temp" value="3"/></action>
+                    <action filter="arena-4-teams"><set var="temp" value="4"/></action>
+                </action>
+                <action filter="won=0">
+                    <action filter="arena-1-teams"><set var="temp" value="5"/></action>
+                    <action filter="arena-2-teams"><set var="temp" value="6"/></action>
+                    <action filter="arena-3-teams"><set var="temp" value="7"/></action>
+                    <action filter="arena-4-teams"><set var="temp" value="8"/></action>
+                </action>
+                <set var="placement" value="temp"/>
+            </switch-scope>
+            <set var="disable_arrow_pickup" value="1"/>
+            <action id="apply-clear-kit"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-finished, current_round=3, all-arenas-finished)">
+        <action>
+            <switch-scope inner="team" filter="score=3" observers="true">
+                <set var="callout" index="0" value="current_team"/>
+            </switch-scope>
+            <set var="current_round" value="0"/>
+            <message text="`7[`6${host-title}`7] `6${host-name}`r: Congratulations {team} `ron winning The Grand ${tournament-type} Tournament!">
+                <replacements>
+                    <replacement id="team">team-callout-0</replacement>
+                </replacements>
+            </message>
+        </action>
+    </trigger>
+    <if variant="default">
+        <trigger scope="match">
+            <filter>
+                <after duration="30s" message="Overtime in {0}">
+                    <after duration="2m30s" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: Alright, this is taking far too long..."/>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: Remaining players have had their health reduced to 1 heart!"/>
+                <set var="overtime_level" value="1"/>
+                <sound preset="OBJECTIVE_MODE"/>
+                <switch-scope inner="player" filter="all(all-arenas, participating, playing=1)">
+                    <kit force="true">
+                        <max-health>2</max-health>
+                    </kit>
+                </switch-scope>
+            </action>
+        </trigger>
+    </if>
+    <if variant="spleef">
+        <trigger scope="match">
+            <filter>
+                <after duration="10s" message="Sudden death in {0}">
+                    <after duration="2m20s" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: Let's make this sudden death a little... `cexplosive`r!"/>
+                <set var="overtime_level" value="1"/>
+                <switch-scope inner="player" filter="all(all-arenas, participating)">
+                    <kit>
+                        <item material="egg" amount="128" name="`rMega Grenade" grenade="true" grenade-power="4">
+                            <enchantment>knockback</enchantment>
+                        </item>
+                    </kit>
+                </switch-scope>
+            </action>
+        </trigger>
+        <trigger scope="match">
+            <filter>
+                <pulse id="tnt-pulse" period="0.5s" duration="0.1s" filter="all(match-running, state=${running}, current_kit=5)"/>
+            </filter>
+            <action>
+                <kill-entities filter="tnt-primed"/>
+            </action>
+        </trigger>
+    </if>
+    <if variant="cannon">
+        <trigger scope="match">
+            <filter>
+                <after duration="30s" message="Connecting the platforms in {0}">
+                    <after duration="2m" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: The platforms have been connected by a bridge!"/>
+                <set var="overtime_level" value="1"/>
+                <sound preset="OBJECTIVE_MODE"/>
+                <fill region="arena-bridges" material="stained glass:0" filter="current_platform_bridge=0"/>
+                <fill region="arena-bridges-wide" material="stained glass:0" filter="current_platform_bridge=1"/>
+                <fill region="arena-bridges-diagonal" material="stained glass:0" filter="current_platform_bridge=2"/>
+                <fill region="arena-bridges-side" material="stained glass:0" filter="current_platform_bridge=3"/>
+                <fill region="arena-bridges-lower" material="stained glass:0" filter="current_platform_bridge=4"/>
+            </action>
+        </trigger>
+        <trigger scope="match">
+            <filter>
+                <after duration="30s" message="The middle will become buildable in {0}">
+                    <after duration="3m30s" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: You can now build between the platforms!"/>
+                <set var="overtime_level" value="2"/>
+                <sound preset="OBJECTIVE_MODE"/>
+                <fill region="buildable-area-middle" material="stained glass:7" filter="arena-wall-material"/>
+            </action>
+        </trigger>
+        <trigger scope="match">
+            <filter>
+                <after duration="30s" message="Sudden death in {0}">
+                    <after duration="4m45s" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: Alright, this is taking far too long..."/>
+                <message text="`7[`6${host-title}`7] `6${host-name}`r: The first team to reach the `agreen safe zone `rwins the round!"/>
+                <set var="overtime_level" value="3"/>
+                <sound preset="OBJECTIVE_MODE"/>
+                <fill region="overtime-capture-area" material="stained glass:5" filter="any(arena-wall-material, bridge-material)"/>
+            </action>
+        </trigger>
+    </if>
+    <if variant="cacti">
+        <trigger scope="match" filter="drop-segment-12">
+            <action>
+                <fill region="arenas-segment-12" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-12" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-11">
+            <action>
+                <fill region="arenas-segment-11" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-11" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-10">
+            <action>
+                <fill region="arenas-segment-10" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-10" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-9">
+            <action>
+                <fill region="arenas-segment-9" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-9" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-8">
+            <action>
+                <fill region="arenas-segment-8" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-8" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-7">
+            <action>
+                <fill region="arenas-segment-7" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-7" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-6">
+            <action>
+                <fill region="arenas-segment-6" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-6" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-5">
+            <action>
+                <fill region="arenas-segment-5" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-5" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-4">
+            <action>
+                <fill region="arenas-segment-4" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-4" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-3">
+            <action>
+                <fill region="arenas-segment-3" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-3" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-2">
+            <action>
+                <fill region="arenas-segment-2" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-2" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+        <trigger scope="match" filter="drop-segment-1">
+            <action>
+                <fill region="arenas-segment-1" material="sand:1" filter="sand"/>
+                <fill region="arenas-segment-1" material="air" filter="support-blocks" events="true"/>
+            </action>
+        </trigger>
+    </if>
+    <if variant="tug">
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive)" action="apply-current-player-kit"/>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive, progress-1-exclusive)" action="claim-tug"/>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive, progress-2-exclusive)" action="claim-tug"/>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive, progress-3-exclusive)" action="claim-tug"/>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive, progress-4-exclusive)" action="claim-tug"/>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, playing=1, alive, progress-5-exclusive)" action="claim-tug"/>
+        <action id="claim-tug" expose="true" scope="player">
+            <set var="index" value="-1"/>
+            <action filter="all(progress-1, not(owns-progress-1), owns-progress-2)"><set var="index" value="0"/></action>
+            <action filter="all(progress-2, not(owns-progress-2), any(owns-progress-1, owns-progress-3))"><set var="index" value="1"/></action>
+            <action filter="all(progress-3, not(owns-progress-3), any(owns-progress-2, owns-progress-4))"><set var="index" value="2"/></action>
+            <action filter="all(progress-4, not(owns-progress-4), any(owns-progress-3, owns-progress-5))"><set var="index" value="3"/></action>
+            <action filter="all(progress-5, not(owns-progress-5), owns-progress-4)"><set var="index" value="4"/></action>
+            <action filter="index=0..4">
+                <set var="tug" index="(current_arena - 1) + (4 * index)" value="current_team"/>
+                <set var="callout" index="0" value="current_team"/>
+                <set var="temp" value="current_arena"/>
+                <action filter="current_arena=1"><set var="tuggability" value="100 + ((tug[0] + tug[4] + tug[8]  + tug[12] + tug[16]) - current_team * 5)"/></action>
+                <action filter="current_arena=2"><set var="tuggability" value="100 + ((tug[1] + tug[5] + tug[9]  + tug[13] + tug[17]) - current_team * 5)"/></action>
+                <action filter="current_arena=3"><set var="tuggability" value="100 + ((tug[2] + tug[6] + tug[10] + tug[14] + tug[18]) - current_team * 5)"/></action>
+                <action filter="current_arena=4"><set var="tuggability" value="100 + ((tug[3] + tug[7] + tug[11] + tug[15] + tug[19]) - current_team * 5)"/></action>
+                <switch-scope inner="match">
+                    <switch-scope inner="player" observers="true" filter="any(all(temp=1, all-arena-1), all(temp=2, all-arena-2), all(temp=3, all-arena-3), all(temp=4, all-arena-4))">
+                        <message id="captured" text="{team} `7captured `r{color}{hill}">
+                            <replacements>
+                                <replacement id="team">team-callout-0</replacement>
+                                <switch id="color" value="callout[0]">
+                                    <case match="1" result="`4"/> <!-- Red -->
+                                    <case match="2" result="`9"/> <!-- Blue -->
+                                    <case match="3" result="`2"/> <!-- Green -->
+                                    <case match="4" result="`6"/> <!-- Orange -->
+                                    <case match="5" result="`e"/> <!-- Yellow -->
+                                    <case match="6" result="`5"/> <!-- Purple -->
+                                    <case match="7" result="`d"/> <!-- Pink -->
+                                    <case match="8" result="`3"/> <!-- Cyan -->
+                                </switch>
+                                <switch id="hill" value="index">
+                                    <case match="0" result="Point A"/>
+                                    <case match="1" result="Point B"/>
+                                    <case match="2" result="Point C"/>
+                                    <case match="3" result="Point D"/>
+                                    <case match="4" result="Point E"/>
+                                </switch>
+                            </replacements>
+                        </message>
+                        <set var="ptemp" value="temp - current_arena"/>
+                        <action filter="all(participating, ptemp=0)">
+                            <set var="ptemp" value="callout[0] - current_team"/>
+                            <action filter="not(ptemp=0)"> <!-- bad sound for scored against team -->
+                                <sound key="${entity.blaze.death}" volume="0.3" pitch="0.8"/>
+                                <set var="ptemp" value="999"/>
+                            </action>
+                        </action>
+                        <action filter="any(not(ptemp=999), observing)"> <!-- good sound for everyone else -->
+                            <sound key="${block.portal.travel}" volume="0.15" pitch="2"/>
+                            <sound key="${entity.firework_rocket.launch}"/>
+                        </action>
+                    </switch-scope>
+                    <switch-scope inner="player" filter="all(playing=1, any(all(temp=1, arena-1-teams), all(temp=2, arena-2-teams), all(temp=3, arena-3-teams), all(temp=4, arena-4-teams)))">
+                        <action id="show-tug-progress" filter="state=${running}">
+                            <action filter="odd-placement">
+                                  <action filter="owns-progress-1"><set var="ttemp" value="1"/></action>
+                                  <action filter="owns-progress-2"><set var="ttemp" value="2"/></action>
+                                  <action filter="owns-progress-3"><set var="ttemp" value="3"/></action>
+                                  <action filter="owns-progress-4"><set var="ttemp" value="4"/></action>
+                                  <action filter="owns-progress-5"><set var="ttemp" value="5"/></action>
+                            </action>
+                            <action filter="not(odd-placement)">
+                                  <action filter="owns-progress-5"><set var="ttemp" value="1"/></action>
+                                  <action filter="owns-progress-4"><set var="ttemp" value="2"/></action>
+                                  <action filter="owns-progress-3"><set var="ttemp" value="3"/></action>
+                                  <action filter="owns-progress-2"><set var="ttemp" value="4"/></action>
+                                  <action filter="owns-progress-1"><set var="ttemp" value="5"/></action>
+                            </action>
+                            <set var="player.exp_progress" value="ttemp / 5"/>
+                            <set var="player.level" value="ttemp * 100 + (5 - ttemp)"/>
+                        </action>
+                    </switch-scope>
+                    <action id="color-tug">
+                        <!-- get current tug hill relative to arena-1-progress-1 -->
+                        <action filter="temp=1"><set var="offset" value="0"/></action>
+                        <action filter="temp=2"><set var="offset" value="${arena-2-x-offset}"/></action>
+                        <action filter="temp=3"><set var="offset" value="${arena-3-x-offset}"/></action>
+                        <action filter="temp=4"><set var="offset" value="${arena-4-x-offset}"/></action>
+                        <set var="color.min_x" value="249 + offset"/>
+                        <set var="color.min_z" value="-14 + 22 * index"/>
+                        <set var="color.max_x" value="color.min_x + 3"/>
+                        <set var="color.max_z" value="color.min_z + 3"/>
+                        <action filter="callout[0]=1"><fill region="color" filter="tug-visual-blocks" material="stained clay:14"/></action>
+                        <action filter="callout[0]=2"><fill region="color" filter="tug-visual-blocks" material="stained clay:11"/></action>
+                        <action filter="callout[0]=3"><fill region="color" filter="tug-visual-blocks" material="stained clay:13"/></action>
+                        <action filter="callout[0]=4"><fill region="color" filter="tug-visual-blocks" material="stained clay:1"/></action>
+                        <action filter="callout[0]=5"><fill region="color" filter="tug-visual-blocks" material="stained clay:4"/></action>
+                        <action filter="callout[0]=6"><fill region="color" filter="tug-visual-blocks" material="stained clay:10"/></action>
+                        <action filter="callout[0]=7"><fill region="color" filter="tug-visual-blocks" material="stained clay:6"/></action>
+                        <action filter="callout[0]=8"><fill region="color" filter="tug-visual-blocks" material="stained clay:9"/></action>
+                    </action>
+                </switch-scope>
+            </action>
+        </action>
+        <action id="print" scope="match" expose="true">
+            <set var="index" value="3"/>
+            <repeat times="4">
+                <message text="A{i} {0} {1} {2} {3} {4}">
+                    <replacements>
+                        <decimal id="i" value="index + 1"/>
+                        <decimal id="0" value="tug[0 + index]"/>
+                        <decimal id="1" value="tug[4 + index]"/>
+                        <decimal id="2" value="tug[8 + index]"/>
+                        <decimal id="3" value="tug[12 + index]"/>
+                        <decimal id="4" value="tug[16 + index]"/>
+                    </replacements>
+                </message>
+                <set var="index" value="index - 1"/>
+            </repeat>
+        </action>
+        <trigger scope="player" filter="all(match-running, participating, state=${running}, all-arenas, playing=1, alive)">
+            <action>
+                <action filter="all(odd-placement, owns-progress-2, not(owns-progress-3))"     ><teleport x="player.x" y="player.y" z="player.z + 22"/></action>
+                <action filter="all(odd-placement, owns-progress-3, not(owns-progress-4))"     ><teleport x="player.x" y="player.y" z="player.z + 44"/></action>
+                <action filter="all(odd-placement, owns-progress-4)"                           ><teleport x="player.x" y="player.y" z="player.z + 66"/></action>
+                <action filter="all(not(odd-placement), owns-progress-4, not(owns-progress-3))"><teleport x="player.x" y="player.y" z="player.z - 22"/></action>
+                <action filter="all(not(odd-placement), owns-progress-3, not(owns-progress-2))"><teleport x="player.x" y="player.y" z="player.z - 44"/></action>
+                <action filter="all(not(odd-placement), owns-progress-2)"                      ><teleport x="player.x" y="player.y" z="player.z - 66"/></action>
+            </action>
+        </trigger>
+        <trigger scope="match">
+            <filter>
+                <after duration="10s" message="Sudden death in {0}">
+                    <after duration="2m50s" filter="all(match-running, state=${running})"/>
+                </after>
+            </filter>
+            <action>
+                <message text="`7[`6${host-title}`7] `6${host-name} `7has enabled the `a`lBlitz `7mutation"/>
+                <message title="`aBlitz" subtitle="`7mutation has been enabled"/>
+                <sound key="${entity.lightning_bolt.thunder}"/>
+                <set var="overtime_level" value="1"/>
+                <switch-scope inner="player" filter="all(all-arenas, participating, alive, playing=1)">
+                    <set var="respawns" value="1"/>
+                </switch-scope>
+            </action>
+        </trigger>
+    </if>
+</actions>
+<portals sound="false">
+    <portal destination="lobby-spawn" yaw="@${lobby-spawn-yaw}" forward="all(participating, state=${finished})"/>
+    <portal destination="lobby-spawn" yaw="@${lobby-spawn-yaw}" forward="all(participating, state=${idle}, not(lobby))"/>
+    <!-- teleport to arena spawns -->
+    <portal destination="arena-1-spawn-1" yaw="@${arena-spawn-1-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=1, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-1-spawn-2" yaw="@${arena-spawn-2-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=2, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-2-spawn-1" yaw="@${arena-spawn-1-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=3, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-2-spawn-2" yaw="@${arena-spawn-2-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=4, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-3-spawn-1" yaw="@${arena-spawn-1-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=5, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-3-spawn-2" yaw="@${arena-spawn-2-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=6, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-4-spawn-1" yaw="@${arena-spawn-1-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=7, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <portal destination="arena-4-spawn-2" yaw="@${arena-spawn-2-yaw}" forward="all(match-running, participating, any(state=${running}, all(state=${starting}, teleport=1)), placement=8, alive, playing=1, not(respawns=0), not(any(all-arenas, below-arenas)))"/>
+    <!-- inter-arena teleportation -->
+    <portal destination="arena-1-spectator-spawn" yaw="@${arena-spectator-yaw}" forward="all(match-running, participating, state=${running}, round-running-delay, playing=0, goto=1)"/>
+    <portal destination="arena-2-spectator-spawn" yaw="@${arena-spectator-yaw}" forward="all(match-running, participating, state=${running}, round-running-delay, playing=0, goto=2)"/>
+    <portal destination="arena-3-spectator-spawn" yaw="@${arena-spectator-yaw}" forward="all(match-running, participating, state=${running}, round-running-delay, playing=0, goto=3)"/>
+    <portal destination="arena-4-spectator-spawn" yaw="@${arena-spectator-yaw}" forward="all(match-running, participating, state=${running}, round-running-delay, playing=0, goto=4)"/>
+    <!-- hack to move players to offset platforms -->
+    <if variant="cannon">
+        <portal x="9" z="1" y="0" forward="offset-teleport" filter="odd-placement"/>
+        <portal x="-9" z="-1" y="0" forward="offset-teleport" filter="not(odd-placement)"/>
+    </if>
+</portals>
+<regions>
+    <cuboid id="arena-variant-0-region" min="${arena-variant-0-origin}" size="${arena-variant-0-size}"/>
+    <translate id="arena-variant-1-region" region="arena-variant-0-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-2-region" region="arena-variant-1-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-3-region" region="arena-variant-2-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-4-region" region="arena-variant-3-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-5-region" region="arena-variant-4-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-6-region" region="arena-variant-5-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-7-region" region="arena-variant-6-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-8-region" region="arena-variant-7-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-9-region" region="arena-variant-8-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-10-region" region="arena-variant-9-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-11-region" region="arena-variant-10-region" offset="${arena-variant-offset}"/>
+    <translate id="arena-variant-12-region" region="arena-variant-11-region" offset="${arena-variant-offset}"/>
+</regions>
+<structures air="true">
+    <structure id="arena-variant-0" region="arena-variant-0-region"/>
+    <structure id="arena-variant-1" region="arena-variant-1-region"/>
+    <structure id="arena-variant-2" region="arena-variant-2-region"/>
+    <structure id="arena-variant-3" region="arena-variant-3-region"/>
+    <structure id="arena-variant-4" region="arena-variant-4-region"/>
+    <structure id="arena-variant-5" region="arena-variant-5-region"/>
+    <structure id="arena-variant-6" region="arena-variant-6-region"/>
+    <structure id="arena-variant-7" region="arena-variant-7-region"/>
+    <structure id="arena-variant-8" region="arena-variant-8-region"/>
+    <structure id="arena-variant-9" region="arena-variant-9-region"/>
+    <structure id="arena-variant-10" region="arena-variant-10-region"/>
+    <structure id="arena-variant-11" region="arena-variant-11-region"/>
+    <structure id="arena-variant-12" region="arena-variant-12-region"/>
+</structures>
+<actions>
+    <action id="apply-current-variant" scope="match" expose="true">
+        <set var="index" value="0"/>
+        <repeat times="4">
+            <set var="arena_anchor.min_x" value="arena_anchor.max_x"/>
+            <set var="arena_anchor.min_y" value="arena_anchor.max_y"/>
+            <set var="arena_anchor.min_z" value="arena_anchor.max_z"/>
+            <action filter="index=1">
+                <set var="arena_anchor.min_x" value="arena_anchor.min_x + ${arena-2-x-offset}"/>
+                <set var="arena_anchor.min_z" value="arena_anchor.min_z + ${arena-2-z-offset}"/>
+            </action>
+            <action filter="index=2">
+                <set var="arena_anchor.min_x" value="arena_anchor.min_x + ${arena-3-x-offset}"/>
+                <set var="arena_anchor.min_z" value="arena_anchor.min_z + ${arena-3-z-offset}"/>
+            </action>
+            <action filter="index=3">
+                <set var="arena_anchor.min_x" value="arena_anchor.min_x + ${arena-4-x-offset}"/>
+                <set var="arena_anchor.min_z" value="arena_anchor.min_z + ${arena-4-z-offset}"/>
+            </action>
+            <action filter="current_variant=0"><paste-structure structure="arena-variant-0" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=1"><paste-structure structure="arena-variant-1" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=2"><paste-structure structure="arena-variant-2" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=3"><paste-structure structure="arena-variant-3" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=4"><paste-structure structure="arena-variant-4" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=5"><paste-structure structure="arena-variant-5" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=6"><paste-structure structure="arena-variant-6" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=7"><paste-structure structure="arena-variant-7" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=8"><paste-structure structure="arena-variant-8" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=9"><paste-structure structure="arena-variant-9" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=10"><paste-structure structure="arena-variant-10" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=11"><paste-structure structure="arena-variant-11" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <action filter="current_variant=12"><paste-structure structure="arena-variant-12" x="arena_anchor.min_x" y="arena_anchor.min_y" z="arena_anchor.min_z" update="false"/></action>
+            <set var="index" value="index + 1"/>
+        </repeat>
+        <if variant="cannon">
+            <fill region="overtime-capture-area" material="stained glass:8" filter="arena-wall-material"/> <!-- reset any green overtime glass -->
+        </if>
+    </action>
+</actions>
+<if variant="spleef">
+    <renewables>
+        <renewable region="all-arenas" interval="80" grow="false" particles="true" renew-filter="all(state=${running}, all-arenas, snow, not(current_kit=5..6))" replace-filter="air"/>  <!-- except bow spleef, block runner -->
+    </renewables>
+    <block-drops>
+        <rule trample="true" filter="all(trample, snow, current_kit=6)"> <!-- block runner -->
+            <replacement>wool</replacement>
+        </rule>
+    </block-drops>
+    <falling-blocks>
+        <rule delay="30" filter="wool" sticky="never"/>
+    </falling-blocks>
+</if>
+<if variant="cacti">
+    <spawners max-entities="1" delay="3s">
+        <spawner spawn-region="arena-1-spawner" player-region="arena-1" filter="all(participating, playing=1)"><item material="snow ball"/></spawner>
+        <spawner spawn-region="arena-2-spawner" player-region="arena-2" filter="all(participating, playing=1)"><item material="snow ball"/></spawner>
+        <spawner spawn-region="arena-3-spawner" player-region="arena-3" filter="all(participating, playing=1)"><item material="snow ball"/></spawner>
+        <spawner spawn-region="arena-4-spawner" player-region="arena-4" filter="all(participating, playing=1)"><item material="snow ball"/></spawner>
+    </spawners>
+    <falling-blocks>
+        <rule delay="15" filter="fall-blocks" sticky="support-blocks"/>
+        <rule delay="2" filter="cactus" sticky="sand"/>
+    </falling-blocks>
+</if>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail helmet</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>arrow</item>
+    <item>potion</item>
+    <item>golden apple</item>
+    <item>tnt</item>
+    <item>snow block</item>
+    <item>monster egg</item>
+    <item>egg</item>
+    <item>dispenser</item>
+    <item>trap door</item>
+    <item>ladder</item>
+    <item>obsidian</item>
+    <item>stone plate</item>
+    <item>stone button</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>diode</item>
+    <item>redstone torch on</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>lever</item>
+    <item>piston base</item>
+    <item>nether fence</item>
+    <item>stained glass</item>
+    <item>stained clay</item>
+    <item>sulphur</item>
+    <item>exp bottle</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>step</item>
+    <item>wool</item>
+    <item>iron fence</item>
+    <item>iron block</item>
+    <item>diamond block</item>
+    <item>bed</item>
+    <item>mushroom soup</item>
+    <item>bowl</item>
+    <item>feather</item>
+    <item>cobblestone</item>
+    <item>torch</item>
+    <item>snow ball</item>
+    <item>ink sack</item>
+    <item>seeds</item>
+    <if variant="modern">
+        <item>turtle helmet</item>
+        <item>copper helmet</item>
+        <item>copper chestplate</item>
+        <item>copper leggings</item>
+        <item>copper boots</item>
+        <item>netherite helmet</item>
+        <item>netherite chestplate</item>
+        <item>netherite leggings</item>
+        <item>netherite boots</item>
+        <item>wind charge</item>
+        <item>tipped arrow</item>
+        <item>shield</item>
+    </if>
+</itemremove>
+<toolrepair>
+    <tool>wood sword</tool>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond axe</tool>
+    <tool>wood hoe</tool>
+    <tool>gold hoe</tool>
+    <tool>blaze rod</tool>
+    <tool>raw fish</tool>
+    <tool>fishing rod</tool>
+    <tool>wood spade</tool>
+    <tool>stone spade</tool>
+    <tool>iron spade</tool>
+    <tool>gold spade</tool>
+    <tool>diamond spade</tool>
+    <tool>flint and steel</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>shears</tool>
+    <if variant="modern">
+        <tool>copper sword</tool>
+        <tool>netherite sword</tool>
+        <tool>mace</tool>
+        <tool>crossbow</tool>
+        <tool>trident</tool>
+    </if>
+</toolrepair>
+<if variant="tug">
+    <gamerules>
+        <keepInventory>true</keepInventory>
+    </gamerules>
+</if>
+</map>
