@@ -1,12 +1,13 @@
-<map proto="1.5.0" min-server-version="1.21">
+<map proto="1.5.0" min-server-version="1.21"> <!-- Utilizes CMP fork features -->
 <name>Tartarus</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Jump into the enemy team's portal, located below their spawn point!</objective>
 <created>2025-12-04</created>
 <include id="tension"/>
 <constants>
     <constant id="map-origin">0.5,0,0.5</constant>
     <constant id="void-plane">154</constant>
+    <constant id="main-kit">tartarus-cmp-kit</constant>
     <!-- Teams -->
     <constant id="team-one-spawn">37.5,170,22.5</constant>
     <constant id="team-one-yaw">130</constant>
@@ -30,6 +31,16 @@
     </default>
 </spawns>
 <kits>
+    <kit id="tartarus-cmp-kit" parent="tension-kit">
+        <action>
+            <action filter="team-one">
+                <execute command="item replace entity {player} weapon.offhand with shield[base_color='red',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+            </action>
+            <action filter="team-two">
+                <execute command="item replace entity {player} weapon.offhand with shield[base_color='cyan',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+            </action>
+        </action>
+    </kit>
     <give filter="web-region-effect">
         <kit>
           <!-- <effect duration="1s" amplifier="255">slow falling</effect> -->
@@ -59,6 +70,7 @@
     <deny id="deny-respawn-anchor">
         <material>respawn anchor</material>
     </deny>
+    <after id="after-alive" duration=".25" filter="all(alive,buytime=0)"/>
 </filters>
 <regions>
     <negative id="not-buildable">
@@ -95,7 +107,54 @@
             <fill material="air" region="web-region"/>
         </action>
     </trigger>
+    <action id="clear-tartarus-cmp-kit" scope="player">
+        <replace-item ignore-metadata="true">
+            <find material="iron sword"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item>
+            <find material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="tipped arrow"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="diamond pickaxe"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="scaffolding"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="golden apple"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="shield"/>
+            <replace material="air"/>
+        </replace-item>
+    </action>
+    <trigger scope="player" filter="after-alive">
+        <action>
+            <action filter="team-one">
+                <execute command="item replace entity {player} armor.chest with leather_chestplate[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity {player} armor.legs with leather_leggings[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity {player} armor.feet with leather_boots[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+            </action>
+            <action filter="team-two">
+                <execute command="item replace entity {player} armor.chest with leather_chestplate[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity {player} armor.legs with leather_leggings[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity {player} armor.feet with leather_boots[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+            </action>
+        </action>
+    </trigger>
 </actions>
+<gamerules>
+    <logAdminCommands>false</logAdminCommands>
+</gamerules>
 <disabledamage>
     <damage>lava</damage>
 </disabledamage>
