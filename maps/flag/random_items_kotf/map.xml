@@ -113,53 +113,76 @@
         <variable id="new_item" default="-1" scope="player"/>
     </variables>
     <flags>
-        <flag id="red-flag" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
+        <flag id="red-flag" name="⚐" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Red Post" yaw="-45">6.5,9,6.5</post>
             </post>
         </flag>
-        <flag id="blue-flag" color="blue" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
+        <flag id="blue-flag" name="⚐" color="blue" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Blue Post" yaw="45">-5.5,9,6.5</post>
             </post>
         </flag>
-        <flag id="yellow-flag" color="yellow" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
+        <flag id="yellow-flag" name="⚐" color="yellow" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Yellow Post" yaw="135">-5.5,9,-5.5</post>
             </post>
         </flag>
-        <flag id="green-flag" color="lime" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
+        <flag id="green-flag" name="⚐" color="lime" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Green Post" yaw="-135">6.5,9,-5.5</post>
             </post>
         </flag>
-        <flag id="magenta-flag" color="magenta" shared="true" points-rate="3" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
+        <flag id="magenta-flag" name="⚑" color="magenta" shared="true" points-rate="3" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="15s">
                 <post name="Magenta Post" yaw="0">0.5,7,0.5</post>
             </post>
         </flag>
     </flags>
     <actions>
-        <trigger scope="player" filter="all(any(red-checker,blue-checker,yellow-checker,green-checker,magenta-checker),not(flag-remover))">
+        <trigger scope="player" filter="all(red-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
                     <action filter="red-checker">
                         <drop-flag flag="red-flag"/>
                     </action>
+                </switch-scope>
+            </action>
+        </trigger>
+        <trigger scope="player" filter="all(blue-checker,not(flag-remover))">
+            <action scope="player">
+                <switch-scope inner="match">
                     <action filter="blue-checker">
                         <drop-flag flag="blue-flag"/>
                     </action>
+                </switch-scope>
+            </action>
+        </trigger>
+        <trigger scope="player" filter="all(yellow-checker,not(flag-remover))">
+            <action scope="player">
+                <switch-scope inner="match">
                     <action filter="yellow-checker">
-                        <drop-flag flag="yellow-flag"/>
+                        <drop-flag flag="blue-flag"/>
                     </action>
-                    <action filter="green-checker">
+                </switch-scope>
+            </action>
+        </trigger>
+        <trigger scope="player" filter="all(green-checker,not(flag-remover))">
+            <action scope="player">
+                <switch-scope inner="match">
+                    <action filter="blue-checker">
                         <drop-flag flag="green-flag"/>
                     </action>
-                    <action filter="magenta-checker">
+                </switch-scope>
+            </action>
+        </trigger>
+        <trigger scope="player" filter="all(magenta-checker,not(flag-remover))">
+            <action scope="player">
+                <switch-scope inner="match">
+                    <action filter="blue-checker">
                         <drop-flag flag="magenta-flag"/>
                     </action>
                 </switch-scope>
-                <kit id="reset-health"/>
             </action>
         </trigger>
         <trigger scope="player" filter="new-item-pulse2"><action><set var="new_item" value="floor(random()*1221)"/></action></trigger>
@@ -1388,9 +1411,9 @@
     <broadcasts>
         <alert after="3s" count="1">`c⚐ `9⚐ `e⚐ `a⚐ `reach give 1 point per second</alert>
         <alert after="5s" count="1">`d`l⚑ `rgives 3 points per second</alert>
-        <alert after="10s" count="1">If you have a flag and leave the redstone area at mid, your flag will be dropped!</alert>
+        <alert after="7s" count="1">If you have a flag and leave the redstone area at mid, your flag will be dropped!</alert>
     </broadcasts>
-    <time>8m</time>
+    <time>10m</time>
     <respawn auto="true"/>
     <score>
         <limit>500</limit>
