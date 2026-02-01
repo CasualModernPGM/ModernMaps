@@ -143,45 +143,35 @@
         <trigger scope="player" filter="all(red-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
-                    <action filter="red-checker">
-                        <drop-flag flag="red-flag"/>
-                    </action>
+                    <drop-flag flag="red-flag"/>
                 </switch-scope>
             </action>
         </trigger>
         <trigger scope="player" filter="all(blue-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
-                    <action filter="blue-checker">
-                        <drop-flag flag="blue-flag"/>
-                    </action>
+                    <drop-flag flag="blue-flag"/>
                 </switch-scope>
             </action>
         </trigger>
         <trigger scope="player" filter="all(yellow-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
-                    <action filter="yellow-checker">
-                        <drop-flag flag="blue-flag"/>
-                    </action>
+                    <drop-flag flag="blue-flag"/>
                 </switch-scope>
             </action>
         </trigger>
         <trigger scope="player" filter="all(green-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
-                    <action filter="blue-checker">
-                        <drop-flag flag="green-flag"/>
-                    </action>
+                    <drop-flag flag="green-flag"/>
                 </switch-scope>
             </action>
         </trigger>
         <trigger scope="player" filter="all(magenta-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
-                    <action filter="blue-checker">
-                        <drop-flag flag="magenta-flag"/>
-                    </action>
+                    <drop-flag flag="magenta-flag"/>
                 </switch-scope>
             </action>
         </trigger>
