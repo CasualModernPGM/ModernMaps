@@ -15,8 +15,8 @@
         <constant id="period-half">3</constant>
     </constants>
     <teams>
-        <team id="blue-team" color="blue" max="5">Blue</team>
-        <team id="red-team" color="dark red" max="5">Red</team>
+        <team id="blue-team" color="blue" max="5" max-overfill="8">Blue</team>
+        <team id="red-team" color="dark red" max="5" max-overfill="8">Red</team>
     </teams>
     <kits>
         <kit id="stop-falling-kit">
@@ -96,6 +96,9 @@
         <variable id="shared_item_2" default="-1" scope="match"/>
         <variable id="shared_item_3" default="-1" scope="match"/>
         <variable id="shared_item_4" default="-1" scope="match"/>
+        <variable id="shared_item_5" default="-1" scope="match"/>
+        <variable id="shared_item_6" default="-1" scope="match"/>
+        <variable id="shared_item_7" default="-1" scope="match"/>
     </variables>
     <actions>
         <trigger filter="match-started" scope="team">
@@ -113,6 +116,9 @@
                 <set var="shared_item_2" value="floor(random()*1221)"/>
                 <set var="shared_item_3" value="floor(random()*1221)"/>
                 <set var="shared_item_4" value="floor(random()*1221)"/>
+                <set var="shared_item_5" value="floor(random()*1221)"/>
+                <set var="shared_item_6" value="floor(random()*1221)"/>
+                <set var="shared_item_7" value="floor(random()*1221)"/>
             </action>
         </trigger>
 
@@ -124,14 +130,23 @@
                 <action filter="num=1">
                     <set var="new_item" value="shared_item_1"/>
                 </action>
-                <action filter="any(num=2,num=7)">
+                <action filter="num=2">
                     <set var="new_item" value="shared_item_2"/>
                 </action>
-                <action filter="any(num=3,num=8)">
+                <action filter="num=3">
                     <set var="new_item" value="shared_item_3"/>
                 </action>
-                <action filter="any(num=4,num=9)">
+                <action filter="num=4">
                     <set var="new_item" value="shared_item_4"/>
+                </action>
+                <action filter="num=5">
+                    <set var="new_item" value="shared_item_5"/>
+                </action>
+                <action filter="num=6">
+                    <set var="new_item" value="shared_item_6"/>
+                </action>
+                <action filter="num=7">
+                    <set var="new_item" value="shared_item_7"/>
                 </action>
             </action>
         </trigger>
