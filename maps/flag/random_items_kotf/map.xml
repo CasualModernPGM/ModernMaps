@@ -178,6 +178,7 @@
                     <drop-flag flag="yellow-flag"/>
                 </switch-scope>
             </action>
+        </trigger>
         <trigger scope="player" filter="all(green-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
@@ -1423,7 +1424,7 @@
     <time>10m</time>
     <respawn auto="true"/>
     <score>
-        <limit>400</limit>
+        <limit>500</limit>
         <kills>1</kills>
     </score>
     <hunger>
