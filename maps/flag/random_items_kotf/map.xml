@@ -113,27 +113,27 @@
         <variable id="new_item" default="-1" scope="player"/>
     </variables>
     <flags>
-        <flag id="red-flag" name="`c⚐" color="red" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false">
+        <flag id="red-flag" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Red Post" yaw="-45">6.5,9,6.5</post>
             </post>
         </flag>
-        <flag id="blue-flag" name="`9⚐" color="blue" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false">
+        <flag id="blue-flag" color="blue" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Blue Post" yaw="45">-5.5,9,6.5</post>
             </post>
         </flag>
-        <flag id="yellow-flag" name="`e⚐" color="yellow" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false">
+        <flag id="yellow-flag" color="yellow" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Yellow Post" yaw="135">-5.5,9,-5.5</post>
             </post>
         </flag>
-        <flag id="green-flag" name="`a⚐" color="lime" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false">
+        <flag id="green-flag" color="lime" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="10s">
                 <post name="Green Post" yaw="-135">6.5,9,-5.5</post>
             </post>
         </flag>
-        <flag id="magenta-flag" name="`6⚑" color="magenta" shared="true" points-rate="3" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false">
+        <flag id="magenta-flag" color="magenta" shared="true" points-rate="3" pickup-kit="flag-kit" drop-kit="reset-health" carry-kit="flag-effects" flag-proximity-metric="none" beam="false" show-sidebar="false">
             <post return-time="0s" respawn-time="15s">
                 <post name="Magenta Post" yaw="0">0.5,7,0.5</post>
             </post>
@@ -1386,8 +1386,8 @@
         <trigger scope="player" filter="all(new-item-pulse,new_item=1220)"><action><kit repair-tools="false" deduct-tools="false" deduct-items="false"><item material="spire armor trim smithing template"/></kit></action></trigger>
     </actions>
     <broadcasts>
-        <alert after="3s" count="1">`a`l⚐ `9`l⚐ `e`l⚐ `a`l⚐ each give 1 point per second</alert>
-        <alert after="5s" count="1">`d`l⚑ gives 3 points per second</alert>
+        <alert after="3s" count="1">`c⚐ `9⚐ `e⚐ `a⚐ `reach give 1 point per second</alert>
+        <alert after="5s" count="1">`d`l⚑ `rgives 3 points per second</alert>
         <alert after="10s" count="1">If you have a flag and leave the redstone area at mid, your flag will be dropped!</alert>
     </broadcasts>
     <time>8m</time>
