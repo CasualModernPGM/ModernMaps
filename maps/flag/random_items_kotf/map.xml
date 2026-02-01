@@ -55,10 +55,10 @@
         <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>7.5,11,-17.5</point></region></spawn>
         <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>14.5,11,-13.5</point></region></spawn>
         <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>18.5,11,-6.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>20.5,11,0</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>20.5,11,0.5</point></region></spawn>
         <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>18.5,11,7.5</point></region></spawn>
         <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>14.5,11,14.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>7,11,18.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>7.5,11,18.5</point></region></spawn>
     </spawns>
     <regions>
         <apply block="never">
@@ -73,6 +73,17 @@
             </region>
         </apply>
         <rectangle id="flag-remover" min="-7.5,8.5" max="8.5,-7.5"/>
+        <apply block="never">
+            <region>
+                <union>
+                    <block id="red-block">6,10,6</block>
+                    <block id="blue-block">-6,10,6</block>
+                    <block id="yellow-block">-6,10,-6</block>
+                    <block id="green-block">6,10,-6</block>
+                    <block id="magenta-block">0,8,0</block>
+                </union>
+            </region>
+        </apply>
     </regions>
     <filters>
         <after id="stop-falling" duration="${period}">
@@ -161,6 +172,12 @@
                 </switch-scope>
             </action>
         </trigger>
+        <trigger scope="player" filter="all(yellow-checker,not(flag-remover))">
+            <action scope="player">
+                <switch-scope inner="match">
+                    <drop-flag flag="yellow-flag"/>
+                </switch-scope>
+            </action>
         <trigger scope="player" filter="all(green-checker,not(flag-remover))">
             <action scope="player">
                 <switch-scope inner="match">
@@ -1399,14 +1416,14 @@
         <trigger scope="player" filter="all(new-item-pulse,new_item=1220)"><action><kit repair-tools="false" deduct-tools="false" deduct-items="false"><item material="spire armor trim smithing template"/></kit></action></trigger>
     </actions>
     <broadcasts>
-        <alert after="3s" count="1">`c⚐ `9⚐ `e⚐ `a⚐ `reach give 1 point per second</alert>
-        <alert after="5s" count="1">`d`l⚑ `rgives 3 points per second</alert>
-        <alert after="7s" count="1">If you have a flag and leave the redstone area at mid, your flag will be dropped!</alert>
+        <alert after="2s" count="1">`c⚐ `9⚐ `e⚐ `a⚐ `reach give 1 point per second</alert>
+        <alert after="4s" count="1">`d`l⚑ `rgives 3 points per second</alert>
+        <alert after="6s" count="1">If you have a flag and leave the redstone area at mid, your flag will be dropped!</alert>
     </broadcasts>
     <time>10m</time>
     <respawn auto="true"/>
     <score>
-        <limit>500</limit>
+        <limit>400</limit>
         <kills>1</kills>
     </score>
     <hunger>
