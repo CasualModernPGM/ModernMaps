@@ -43,22 +43,22 @@
                 <point>0.5,45,0.5</point>
             </region>
         </default>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>0.5,${spawn-y},20.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-6.5,${spawn-y},18.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-13.5,${spawn-y},14.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-17.5,${spawn-y},7.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-19.5,${spawn-y},0.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-17.5,${spawn-y},-6.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-13.5,${spawn-y},-13.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>-6.5,${spawn-y},-17.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>0.5,${spawn-y},-19.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>7.5,${spawn-y},-17.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>14.5,${spawn-y},-13.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>18.5,${spawn-y},-6.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>20.5,${spawn-y},0</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>18.5,${spawn-y},7.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>14.5,${spawn-y},14.5</point></region></spawn>
-        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,${spawn-y},0.5"><point>7,${spawn-y},18.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>0.5,11,20.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-6.5,11,18.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-13.5,11,14.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-17.5,11,7.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-19.5,11,0.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-17.5,11,-6.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-13.5,11,-13.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>-6.5,11,-17.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>0.5,11,-19.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>7.5,11,-17.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>14.5,11,-13.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>18.5,11,-6.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>20.5,11,0</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>18.5,11,7.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>14.5,11,14.5</point></region></spawn>
+        <spawn spread="true" exclusive="true" kit="stop-falling-kit"><region angle="0.5,11,0.5"><point>7,11,18.5</point></region></spawn>
     </spawns>
     <regions>
         <apply block="never">
