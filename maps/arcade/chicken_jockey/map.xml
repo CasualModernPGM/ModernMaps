@@ -1,6 +1,6 @@
 <map proto="1.5"> <!-- Utilizes CMP fork features -->
 <name>CHICKEN JOCKEY</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Kill the other chicken jockeys!</objective>
 <created>2026-02-01</created>
 <game>CHICKEN JOCKEY</game>
@@ -63,7 +63,7 @@
     <trigger filter="spawn-time" scope="player">
         <action id="spawn-chicken" scope="player" expose="true">
             <execute command="minecraft:summon minecraft:chicken ~ ~ ~ {CustomName:'{player}',Invulnerable:1b}"/>
-            <execute command="minecraft:ride zzuf mount @e[type=chicken,limit=1,name={player}]"/>
+            <execute command="minecraft:ride {player} mount @e[type=chicken,limit=1,name={player}]"/>
         </action>
     </trigger>
     <trigger filter="not(riding)" scope="player">
