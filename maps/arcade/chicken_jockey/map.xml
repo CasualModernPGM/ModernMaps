@@ -1,6 +1,6 @@
 <map proto="1.5"> <!-- Utilizes CMP fork features -->
 <name>CHICKEN JOCKEY</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Kill the other chicken jockeys!</objective>
 <created>2026-02-01</created>
 <game>CHICKEN JOCKEY</game>
@@ -33,7 +33,7 @@
     </default>
     <spawn spread="true" angle="1,68,0" kit="da-kit">
         <region>
-            <cylinder base="1,67,0" height="0" radius="3"/>
+            <cylinder base="1,67,0" height="0" radius="5"/>
         </region>
     </spawn>
 </spawns>
