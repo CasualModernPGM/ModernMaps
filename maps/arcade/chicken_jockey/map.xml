@@ -1,11 +1,11 @@
 <map proto="1.5"> <!-- Utilizes CMP fork features -->
 <name>CHICKEN JOCKEY</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Kill the other chicken jockeys!</objective>
 <created>2026-02-01</created>
 <game>CHICKEN JOCKEY</game>
 <include id="void-death"/>
-<constant id="void-plane">59</constant>
+<constant id="void-plane">60</constant>
 <authors>
     <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128"/> <!-- zzuf -->
 </authors>
@@ -39,9 +39,6 @@
 </spawns>
 <blitz/>
 <filters>
-    <pulse id="the-pulse" period="0.1" duration="0.05">
-        <match-running/>
-    </pulse>
     <after id="spawn-time" duration="0.1">
         <match-running/>
     </after>
@@ -69,7 +66,7 @@
             <execute command="minecraft:ride zzuf mount @e[type=chicken,limit=1,name={player}]"/>
         </action>
     </trigger>
-    <trigger filter="the-pulse" scope="player">
+    <trigger filter="not(riding)" scope="player">
         <action>
             <execute command="execute as {player} unless entity @s[type=chicken] run ride @s mount @e[type=chicken,limit=1,name={player}]"/>
         </action>
