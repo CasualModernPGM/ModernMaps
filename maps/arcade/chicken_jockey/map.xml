@@ -1,6 +1,6 @@
 <map proto="1.5"> <!-- Utilizes CMP fork features -->
 <name>CHICKEN JOCKEY</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Kill the other chicken jockeys!</objective>
 <created>2026-02-01</created>
 <game>CHICKEN JOCKEY</game>
@@ -80,7 +80,6 @@
             <fill region="water-spawn" material="water"/>
             <fill region="air-spawn" material="air"/>
             <fill region="mycel-spawn" material="mycel" filter="only-grass"/>
-            <execute command="execute as {player} unless entity @s[type=chicken] run ride @s mount @e[type=chicken,limit=1,name={player}]"/>
         </action>
     </trigger>
 </actions>
