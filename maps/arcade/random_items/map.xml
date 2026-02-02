@@ -1,15 +1,19 @@
-<map proto="1.5.0" min-server-version="1.21.8">
+<map proto="1.5.0" min-server-version="1.21.8"> <!-- Utilizes CMP features -->
 <name>Random Items</name>
-<version>1.1.9</version>
+<version>1.1.10</version>
 <variant id="void" world="void">Void</variant>
 <variant id="bfp" world="bfp">BFP</variant>
 <variant id="upside-down" world="void">Upside Down</variant>
+<variant id="horse" world="void">Horsing Around</variant>
 <objective>Get a new item every ${period} seconds and destroy your enemies!</objective>
 <if variant="default,void">
     <created>2025-05-26</created>
 </if>
 <if variant="bfp,upside-down">
     <created>2025-06-09</created>
+</if>
+<if variant="horse">
+    <created>2026-02-02</created>
 </if>
 <game>Random Items</game>
 <if variant="upside-down">
@@ -114,6 +118,24 @@
     <variable id="new_item" scope="player" default="-1"/>
 </variables>
 <actions>
+    <if variant="horse">
+        <trigger scope="player">
+            <filter>
+                <after id="spawn-time" duration="0.1">
+                    <match-running/>
+                </after>
+            </filter>
+            <action scope="player">
+                <execute command="minecraft:summon horse ~ ~ ~ {CustomName:'{player}',Invulnerable:1b,Tame:1b,Variant:518,equipment:{saddle:{id:'minecraft:saddle',count:1}},attributes:[{id:'minecraft:jump_strength',base:0.35},{id:'minecraft:max_health',base:1},{id:'minecraft:movement_speed',base:0.15}]}"/>
+                <execute command="minecraft:ride {player} mount @e[type=horse,limit=1,name={player}]"/>
+            </action>
+        </trigger>
+        <trigger filter="not(riding)" scope="player">
+            <action>
+                <execute command="execute as {player} unless entity @s[type=horse] run ride @s mount @e[type=horse,limit=1,name={player}]"/>
+            </action>
+        </trigger>
+    </if>
     <trigger scope="player" filter="new-item-pulse2"><action><set var="new_item" value="floor(random()*1221)"/></action></trigger>
     <trigger scope="player" filter="all(new-item-pulse,new_item=0)"><action><kit repair-tools="false" deduct-tools="false" deduct-items="false"><item material="stone"/></kit></action></trigger>
     <trigger scope="player" filter="all(new-item-pulse,new_item=1)"><action><kit repair-tools="false" deduct-tools="false" deduct-items="false"><item material="granite"/></kit></action></trigger>
