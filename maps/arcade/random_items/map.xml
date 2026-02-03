@@ -1,6 +1,6 @@
 <map proto="1.5.0" min-server-version="1.21.8"> <!-- Utilizes CMP features -->
 <name>Random Items</name>
-<version>1.1.10</version>
+<version>1.1.11</version>
 <variant id="void" world="void">Void</variant>
 <variant id="bfp" world="bfp">BFP</variant>
 <variant id="upside-down" world="void">Upside Down</variant>
@@ -14,6 +14,17 @@
 </if>
 <if variant="horse">
     <created>2026-02-02</created>
+    <lock-mounts>on</lock-mounts>
+    <actions>
+        <trigger scope="match">
+            <filter>
+                <match-finished/>
+            </filter>
+            <action>
+                <execute command="minecraft:kill @e[type=horse]"/>
+            </action>
+        </trigger>
+    </actions>
 </if>
 <game>Random Items</game>
 <if variant="upside-down">

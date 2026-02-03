@@ -1,6 +1,6 @@
-<map proto="1.5"> <!-- Utilizes CMP fork features -->
+<map proto="1.5" min-server-version="1.21.10"> <!-- Utilizes CMP fork features -->
 <name>CHICKEN JOCKEY</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Kill the other chicken jockeys!</objective>
 <created>2026-02-01</created>
 <game>CHICKEN JOCKEY</game>
@@ -39,9 +39,6 @@
 </spawns>
 <blitz/>
 <filters>
-    <pulse id="the-pulse" period="0.1" duration="0.05">
-        <match-running/>
-    </pulse>
     <after id="spawn-time" duration="0.1">
         <match-running/>
     </after>
@@ -75,11 +72,6 @@
             <execute command="execute as {player} unless entity @s[type=chicken] run ride @s mount @e[type=chicken,limit=1,name={player}]"/>
         </action>
     </trigger>
-    <trigger filter="the-pulse" scope="player">
-        <action>
-            <execute command="execute as @e[type=chicken] at @s if score @s yPos matches ..61 run kill @s"/>
-        </action>
-    </trigger>
     <trigger filter="death-time" scope="match">
         <action>
             <set var="chicken_time" value="18000"/>
@@ -91,7 +83,22 @@
             <fill region="mycel-spawn" material="mycel" filter="only-grass"/>
         </action>
     </trigger>
+    <trigger scope="match">
+        <filter>
+            <match-finished/>
+        </filter>
+        <action>
+            <execute command="minecraft:kill @e[type=chicken]"/>
+        </action>
+    </trigger>
 </actions>
+<toolrepair>
+    <tool>stone sword</tool>
+</toolrepair>
+<lock-mounts>on</lock-mounts>
+<gamerules>
+    <doMobLoot>false</doMobLoot>
+</gamerules>
 <mobs>
     <filter>
         <spawn>COMMAND</spawn>
