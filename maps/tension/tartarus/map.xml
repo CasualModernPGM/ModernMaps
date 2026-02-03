@@ -1,6 +1,6 @@
 <map proto="1.5.0" min-server-version="1.21"> <!-- Utilizes CMP fork features -->
 <name>Tartarus</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Jump into the enemy team's portal, located below their spawn point!</objective>
 <created>2025-12-04</created>
 <include id="tension"/>
@@ -70,7 +70,6 @@
     <deny id="deny-respawn-anchor">
         <material>respawn anchor</material>
     </deny>
-    <after id="after-alive" duration=".25" filter="all(alive,buytime=0)"/>
 </filters>
 <regions>
     <negative id="not-buildable">
@@ -165,3 +164,4 @@
     <item>warped fungus</item>
 </itemremove>
 </map>
+
