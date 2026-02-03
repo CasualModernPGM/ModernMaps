@@ -14,7 +14,7 @@
 -->
 <!-- Tension gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2026.01.24-1 -->
+<!-- Version 2026.02.03-1 -->
 <!-- CMP fork version -->
 <include id="bridge"/>
 <game>Tension</game>
@@ -31,6 +31,10 @@
     <kit id="tension-kit">
         <action>
             <execute command="item replace entity {player} weapon.offhand with shield[damage=330,custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+            <replace-item ignore-metadata="true">
+                <find material="mace"/>
+                <replace material="air"/>
+            </replace-item>
         </action>
         <item unbreakable="true" material="stone sword"/>
         <item material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
@@ -38,7 +42,6 @@
         <item material="scaffolding" amount="64" damage="2"/>
         <item material="scaffolding" amount="64" damage="2"/>
         <item material="golden apple" amount="3" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c${max-health} HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
-        <item unbreakable="true" name="`x`4`7`7`8`B`8Light `fMace" material="mace" attributes="generic.attack_speed:add:0.25" enchantments="wind burst:1"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
@@ -49,6 +52,9 @@
         </item>
     </kit>
 </kits>
+<filters>
+    <after id="after-alive" duration=".25" filter="all(alive,buytime=0)"/>
+</filters>
 <actions>
     <action id="clear-tension-kit" scope="player">
         <replace-item ignore-metadata="true">
@@ -80,6 +86,11 @@
             <replace material="air"/>
         </replace-item>
     </action>
+    <trigger filter="after-alive" scope="player">
+        <action>
+            <execute command="give {player} mace[custom_name=[{'color':'gray','italic':false,'shadow_color':-1,'text':'Light '},{'color':'#4778B8','shadow_color':-10311937,'text':'Mace'}],unbreakable={},enchantments={'wind_burst':1},attribute_modifiers=[{id:'attack_speed',type:'attack_speed',amount:0.25,operation:'add_value'}]]"/>
+        </action>
+    </trigger>
 </actions>
 <spawners>
     <spawner spawn-region="pier-caps-spawner" player-region="everywhere" delay="10s" max-entities="2">
@@ -111,12 +122,12 @@
 </toolrepair>
 <itemkeep>
     <item>iron block</item>
-    <item>mace</item>
     <item>stone sword</item>
 </itemkeep>
 <itemremove>
     <item>scaffolding</item>
     <item>wind charge</item>
     <item>shield</item>
+    <item>mace</item>
 </itemremove>
 </map>
