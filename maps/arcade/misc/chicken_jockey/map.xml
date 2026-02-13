@@ -66,13 +66,13 @@
 <actions>
     <trigger filter="spawn-time" scope="player">
         <action id="spawn-chicken" scope="player" expose="true">
-            <execute command="minecraft:summon minecraft:chicken ~ ~ ~ {CustomName:'{player}',Invulnerable:1b}"/>
-            <execute command="minecraft:ride {player} mount @e[type=chicken,limit=1,name={player}]"/>
+            <execute command="minecraft:summon minecraft:chicken ~ ~ ~ {CustomName:'#player#',Invulnerable:1b}"/>
+            <execute command="minecraft:ride #player# mount @e[type=chicken,limit=1,name=#player#]"/>
         </action>
     </trigger>
     <trigger filter="all(not(riding),above-64,match-running)" scope="player">
         <action>
-            <execute command="execute as {player} unless entity @s[type=chicken] run ride @s mount @e[type=chicken,limit=1,name={player}]"/>
+            <execute command="execute as #player# unless entity @s[type=chicken] run ride @s mount @e[type=chicken,limit=1,name=#player#]"/>
         </action>
     </trigger>
     <trigger filter="the-pulse" scope="player">

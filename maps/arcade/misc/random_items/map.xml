@@ -137,13 +137,13 @@
                 </after>
             </filter>
             <action scope="player">
-                <execute command="minecraft:summon horse ~ ~ ~ {CustomName:'{player}',Invulnerable:1b,Tame:1b,Variant:518,equipment:{saddle:{id:'minecraft:saddle',count:1}},attributes:[{id:'minecraft:jump_strength',base:0.35},{id:'minecraft:max_health',base:1},{id:'minecraft:movement_speed',base:0.15}]}"/>
-                <execute command="minecraft:ride {player} mount @e[type=horse,limit=1,name={player}]"/>
+                <execute command="minecraft:summon horse ~ ~ ~ {CustomName:'#player#',Invulnerable:1b,Tame:1b,Variant:518,equipment:{saddle:{id:'minecraft:saddle',count:1}},attributes:[{id:'minecraft:jump_strength',base:0.35},{id:'minecraft:max_health',base:1},{id:'minecraft:movement_speed',base:0.15}]}"/>
+                <execute command="minecraft:ride #player# mount @e[type=horse,limit=1,name=#player#]"/>
             </action>
         </trigger>
         <trigger filter="not(riding)" scope="player">
             <action>
-                <execute command="execute as {player} unless entity @s[type=horse] run ride @s mount @e[type=horse,limit=1,name={player}]"/>
+                <execute command="execute as #player# unless entity @s[type=horse] run ride @s mount @e[type=horse,limit=1,name=#player#]"/>
             </action>
         </trigger>
     </if>

@@ -34,10 +34,10 @@
     <kit id="tartarus-cmp-kit" parent="tension-kit">
         <action>
             <action filter="team-one">
-                <execute command="item replace entity {player} weapon.offhand with shield[base_color='red',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+                <execute command="item replace entity #player# weapon.offhand with shield[base_color='red',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
             </action>
             <action filter="team-two">
-                <execute command="item replace entity {player} weapon.offhand with shield[base_color='cyan',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+                <execute command="item replace entity #player# weapon.offhand with shield[base_color='cyan',damage=330,banner_patterns=[{'pattern':'minecraft:curly_border','color':'yellow'}],custom_name={'italic':false,'text':'Damaged Shield'}]"/>
             </action>
         </action>
     </kit>
@@ -139,14 +139,14 @@
     <trigger scope="player" filter="after-alive">
         <action>
             <action filter="team-one">
-                <execute command="item replace entity {player} armor.chest with leather_chestplate[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
-                <execute command="item replace entity {player} armor.legs with leather_leggings[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
-                <execute command="item replace entity {player} armor.feet with leather_boots[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.chest with leather_chestplate[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.legs with leather_leggings[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.feet with leather_boots[dyed_color=11141120,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
             </action>
             <action filter="team-two">
-                <execute command="item replace entity {player} armor.chest with leather_chestplate[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
-                <execute command="item replace entity {player} armor.legs with leather_leggings[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
-                <execute command="item replace entity {player} armor.feet with leather_boots[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.chest with leather_chestplate[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.legs with leather_leggings[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
+                <execute command="item replace entity #player# armor.feet with leather_boots[dyed_color=43690,trim={material:'minecraft:gold',pattern:'minecraft:snout'},unbreakable={}]"/>
             </action>
         </action>
     </trigger>

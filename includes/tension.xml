@@ -30,7 +30,7 @@
 <kits>
     <kit id="tension-kit">
         <action>
-            <execute command="item replace entity {player} weapon.offhand with shield[damage=330,custom_name={'italic':false,'text':'Damaged Shield'}]"/>
+            <execute command="item replace entity #player# weapon.offhand with shield[damage=330,custom_name={'italic':false,'text':'Damaged Shield'}]"/>
             <replace-item ignore-metadata="true">
                 <find material="mace"/>
                 <replace material="air"/>
@@ -88,7 +88,7 @@
     </action>
     <trigger filter="after-alive" scope="player">
         <action>
-            <execute command="give {player} mace[custom_name=[{'color':'gray','italic':false,'shadow_color':-1,'text':'Light '},{'color':'#4778B8','shadow_color':-10311937,'text':'Mace'}],unbreakable={},enchantments={'wind_burst':1},attribute_modifiers=[{id:'attack_speed',type:'attack_speed',amount:0.25,operation:'add_value'}]]"/>
+            <execute command="give #player# mace[custom_name=[{'color':'gray','italic':false,'shadow_color':-1,'text':'Light '},{'color':'#4778B8','shadow_color':-10311937,'text':'Mace'}],unbreakable={},enchantments={'wind_burst':1},attribute_modifiers=[{id:'attack_speed',type:'attack_speed',amount:0.25,operation:'add_value'}]]"/>
         </action>
     </trigger>
 </actions>
