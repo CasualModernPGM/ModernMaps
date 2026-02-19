@@ -1,6 +1,6 @@
 <map proto="1.5.0" min-server-version="1.21.11"> <!-- Utilizes CMP fork features - End Crystals are not tracked in upstream PGM -->
 <name>Radiant</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <created>2025-02-14</created>
 <objective>Be on the team with the highest amount of kills after 3 minutes!</objective>
 <gamemode>crystal</gamemode>
@@ -42,7 +42,7 @@
     <kit id="spawn-kit">
         <effect duration="1s" amplifier="255" ambient="true">damage resistance</effect>
         <item slot="slot.weapon.offhand" unbreakable="true" material="totem of undying"/>
-        <item slot="0" amount="32" material="ender dragon spawn egg" components="item_name={'translate':'options.framerateLimit.max','extra':[{'text':' '},{'translate':'item.minecraft.end_crystal'}]},item_model='minecraft:end_crystal',enchantment_glint_override=true,entity_data={id:'minecraft:end_crystal',ShowBottom:false}"/> 
+        <item slot="0" amount="32" material="ender dragon spawn egg" components="item_name={'translate':'item.minecraft.end_crystal','extra':[{'text':' ('},{'translate':'options.framerateLimit.max','color':'aqua'},{'text':')','reset':'true'}]},item_model='minecraft:end_crystal',enchantment_glint_override=true,entity_data={id:'minecraft:end_crystal',ShowBottom:false}"/> 
         <item slot="1" unbreakable="true" material="netherite pickaxe" enchantment="efficiency:6"/>
         <item slot="2" amount="16" material="obsidian"/>
         <item slot="3" amount="8" material="ender pearl"/>
@@ -68,7 +68,7 @@
 </filters>
 <regions>
     <cylinder id="da-map-region" base="1.5,53,1.5" height="38" radius="39.5"/>
-    <apply block="da-map"/>
+    <apply block="da-map" message="You may not destroy the map!"/>
     <apply leave="never">
         <region>
             <below y="102"/>
@@ -78,7 +78,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="arrow" amount="4"/>
-        <item material="ender dragon spawn egg" components="item_name={'translate':'options.framerateLimit.max','extra':[{'text':' '},{'translate':'item.minecraft.end_crystal'}]},item_model='minecraft:end_crystal',enchantment_glint_override=true,entity_data={id:'minecraft:end_crystal',ShowBottom:false}" amount="8"/> 
+        <item material="ender dragon spawn egg" components="item_name={'translate':'item.minecraft.end_crystal','extra':[{'text':' ('},{'translate':'options.framerateLimit.max','color':'aqua'},{'text':')','reset':'true'}]},item_model='minecraft:end_crystal',enchantment_glint_override=true,entity_data={id:'minecraft:end_crystal',ShowBottom:false}" amount="8"/> 
         <item material="obsidian" amount="4"/>
         <item material="ender pearl" amount="4"/>
         <item material="totem of undying" amount="1"/>
@@ -90,8 +90,11 @@
     <item>netherite leggings</item>
     <item>netherite boots</item>
     <item>totem of undying</item>
+    <item>glowstone dust</item>
     <item>netherite pickaxe</item>
     <item>end crystal</item>
+    <item>ender dragon spawn egg</item>
+    <item>iron fence</item>
     <item>obsidian</item>
     <item>crying obsidian</item>
     <item>ender pearl</item>
