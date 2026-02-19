@@ -3,7 +3,7 @@
 <variant id="blitz">Blitz</variant>
 <variant id="crossbow-blast">Crossbow Blast</variant>
 <variant id="quake">Arena</variant>
-<version>1.1.9</version>
+<version>1.1.10</version>
 <created>2025-05-09</created>
 <objective>Eliminate your opponents!</objective>
 <constants>
@@ -130,6 +130,7 @@
     <kit id="quake-kit"> <!-- set to true when ambient works ! -->
         <item slot="0" unbreakable="true" material="netherite hoe" name="`rRailgun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond."/>
         <effect duration="3s" amplifier="255" ambient="true">damage resistance</effect>
+        <effect duration="oo" ambient="false">glowing</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -248,6 +249,7 @@
     <item>firework rocket</item>
     <item>wind charge</item>
     <item>recovery compass</item>
+    <item>netherite hoe</item>
 </itemremove>
 <kill-rewards>
     <kill-reward>
