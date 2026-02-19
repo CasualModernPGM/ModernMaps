@@ -2,7 +2,8 @@
 <name>Trial Chambers</name>
 <variant id="blitz">Blitz</variant>
 <variant id="crossbow-blast">Crossbow Blast</variant>
-<version>1.1.7</version>
+<variant id="quake">Arena</variant>
+<version>1.1.8</version>
 <created>2025-05-09</created>
 <objective>Eliminate your opponents!</objective>
 <constants>
@@ -16,7 +17,7 @@
     <team id="yellow-team" color="yellow" max="8" show-name-tags="false">Yellow</team>
 </teams>
 <spawns>
-    <if variant="default">
+    <if variant="default,quake">
         <spawn team="purple-team" kit="spawn-kit">
             <regions yaw="0">
                 <cuboid min="-26,-13,-171" max="-35,-13,-174"/>
@@ -114,6 +115,11 @@
             <effect duration="oo">darkness</effect>
         </kit>
     </give>
+    <kit id="quake-kit"> <!-- set to true when ambient works ! -->
+        <item slot="0" unbreakable="true" material="netherite hoe" name="`rRailgun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond."/>
+        <effect duration="3s" amplifier="255" ambient="true">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
 </kits>
 <time>4m</time>
 <if variant="default">
@@ -131,6 +137,10 @@
     <score>
         <kills>1</kills>
     </score>
+</if>
+<if variant="quake">
+    <gamemode>quake</gamemode>
+    <quake/>
 </if>
 <respawn auto="true"/>
 <rage/>
