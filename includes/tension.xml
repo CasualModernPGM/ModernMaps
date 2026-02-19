@@ -17,7 +17,7 @@
 <!-- Version 2026.02.03-1 -->
 <!-- CMP fork version -->
 <include id="bridge"/>
-<game>Tension</game>
+<gamemode>tension</gamemode>
 <constants>
     <!-- Misc -->
     <constant id="main-kit">tension-kit</constant>

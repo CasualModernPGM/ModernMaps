@@ -3,8 +3,8 @@
 <version>1.0</version>
 <created>2025-02-14</created>
 <objective>Be on the team with the highest amount of kills after 3 minutes!</objective>
+<gamemode>crystal</gamemode>
 <gamemode>tdm</gamemode>
-<game>Crystal PvP</game>
 <include id="gapple-kill-reward"/>
 <include id="void-death"/>
 <time result="score">3m</time>

@@ -23,8 +23,7 @@
     <constant id="dark-nebula-kit">quakecraft-kit</constant>
     <constant id="max-players">6</constant>
     <constant id="void-plane">1</constant>
-    <gamemode>ffa</gamemode>
-    <game>Quake</game> <!-- Xonoticraft 🤔 -->
+    <gamemode>quake</gamemode> <!-- Xonoticraft 🤔 -->
     <quake/>
 </if>
 <created>2023-04-29</created>
