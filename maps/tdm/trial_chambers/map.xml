@@ -3,7 +3,7 @@
 <variant id="blitz">Blitz</variant>
 <variant id="crossbow-blast">Crossbow Blast</variant>
 <variant id="quake">Arena</variant>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <created>2025-05-09</created>
 <objective>Eliminate your opponents!</objective>
 <constants>
@@ -17,7 +17,7 @@
     <team id="yellow-team" color="yellow" max="8" show-name-tags="false">Yellow</team>
 </teams>
 <spawns>
-    <if variant="default,quake">
+    <if variant="default">
         <spawn team="purple-team" kit="spawn-kit">
             <regions yaw="0">
                 <cuboid min="-26,-13,-171" max="-35,-13,-174"/>
@@ -48,6 +48,18 @@
             </regions>
         </spawn>
         <spawn team="yellow-team" kit="yellow-kit">
+            <regions yaw="180">
+                <cuboid min="-35,-13,-92" max="-26,-13,-89"/>
+            </regions>
+        </spawn>
+    </if>
+    <if variant="quake">
+        <spawn team="purple-team" kit="quake-kit">
+            <regions yaw="0">
+                <cuboid min="-26,-13,-171" max="-35,-13,-174"/>
+            </regions>
+        </spawn>
+        <spawn team="yellow-team" kit="quake-kit">
             <regions yaw="180">
                 <cuboid min="-35,-13,-92" max="-26,-13,-89"/>
             </regions>
@@ -141,6 +153,9 @@
 <if variant="quake">
     <gamemode>quake</gamemode>
     <quake/>
+    <score>
+        <kills>1</kills>
+    </score>
 </if>
 <respawn auto="true"/>
 <rage/>
