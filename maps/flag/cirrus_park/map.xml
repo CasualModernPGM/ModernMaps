@@ -1,7 +1,8 @@
 <map proto="1.5.0" min-server-version="1.21.8">
+<constant id="legacy-pvp">false</constant>
 <name>Cirrus Park</name>
 <created>2025-08-04</created>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Control the flag and reach 300 points to win!</objective>
 <gamemode>kotf</gamemode>
 <gamemode>tdm</gamemode>
@@ -31,29 +32,6 @@
         </region>
     </spawn>
 </spawns>
-<regions>
-    <union id="spawns">
-        <cuboid id="red-spawn" min="-27,0,68" max="15,25,47"/>
-        <mirror id="blue-spawn" region="red-spawn" normal="0,0,1" origin="0.5,0,0.5"/>
-    </union>
-    <union id="tracks">
-        <union id="red-track">
-            <cuboid id="red-park-side" min="-19,7,18" max="-14,12,47"/>
-            <cuboid id="red-soccer-side" min="-15,7,47 " max="15,12,42"/>
-        </union>
-        <mirror id="blue-track" region="red-track" normal="0,0,1" origin="0.5,0,0.5"/>
-    </union>
-    <point id="soccer-spawner">34.5,6.25,0.5</point>
-    <point id="tennis-spawner">0.5,6,0.5</point>        
-    <!--Apply-->
-    <apply block="never" use="never"/>
-    <apply enter="red-team" region="red-spawn" message="You may not enter the opposing team's spawn!"/>
-    <apply enter="blue-team" region="blue-spawn" message="You may not enter the opposing team's spawn!"/>
-    <apply enter="not(carrying)" region="red-track" message="You may not enter the track while carrying a flag!"/>
-    <apply enter="not(carrying)" region="blue-track" message="You may not enter the track while carrying a flag!"/>
-    <apply enter="red-team" region="red-track" lend-kit="runner" message="You may not enter the opposing team's spawn!"/>
-    <apply enter="blue-team" region="blue-track" lend-kit="runner" message="You may not enter the opposing team's spawn!"/>
-</regions>
 <kits>
     <kit id="spawn-kit">
         <clear/>
@@ -85,13 +63,30 @@
         <effect>speed</effect>
     </kit>
 </kits>
+<regions>
+    <union id="spawns">
+        <cuboid id="red-spawn" min="-27,0,68" max="15,25,47"/>
+        <mirror id="blue-spawn" region="red-spawn" normal="0,0,1" origin="0.5,0,0.5"/>
+    </union>
+    <union id="tracks">
+        <union id="red-track">
+            <cuboid id="red-park-side" min="-19,0,31" max="-14,16,47"/>
+            <cuboid id="red-soccer-side" min="-14,0,42" max="15,16,48"/>
+        </union>
+        <mirror id="blue-track" region="red-track" normal="0,0,1" origin="0.5,0,0.5"/>
+    </union>
+    <point id="soccer-spawner">34.5,6.25,0.5</point>
+    <point id="tennis-spawner">0.5,6,0.5</point>
+    <!--Apply-->
+    <apply block="never" use="never"/>
+    <apply enter="not(carrying)" region="red-track" message="You may not enter the track while carrying a flag!"/>
+    <apply enter="not(carrying)" region="blue-track" message="You may not enter the track while carrying a flag!"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter the opposing team's spawn!"/>
+    <apply region="blue-spawn" enter="blue-team" message="You may not enter the opposing team's spawn!"/>
+    <apply region="red-track" enter="red-team" lend-kit="runner" message="You may not enter the opposing team's spawn!"/>
+    <apply region="blue-track" enter="blue-team" lend-kit="runner" message="You may not enter the opposing team's spawn!"/>
+</regions>
 <filters>
-    <all id="red-team">
-        <team>red-team</team>
-    </all>
-    <all id="blue-team">
-        <team>blue-team</team>
-    </all>
     <any id="carrying">
         <carrying-flag>red-flag</carrying-flag>
         <carrying-flag>blue-flag</carrying-flag>
@@ -110,13 +105,14 @@
     </flag>
 </flags>
 <actions>
-    <action id="shield-remover" scope="player" expose="true">
-        <replace-item ignore-metadata="true">
-            <find material="shield"/>
-            <replace material="air"/>
-        </replace-item>
-    </action>
-    <trigger filter="carrying" action="shield-remover" scope="player"/>
+    <trigger filter="carrying" scope="player">
+        <action id="shield-remover" expose="true">
+            <replace-item ignore-metadata="true">
+                <find material="shield"/>
+                <replace material="air"/>
+            </replace-item>
+        </action>
+    </trigger>
 </actions>
 <score>
     <limit>300</limit>
