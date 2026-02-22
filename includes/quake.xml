@@ -1,0 +1,50 @@
+<map proto="1.5.0"> <!-- Utilizes CMP fork features -->
+<!--
+      @        @
+   @              @
+  @                @
+ @                  @
+ @                  @
+ @                  @
+ @@                @@
+  @@      @@      @@
+   @@@    @@   @@@@
+      @@@@@@@@@@@
+          @@
+          @@
+          @@
+-->
+<!-- Quake Duels gamemode include file -->
+<!-- Created by zzuf (GitHub @zzufx) -->
+<!-- Version 2025.02.22-1 -->
+<quake/>
+<gamemode>quake</gamemode>
+<game>Quake Duel</game>
+<objective>Be the first one to get 6 kills!</objective>
+<time>3m</time>
+<players min="2" max="2" colors="true"/>
+<kits>
+    <kit id="quakecraft-kit">
+        <item slot="0" unbreakable="true" material="netherite hoe" name="`rRailgun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/>
+        <effect duration="3s" amplifier="255" ambient="true">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<respawn auto="true" delay="0"/>
+<regions>
+    <apply block="never"/>
+</regions>
+<score>
+    <kills>1</kills>
+    <limit>6</limit>
+</score>
+<itemremove>
+    <item>netherite hoe</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

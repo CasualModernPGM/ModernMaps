@@ -1,0 +1,37 @@
+<map proto="1.5.0">
+<name>Dwyer Hill: Quake Duel</name>
+<version>1.1.7</version>
+<include id="quake"/>
+<authors>
+    <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
+</authors>
+<broadcasts>
+    <alert after="2s">Fall damage is disabled on this map!</alert>
+</broadcasts>
+<spawns>
+    <default>
+        <region>
+            <cylinder base="-252,35,902.5" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn kit="quakecraft-kit" safe="true" spread="true">
+        <regions angle="-253,6,878">
+            <cylinder base="-237.5,5,904.5" radius="3" height="0"/>
+            <cylinder base="-267.5,5,904.5" radius="3" height="0"/>
+            <cylinder base="-252.5,5,869.5" radius="1.5" height="0"/>
+            <point>-281,9,859</point>
+            <point>-224,9,859</point>
+        </regions>
+        <regions>
+            <cylinder base="-226,9,887" radius="1" height="0"/>
+            <cylinder base="-248,9,887" radius="1" height="0"/>
+        </regions>
+        <region yaw="-145">
+            <cylinder base="-226,5,876.5" radius="2" height="0"/>
+        </region>
+        <region yaw="145">
+            <cylinder base="-279,5,876.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+</map>

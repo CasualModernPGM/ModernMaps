@@ -1,0 +1,43 @@
+<map proto="1.5.0">
+<name>La Piazza: Quake Duel</name>
+<version>1.0.11</version>
+<created>2021-11-02</created>
+<authors>
+    <author uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Map author and creator"/> <!-- Technodono -->
+</authors>
+<contributors>
+    <contributor uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b" contribution="Built the clock tower"/> <!-- Tundren -->
+</contributors>
+<include id="quake"/>
+<spawns>
+    <default>
+        <region>
+            <block>-38,19,79</block>
+        </region>
+    </default>
+    <spawn spread="true" kit="quakecraft-kit" safe="true">
+        <regions angle="-37.5,15,56.5">
+            <!-- Far sides of long section -->
+            <cuboid min="-102,13,78" max="-98,19,35"/>
+            <cuboid min="27,13,78" max="23,19,35"/>
+            <!-- Long back rafters -->
+            <cuboid min="-102,13,78" max="27,19,73"/>
+            <cuboid min="-102,13,78" max="27,19,73"/>
+            <!-- Under rafters and middle edge -->
+            <cuboid min="-54,13,40" max="-102,13,35"/>
+            <cuboid min="-21,13,40" max="27,13,35"/>
+            <cuboid min="-54,13,40" max="-59,13,-9"/>
+            <cuboid min="-21,13,40" max="-16,13,-9"/>
+            <cuboid min="-59,19,-4" max="-16,13,-9"/>
+            <!-- Cafe -->
+            <cuboid min="-95,13,-2" max="-66,18,28"/>
+            <cuboid min="-95,13,-2" max="-66,18,28"/>
+            <cuboid min="-95,13,-2" max="-66,18,28"/>
+            <!-- Warehouse -->
+            <cuboid min="21,13,-2" max="-9,18,28"/>
+            <cuboid min="21,13,-2" max="-9,18,28"/>
+            <cuboid min="21,13,-2" max="-9,18,28"/>
+        </regions>
+    </spawn>
+</spawns>
+</map>
