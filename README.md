@@ -1,7 +1,7 @@
 # ModernMaps
 This repository contains public maps used in the Casual Modern PGM servers.
 
-These maps were created and submitted by members of the Casual Modern PGM community headed by [zzuf](https://github.com/zzufx) and [Eliminate](https://github.com/eliminate123).
+Many of these maps were created and submitted by members of the Casual Modern PGM community headed by [zzuf](https://github.com/zzufx) and [Eliminate](https://github.com/eliminate123).
 
 ## License
 
