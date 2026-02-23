@@ -16,7 +16,7 @@
 -->
 <!-- Quake Duels gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.22-1 -->
+<!-- Version 2025.02.23-1 -->
 <quake/>
 <gamemode>quake</gamemode>
 <game>Quake Duel</game>
@@ -29,6 +29,11 @@
         <effect duration="3s" amplifier="255" ambient="true">damage resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
+    <lend filter="crouching">
+        <kit>
+            <effect>glowing</effect>
+        </kit>
+    </lend>
 </kits>
 <respawn auto="true" delay="0"/>
 <regions>
