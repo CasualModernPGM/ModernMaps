@@ -1,0 +1,44 @@
+<map>
+<!-- Golden apple kill reward include file -->
+<!-- Author: Pablete1234 -->
+<!-- Version 2026.01.10 -->
+<!--
+    This include file prevents golden apple consumption from being interrupted
+    after killing another play and receiving a golden apple as a kill reward.
+-->
+<constants fallback="true">
+    <constant id="gapple-name" delete="true"/>
+    <constant id="gapple-lore" delete="true"/>
+    <constant id="gapple-slot" delete="true"/>
+    <constant id="gapple-locked" delete="true"/>
+    <constant id="gapple-reward-filter">always</constant>
+</constants>
+<variables>
+    <variable id="missing_gaps" scope="player"/>
+</variables>
+<filters>
+    <holding id="holding-gap" ignore-metadata="true">
+        <item>golden apple</item>
+    </holding>
+    <pulse id="pulse-give-gap" duration="0.05s" period="0.1s" filter="all(not(holding-gap),missing_gaps=1..)"/>
+</filters>
+<actions>
+    <action id="give-gap" scope="player">
+        <kit deduct-items="false">
+            <item material="golden apple" slot="${gapple-slot}" locked="${gapple-locked}" name="${gapple-name}" lore="${gapple-lore}"/>
+        </kit>
+        <set var="missing_gaps" value="missing_gaps-1"/>
+    </action>
+    <trigger scope="player" filter="pulse-give-gap" action="give-gap"/>
+</actions>
+<kill-rewards>
+    <kill-reward filter="${gapple-reward-filter}">
+        <action>
+            <set var="missing_gaps" value="missing_gaps+1"/>
+            <action filter="not(holding-gap)">
+                <action id="give-gap"/>
+            </action>
+        </action>
+    </kill-reward>
+</kill-rewards>
+</map>

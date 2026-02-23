@@ -1,0 +1,165 @@
+<map proto="1.5.0">
+<objective>Use your grenades and TNT to blow up as many people as you can!</objective>
+<game>Blasternauts</game>
+<!-- Blasternauts gamemode include file -->
+<!-- Modified by zzuf - Original blasternauts.xml file from the Overcast Network -->
+<!-- Version 2025.03.14-1 -->
+<autorespawn/>
+<rules>
+    <rule>Fall damage is disabled</rule>
+    <rule>Double jump is enabled</rule>
+</rules>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+</score>
+<kits>
+    <kit id="blasternaut-kit">
+        <item slot="0" enchantment="knockback" name="`6Melee Stick" material="blaze rod"/>
+        <item slot="1" unbreakable="true" name="`3TNT Launcher `6| `9Draw back to use." material="bow"/>
+        <item slot="2" amount="4" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 3" material="tnt" show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="3" amount="32" name="`cGrenade" grenade="true" grenade-power="1.2" material="snow ball"/>
+        <item slot="8" damage="8229" material="potion"/>
+        <item slot="28" amount="8" material="arrow"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <boots enchantment="protection explosions" material="iron boots"/>
+        <effect duration="8" amplifier="25">heal</effect>
+        <effect duration="8" amplifier="25">damage resistance</effect>
+        <effect amplifier="2">speed</effect>
+        <effect>jump</effect>
+        <effect>increase damage</effect>
+        <double-jump/>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="remove-effects-kit" force="true">
+        <effect duration="0">heal</effect>
+        <effect duration="0">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <observing id="is-observer"/>
+    <any id="allowed-blocks">
+        <allow>
+            <material>tnt</material>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
+    </any>
+    <deny id="deny-use">
+        <material>beacon</material>
+    </deny>
+    <match-started id="match-started"/>
+    <all id="entities-at-spawns">
+        <region id="spawn-areas"/>
+        <not>
+            <entity id="player">player</entity>
+        </not>
+    </all>
+    <pulse id="delete-time" period="1s" duration="0.1" filter="match-started"/>
+    <entity id="old-fireball">dropped_item</entity> <!-- used when deleting vanilla-spawned fireballs (which won't work as projectiles) -->
+</filters>
+<regions>
+    <negative id="not-spawn-areas">
+        <region id="spawn-areas"/>
+    </negative>
+    <apply block="allowed-blocks" region="not-spawn-areas"/>
+    <apply kit="remove-effects-kit" region="not-spawn-areas"/>
+    <apply use="deny-use" message="You may not interact with this block!"/>
+    <apply block="never" region="spawn-areas" message="You may not edit the spawns!"/>
+</regions>
+<actions>
+    <action id="delete-entities-at-spawns" scope="match">
+        <kill-entities filter="entities-at-spawns"/>
+    </action>
+    <trigger action="delete-entities-at-spawns" filter="delete-time" scope="match"/>
+</actions>
+<!-- Action used to remove vanilla spawners in older maps -->
+<!--
+<actions>
+    <action id="replace-spawners" scope="match">
+        <fill region="real-spawners" material="159:3"/>
+        <kill-entities filter="old-fireball"/>
+    </action>
+    <trigger action="replace-spawners" filter="match-started" scope="match"/>
+</actions>
+<spawners>
+    <spawner spawn-region="middle-spawner" player-region="everywhere" max-entities="6" delay="4s">
+        <item amount="1" name="`cGrenade MK II `6| `9Right click to use." material="fireball" projectile="fireball-grenade"/>
+    </spawner>
+</spawners>
+-->
+<modifybowprojectile>
+    <projectile>TNTPrimed</projectile>
+    <velocityMod>1.0</velocityMod>
+</modifybowprojectile>
+<projectiles>
+    <projectile id="fireball-grenade" name="Grenade MK II" projectile="Fireball" click="right" damage="10" throwable="true" cooldown="1s"/>
+</projectiles>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+    <fuse>2s</fuse>
+    <power>3</power>
+    <friendly-defuse>false</friendly-defuse>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron boots</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>leather chestplate</item>
+    <item>blaze rod</item>
+    <item>snow ball</item>
+    <item>blaze rod</item>
+    <item>arrow</item>
+    <item>tnt</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="arrow"/>
+        <item amount="2" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 3" material="tnt" show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item amount="6" name="`cGrenade" grenade="true" grenade-power="1.2" material="snow ball"/>
+        <item damage="8229" material="potion"/>
+    </kill-reward>
+</kill-rewards>
+<!-- Blasternauts tutorial taken from BN: Classic -->
+<!--
+<tutorial>
+    <stage title="Blasternauts">
+        <message>
+            <line>`9`lBlasternauts `ris a `4TNT `rbased gamemode.</line>
+            <line>The objective is to `4blow up`r as many people as you can...</line>
+            <line>using the `4TNT`r and `cGrenades `rin your inventory.</line>
+            <line>You will also find a `6melee stick`r incase you run out of equipment</line>
+        </message>
+    </stage>
+    <stage title="The Center">
+        <message>
+            <line>In the center, you will find spawners that spawn `cgrenades`r.</line>
+            <line>Go through here to get more `cgrenades`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-49" pitch="50">-19,23,-27</point>
+        </teleport>
+    </stage>
+</tutorial>
+-->
+</map>
