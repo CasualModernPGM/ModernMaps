@@ -16,7 +16,7 @@
 -->
 <!-- Quake Duels gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.23-2 -->
+<!-- Version 2025.02.23-3 -->
 <quake/>
 <gamemode>quake</gamemode>
 <game>Quake Duel</game>
@@ -55,7 +55,7 @@
             <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rzzuffer" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
         </action>
         <action filter="current_weapon=3">
-            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rCleargun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rFarmer" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
         </action>
         <action filter="current_weapon=4">
             <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rStyler" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
@@ -70,12 +70,12 @@
     <consumable id="gun-menu-action" action="open-gun-menu" on="right click" override="true" consume="false"/>
 </consumables>
 <shops>
-    <shop id="gun-menu">
-        <category id="main" name="Choose a gun for your next life!" material="netherite hoe">
+    <shop id="gun-menu" name="`eChoose your gun!">
+        <category id="main" name="`eChoose a gun!" material="netherite hoe">
             <item material="netherite hoe" components="enchantment_glint_override=true" name="`rRailgun" amount="1" purchasable="false" click-action="current_weapon:=0" on-buy="close"/>
             <item material="netherite hoe" components="enchantment_glint_override=true" name="`rCMPGM" amount="1" purchasable="false" click-action="current_weapon:=1" on-buy="close"/>
             <item material="netherite hoe" components="enchantment_glint_override=true" name="`rzzuffer" amount="1" purchasable="false" click-action="current_weapon:=2" on-buy="close"/>
-            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rCleargun" amount="1" purchasable="false" click-action="current_weapon:=3" on-buy="close"/>
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rFarmer" amount="1" purchasable="false" click-action="current_weapon:=3" on-buy="close"/>
             <item material="netherite hoe" components="enchantment_glint_override=true" name="`rStyler" amount="1" purchasable="false" click-action="current_weapon:=4" on-buy="close"/>
         </category>
     </shop>
