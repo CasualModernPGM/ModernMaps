@@ -37,7 +37,7 @@
     </lend>
 </kits>
 <variables>
-    <variable id="current_gun" default="0" scope="player"/>
+    <variable id="current_weapon" default="0" scope="player"/>
 </variables>
 <actions>
     <action id="give-weapon" scope="player">
