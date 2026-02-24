@@ -10,6 +10,7 @@
     <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Obstacle course"/> <!-- Timotheeee -->
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Trees and garden"/> <!-- rockymine -->
 </contributors>
+<players min="2" max="2" colors="true"/>
 <spawns>
     <spawn kit="quakecraft-kit" spread="true" safe="true">
         <regions angle="113.5,11,134">

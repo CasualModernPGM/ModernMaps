@@ -16,10 +16,9 @@
 -->
 <!-- Quake Duels gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.24-1 -->
+<!-- Version 2025.02.24-2 -->
 <constants>
     <constant id="score-limit">6</constant>
-    <constant id="mercy-limit">-1</constant>
     <!-- Guns -->
     <constant id="railgun-material">netherite hoe</constant>
     <constant id="cmpgm-material">diamond hoe</constant>
@@ -36,8 +35,7 @@
 </quake>
 <gamemode>quake</gamemode>
 <game>Quake Duel</game>
-<objective>Be the first one to get 6 kills!</objective>
-<players min="2" max="2" colors="true"/>
+<objective>Be the first one to get ${score-limit} kills!</objective>
 <kits>
     <kit id="quakecraft-kit">
         <kit id="gun-kit"/>
@@ -47,7 +45,7 @@
     <kit id="gun-kit">
         <clear/>
         <action id="give-weapon"/>
-        <item slot="8" unbreakable="true" material="knowledge book" name="`6Gun Menu" components="enchantment_glint_override=true" locked="true" consumable="gun-menu-action"/>
+        <item slot="8" unbreakable="true" material="knowledge book" name="`6Gun Selection" components="enchantment_glint_override=true" locked="true" consumable="gun-menu-action"/>
     </kit>
     <lend filter="all(crouching,participating)">
         <kit>
@@ -102,7 +100,7 @@
 </consumables>
 <shops>
     <shop id="gun-menu" name="`eChoose your gun!">
-        <category id="main" name="" material="eye of ender">
+        <category id="main" name="`8zzuf Arms Co." material="eye of ender">
             <item material="${railgun-material}" components="enchantment_glint_override=true" name="`rRailgun" amount="1" purchasable="false" click-action="current_weapon:=0" on-buy="close"/>
             <item material="${cmpgm-material}" components="enchantment_glint_override=true" name="`rCMPGM" amount="1" purchasable="false" click-action="current_weapon:=1" on-buy="close"/>
             <item material="${zzuffer-material}" components="enchantment_glint_override=true" name="`rzzuffer" amount="1" purchasable="false" click-action="current_weapon:=2" on-buy="close"/>
@@ -118,7 +116,6 @@
 <score>
     <kills>1</kills>
     <limit>${score-limit}</limit>
-    <mercy>${mercy-limit}</mercy>
 </score>
 <disabledamage>
     <damage>fall</damage>

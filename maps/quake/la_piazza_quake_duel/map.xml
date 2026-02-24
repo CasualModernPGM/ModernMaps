@@ -2,13 +2,14 @@
 <name>La Piazza: Quake Duel</name>
 <version>1.0.11</version>
 <created>2021-11-02</created>
+<include id="quake"/>
 <authors>
     <author uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Map author and creator"/> <!-- Technodono -->
 </authors>
 <contributors>
     <contributor uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b" contribution="Built the clock tower"/> <!-- Tundren -->
 </contributors>
-<include id="quake"/>
+<players min="2" max="2" colors="true"/>
 <spawns>
     <default>
         <region>

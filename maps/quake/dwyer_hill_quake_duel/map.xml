@@ -5,6 +5,7 @@
 <authors>
     <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
 </authors>
+<players min="2" max="2" colors="true"/>
 <spawns>
     <default>
         <region>
