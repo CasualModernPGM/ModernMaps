@@ -16,7 +16,7 @@
 -->
 <!-- Quake Duels gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.23-1 -->
+<!-- Version 2025.02.23-2 -->
 <quake/>
 <gamemode>quake</gamemode>
 <game>Quake Duel</game>
@@ -25,16 +25,61 @@
 <players min="2" max="2" colors="true"/>
 <kits>
     <kit id="quakecraft-kit">
-        <item slot="0" unbreakable="true" material="netherite hoe" name="`rRailgun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/>
+        <action id="give-weapon"/>
         <effect duration="3s" amplifier="255" ambient="true">damage resistance</effect>
+        <item slot="8" unbreakable="true" material="knowledge book" name="`rGun Menu" components="enchantment_glint_override=true" locked="true" consumable="gun-menu-action"/>
         <game-mode>adventure</game-mode>
     </kit>
-    <lend filter="crouching">
+    <lend filter="all(crouching,participating)">
         <kit>
             <effect>glowing</effect>
         </kit>
     </lend>
 </kits>
+<variables>
+    <variable id="current_gun" default="0" scope="player"/>
+</variables>
+<actions>
+    <action id="give-weapon" scope="player">
+        <replace-item>
+            <find>netherite hoe</find>
+            <replace>air</replace>
+        </replace-item>
+        <action filter="current_weapon=0">
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rRailgun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+        </action>
+        <action filter="current_weapon=1">
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rCMPGM" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+        </action>
+        <action filter="current_weapon=2">
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rzzuffer" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+        </action>
+        <action filter="current_weapon=3">
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rCleargun" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+        </action>
+        <action filter="current_weapon=4">
+            <kit><item slot="0" unbreakable="true" material="netherite hoe" name="`rStyler" lore="`eLeft click `7to boost, `eRight click`7 to fire.|`8Obtained by running 'impulse 9' in Beyond." components="enchantment_glint_override=true" locked="true"/></kit>
+        </action>
+        <sound/>
+    </action>
+    <action id="open-gun-menu" scope="player">
+        <open-shop shop="gun-menu"/>
+    </action>
+</actions>
+<consumables>
+    <consumable id="gun-menu-action" action="open-gun-menu" on="right click"/>
+</consumables>
+<shops>
+    <shop id="gun-menu">
+        <category id="main" name="Choose a gun for your next life!" material="netherite hoe">
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rRailgun" amount="1" purchasable="false" click-action="current_weapon:=0"/>
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rCMPGM" amount="1" purchasable="false" click-action="current_weapon:=1"/>
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rzzuffer" amount="1" purchasable="false" click-action="current_weapon:=2"/>
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rCleargun" amount="1" purchasable="false" click-action="current_weapon:=3"/>
+            <item material="netherite hoe" components="enchantment_glint_override=true" name="`rStyler" amount="1" purchasable="false" click-action="current_weapon:=4"/>
+        </category>
+    </shop>
+</shops>
 <respawn auto="true" delay="0"/>
 <regions>
     <apply block="never"/>
