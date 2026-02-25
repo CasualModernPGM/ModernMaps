@@ -1,12 +1,12 @@
 <map proto="1.5.0">
-<name>The High Road: Quake Duel</name>
+<name>The High Road: Quake</name>
 <version>1.0.11</version>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
+<constant id="map-mode">large</constant>
 <include id="quake"/>
 <constant id="spawn-kit">quakecraft-kit</constant>
-<constant id="score-limit">50</constant>
 <players min="2" max="24" colors="true"/>
 <spawns>
     <default>

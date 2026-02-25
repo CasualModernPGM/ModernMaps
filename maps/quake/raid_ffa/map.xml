@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Raid FFA</name>
 <variant id="guns">Guns</variant>
-<variant id="quake">Quake Duel</variant>
+<variant id="quake">Quake</variant>
 <version>1.0.9</version>
 <created>2023-05-12</created>
 <authors>
@@ -38,9 +38,9 @@
     <time result="score">6m</time>
 </unless>
 <if variant="quake">
+    <constant id="map-mode">large</constant>
     <include id="quake"/>
     <constant id="spawn-kit">quakecraft-kit</constant>
-    <constant id="score-limit">50</constant>
 </if>
 <spawns>
     <default>

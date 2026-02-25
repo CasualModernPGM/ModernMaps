@@ -14,11 +14,17 @@
           @@
           @@
 -->
-<!-- Quake Duels gamemode include file -->
+<!-- Quake gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.24-2 -->
+<!-- Version 2025.02.24-3 -->
 <constants>
-    <constant id="score-limit">6</constant>
+    <constant id="map-mode" fallback="true" delete="true"/>
+    <if constant="map-mode" constant-comparison="defined delete">
+        <constant id="score-limit">6</constant> <!-- Duel mode, default -->
+    </if>
+    <if constant="map-mode" constant-value="large">
+        <constant id="score-limit">50</constant> <!-- Larger matches -->
+    </if>
     <!-- Guns -->
     <constant id="railgun-material">netherite hoe</constant>
     <constant id="cmpgm-material">diamond hoe</constant>
@@ -33,8 +39,10 @@
     <railgun material="${looneygun-material}" beam-color="orange" spiral-color="black"/>
     <railgun material="${stylus-material}" beam-color="fuchsia" spiral-color="yellow"/>
 </quake>
+<if constant="map-mode" constant-comparison="defined delete">
+    <game>Quake Duel</game>
+</if>
 <gamemode>quake</gamemode>
-<game>Quake Duel</game>
 <objective>Be the first one to get ${score-limit} kills!</objective>
 <kits>
     <kit id="quakecraft-kit">
