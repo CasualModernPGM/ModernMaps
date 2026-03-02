@@ -1,0 +1,67 @@
+<map proto="1.5.0" min-server-version="1.21.11">
+<name>Skyova</name>
+<version>1.0.0</version>
+<objective>Capture the pool or kill everyone!</objective>
+<created>2025-02-28</created>
+<constant id="cs-shops-enabled">false</constant>
+<constant id="cs-score-mode">0</constant>
+<constant id="site-name">Hill</constant>
+<include id="counter-strat"/>
+<game>Counter-Strat: Fight Yard</game>
+<constants>
+    <!-- Map -->
+    <constant id="map-origin">0.5,0,0.5</constant>
+    <constant id="void-plane">-69</constant>
+    <!-- Teams -->
+    <constant id="cs-team-one-color">red</constant>
+    <constant id="cs-team-two-color">blue</constant>
+    <constant id="team-one-spawn">1,9,-32</constant>
+    <constant id="team-one-yaw">0</constant>
+    <constant id="team-two-spawn">0,9,33</constant>
+    <constant id="team-two-yaw">180</constant>
+</constants>
+<authors>
+    <author uuid="d5a64b26-15ea-46c4-8319-f9c83e82a1fa"/> <!-- Eliminate -->
+    <!-- Based off fy_skyova by Skyova https://gamebanana.com/mods/174009 -->
+</authors>
+<spawns>
+    <default>
+        <region yaw="90">
+            <point>32,39.5,0.5</point>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <negative id="not-buildable">
+        <empty/>
+    </negative>
+    <cuboid id="site" min="-3,8,-3" max="4,10.4,4"/>
+    <union id="jp-1">
+        <cuboid min="27,9,-16" max="28,10,-15"/>
+        <cuboid min="16,8,-6" max="18,9,-5"/>
+        <cuboid min="17,8,-5" max="18,9,-4"/>
+        <cuboid min="-27,9,16" max="-26,10,17"/>
+        <cuboid min="-17,8,6" max="-15,9,7"/>
+        <cuboid min="-17,8,6" max="-16,9,5"/>
+    </union>
+    <union id="jp-2">
+        <cuboid min="17,9,-19" max="19,10,-17"/>
+        <cuboid min="-10,9,-30" max="-7,10,-28"/>
+        <cuboid min="-18,9,18" max="-16,10,20"/>
+        <cuboid min="8,9,29" max="11,10,31"/>
+    </union>
+    <apply velocity="0,1.5,0">
+        <region><region id="jp-1"/></region>
+    </apply>
+    <apply velocity="0,1.6,0">
+        <region><region id="jp-2"/></region>
+    </apply>
+</regions>
+<filters>
+    <empty id="block-list"/>
+</filters>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<maxbuildheight>12</maxbuildheight>
+</map>
