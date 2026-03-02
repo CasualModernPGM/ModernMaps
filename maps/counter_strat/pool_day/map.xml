@@ -1,6 +1,6 @@
 <map proto="1.5.0" min-server-version="1.21">
 <name>Pool Day</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Capture the pool or kill everyone!</objective>
 <created>2025-05-26</created>
 <constant id="cs-shops-enabled">false</constant>
@@ -13,6 +13,8 @@
     <constant id="map-origin">0.5,0,0.5</constant>
     <constant id="void-plane">-69</constant>
     <!-- Teams -->
+    <constant id="cs-team-one-color">red</constant>
+    <constant id="cs-team-two-color">blue</constant>
     <constant id="team-one-spawn">-3.5,-59,-17.5</constant>
     <constant id="team-one-yaw">0</constant>
     <constant id="team-two-spawn">-3.5,-59,18.5</constant>
