@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.07.18-1 -->
+<!-- Version 2025.07.18-2 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <variant id="scaffolding" min-server-version="1.21">Scaffolding</variant>
@@ -55,7 +55,6 @@
 <respawn delay="3s" auto="true"/>
 <gamemode>is</gamemode>
 <if variant="lifesteal,scaffolding-lifesteal">
-    <phase>staging</phase>
     <include id="lifesteal"/>
     <constants>
         <!-- Lifesteal include constants -->
@@ -69,7 +68,6 @@
         <lives>${initial-lives}</lives>
         <broadcastLives>true</broadcastLives>
     </blitz>
-    <gamemode>lifesteal</gamemode>
 </if>
 <unless variant="lifesteal,scaffolding-lifesteal">
     <time>${time-limit}</time>
@@ -93,25 +91,17 @@
         <item material="tnt"/>
     </kit>
     <kit id="pw-sb">
-        <!-- TODO: remove when snowballs work in modern versions -->
-        <if max-server-version="1.20">
-            <item amount="5" material="snowball"/>
-        </if>
-        <if min-server-version="1.21">
-            <item amount="3" material="wind charge"/>
-        </if>
+        <item amount="5" material="snowball"/>
     </kit>
     <kit id="pw-fb">
         <item material="fireball" projectile="fireball-projectile"/>
     </kit>
-    <!-- TODO: re-enable when snowballs work in modern versions
     <if min-server-version="1.21">
         <kit id="pw-wc">
             <item amount="3" material="wind charge"/>
         </kit>
         <give kit="pw-wc" filter="all(base-pulse,next_global_powerup=3)"/>
     </if>
-    -->
     <give kit="pw-tnt" filter="all(base-pulse,next_global_powerup=0)"/>
     <give kit="pw-sb" filter="all(base-pulse,next_global_powerup=1)"/>
     <give kit="pw-fb" filter="all(base-pulse,next_global_powerup=2)"/>
@@ -380,12 +370,6 @@
             <set var="next_global_powerup" value="next_global_powerup+1"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(after-pulse,next_global_powerup=3)">
-        <action>
-            <set var="next_global_powerup" value="0"/>
-        </action>
-    </trigger>
-    <!-- TODO: re-enable when snowballs work in modern versions
     <if max-server-version="1.20">
         <trigger scope="match" filter="all(after-pulse,next_global_powerup=3)">
             <action>
@@ -400,7 +384,6 @@
             </action>
         </trigger>
     </if>
-    -->
     <!-- Messages -->
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=0)">
         <action>
@@ -409,13 +392,7 @@
     </trigger>
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=1)">
         <action>
-            <!-- TODO: remove when snowballs work in modern versions -->
-            <if max-server-version="1.20">
-                <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
-            </if>
-            <if min-server-version="1.21">
-                <message text=" `aAll living players have received a `fWind Charge`a power-up!"/>
-            </if>
+            <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
         </action>
     </trigger>
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=2)">
@@ -423,13 +400,11 @@
             <message text=" `aAll living players have received a `fFireball`a power-up!"/>
         </action>
     </trigger>
-    <!-- TODO: re-enable when snowballs work in modern versions
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=3)">
         <action>
             <message text=" `aAll living players have received a `fWind Charge`a power-up!"/>
         </action>
     </trigger>
-    -->
     <trigger scope="match" filter="op-pulse">
         <action>
             <message text=" `e⚠ `6A special item has spawned at middle!"/>
