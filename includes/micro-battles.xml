@@ -1,7 +1,7 @@
 <map>
 <!-- "Micro Battles" gamemode include file -->
 <!-- Created by Eliminate, based on the original "Cozy Cove" XML by Owehttamy -->
-<!-- Version 2025.09-09-1 -->
+<!-- Version 2026.03.12-1 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <constant id="use-default-teams">true</constant> <!-- Make sure this is ABOVE the include statement in your map's XML if changing to "false" -->
@@ -15,9 +15,7 @@
     <constant id="walls-filter">only-glass</constant> <!-- The blocks that the walls are made out of -->
     <constant id="default-walls-height">14</constant> <!-- Height for the default wall regions -->
 </constants>
-<gamemode>arcade</gamemode>
-<gamemode>blitz</gamemode>
-<game>Blitz: Micro Battles</game>
+<gamemode>mb</gamemode>
 <objective>${game-objective}</objective>
 <if constant="use-default-teams" constant-value="true">
     <teams>

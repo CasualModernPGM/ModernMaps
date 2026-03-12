@@ -146,7 +146,7 @@
     <blitz/>
 </if>
 <if variant="crossbow-blast">
-    <game>Crossbow Blast</game>
+    <gamemode>cb</gamemode>
     <score>
         <kills>1</kills>
     </score>

@@ -1,8 +1,8 @@
 <map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2025.07.24-1 -->
-<game>Ghost Squadron</game>
+<!-- Version 2025.03.12-1 -->
+<gamemode>gs</gamemode>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
     <constant id="time-limit">4m</constant>

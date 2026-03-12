@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2026.02.28-1 -->
+<!-- Version 2026.03.12-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -42,7 +42,7 @@
 </constants>
 <constants>
     <!-- Gamemode -->
-    <constant id="gamemode">tdm</constant>
+    <constant id="gamemode">cs</constant>
     <!-- Map -->
     <constant id="map-origin">0.5,0,0.5</constant>
     <constant id="void-plane">-69</constant>

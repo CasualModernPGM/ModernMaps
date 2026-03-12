@@ -53,6 +53,7 @@
     </if>
 </broadcasts>
 <respawn delay="3s" auto="true"/>
+<gamemode>is</gamemode>
 <if variant="lifesteal,scaffolding-lifesteal">
     <phase>staging</phase>
     <include id="lifesteal"/>
@@ -68,10 +69,9 @@
         <lives>${initial-lives}</lives>
         <broadcastLives>true</broadcastLives>
     </blitz>
-    <game>IS and Lifesteal</game>
+    <gamemode>lifesteal</gamemode>
 </if>
 <unless variant="lifesteal,scaffolding-lifesteal">
-    <game>Item Sumo</game>
     <time>${time-limit}</time>
     <score/>
 </unless>

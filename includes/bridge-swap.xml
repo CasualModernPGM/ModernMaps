@@ -7,14 +7,14 @@
 <!-- ╚═══════╝ -->
 <!-- Bridge Swap gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.02.04-1 -->
+<!-- Version 2025.03.12-1 -->
 <include id="bridge"/>
-<game>Bridge Swap</game>
 <constants fallback="true">
     <constant id="team-one-block">wool:14</constant>
     <constant id="team-two-block">wool:11</constant>
 </constants>
 <constants> <!-- Bridge include - No fallback here -->
+    <constant id="gamemode">bridgeswap</constant>
     <constant id="score-limit">4</constant>
     <constant id="show-tutorial">0</constant>
     <constant id="goal-scorer">0</constant>
