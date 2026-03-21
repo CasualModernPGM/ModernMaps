@@ -1,4 +1,4 @@
-<map>
+<map> <!-- Utilizes CMP fork features -->
 <!--
       \
       |\
@@ -8,18 +8,14 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.02.18-1 -->
+<!-- Version 2026.03.21-1 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
     <constant id="extra-kit">default-extra-kit</constant> <!-- For small additions to the base kit, useful if you just want to add stuff to the default one -->
 </constants>
 <game>One in the Quiver</game>
-<modifybowprojectile pickup-filter="never">
-    <if min-server-version="1.9">
-        <potion>glowing</potion>
-    </if>
-</modifybowprojectile>
+<modifybowprojectile pickup-filter="never"/>
 <rage/>
 <time result="score">${time-limit}m</time>
 <respawn auto="true"/>
@@ -38,6 +34,7 @@
         <action>
             <kit id="${extra-kit}"/>
         </action>
+        <item material="nether star" locked="true" consumable="class-selector" components="enchantment_glint_override=true" name="`f`lChoose a kit!"/>
     </kit>
     <kit id="default-extra-kit">
         <item slot="9" material="air"/>
@@ -312,4 +309,12 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<actions>
+    <action id="open-class-selector" scope="player">
+        <execute player="true" command="classlist"/>
+    </action>
+</actions>
+<consumables>
+    <consumable id="class-selector" action="open-class-selector" on="right click" consume="false"/>
+</consumables>
 </map>
