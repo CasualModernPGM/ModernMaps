@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2026.03.21-1 -->
+<!-- Version 2026.03.21-2 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -34,7 +34,7 @@
         <action>
             <kit id="${extra-kit}"/>
         </action>
-        <item material="nether star" locked="true" consumable="class-selector" components="enchantment_glint_override=true" name="`f`lChoose a kit!"/>
+        <item material="nether star" locked="true" consumable="class-selector" components="enchantment_glint_override=true" name="`f`lChoose a kit!" slot="8"/>
     </kit>
     <kit id="default-extra-kit">
         <item slot="9" material="air"/>
